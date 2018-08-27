@@ -1,11 +1,42 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+      Recente
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+
+  <ion-list>
+    <ion-item-sliding>
+      <ion-item >
+        <ion-avatar item-start>
+          <ion-icon name="pizza"></ion-icon>
+        </ion-avatar>
+        <h1>Gremio Poli</h1>
+        <h2>4.5 - Débito</h2>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary">
+          <ion-icon name="create"></ion-icon>
+          Edit
+        </button>
+        <button ion-button color="danger">
+          <ion-icon name="trash"></ion-icon>
+          Del
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-list>
+    <button ion-item *ngFor="let c of (course|async)?.slice().reverse()" (click)="goToSingle(c)">
+      {{c.tittle}} - {{c.payload}}  
+    </button>
+  </ion-list>
+  
+
 
 </ion-content>

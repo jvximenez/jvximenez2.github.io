@@ -10,6 +10,12 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AngularFireModule} from 'angularfire2';
+import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { ToastServiceProvider } from '../providers/toast-service/toast-service';
+import { EditPage } from '../pages/edit/edit';
+
 
 @NgModule({
   declarations: [
@@ -17,11 +23,23 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    EditPage,
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyCS77TuCe2jrXqmSDh9Ivs7gWedPM7PJ3E",
+      authDomain: "ionic3-gastos-45fd4.firebaseapp.com",
+      databaseURL: "https://ionic3-gastos-45fd4.firebaseio.com",
+      projectId: "ionic3-gastos-45fd4",
+      storageBucket: "ionic3-gastos-45fd4.appspot.com",
+      messagingSenderId: "404912444334"
+    }
+
+    ),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -29,12 +47,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    EditPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    FirebaseServiceProvider,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ToastServiceProvider
   ]
 })
 export class AppModule {}
