@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 
 /**
  * Generated class for the ConfiguraçõesPage page.
@@ -15,7 +16,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ConfiguraçõesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public course;
+  public categorias;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,  public dbService: FirebaseServiceProvider) {
+
+    this.course = this.dbService.getAllCategoria();
   }
 
   ionViewDidLoad() {

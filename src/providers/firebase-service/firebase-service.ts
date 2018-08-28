@@ -25,7 +25,11 @@ export class FirebaseServiceProvider {
     }));
   }
 
-  
+  getAllCategoria() {
+    return this.db.list('categorias').snapshotChanges().pipe(map(data => {
+      return data.map(d => ({key: d.key, ...d.payload.val()}));
+    }));
+  }
 
 
   
