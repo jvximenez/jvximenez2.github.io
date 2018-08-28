@@ -7,8 +7,13 @@ import { NavController } from 'ionic-angular';
 })
 export class ContactPage {
 
+  public cartadd;
+
   constructor(public navCtrl: NavController) {
 
   }
+
+
+
 
 }

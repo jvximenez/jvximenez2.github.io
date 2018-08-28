@@ -20,7 +20,7 @@ export class ToastServiceProvider {
       duration: duration
     });
 
-  return Toast
+    return Toast
   }
   
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { map } from 'rxjs/operators';
+import { map, count } from 'rxjs/operators';
 
 /*
   Generated class for the FirebaseServiceProvider provider.
@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class FirebaseServiceProvider {
   private dbRef;
+  private soma = 0;
 
   constructor(public db: AngularFireDatabase) {
     this.dbRef = this.db.list('course')
@@ -23,6 +24,11 @@ export class FirebaseServiceProvider {
       return data.map(d => ({key: d.key, ...d.payload.val()}));
     }));
   }
+
+  
+
+
+  
 
 
 
