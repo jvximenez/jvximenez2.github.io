@@ -16,7 +16,7 @@ import { FirebaseServiceProvider } from '../../providers/firebase-service/fireba
 })
 export class ConfiguraçõesPage {
 
-  public course;
+  public compras;
   public categorias;
 
   constructor(public navCtrl: NavController,
@@ -24,7 +24,7 @@ export class ConfiguraçõesPage {
     public dbService: FirebaseServiceProvider,
     public alertCtrl: AlertController) {
 
-    this.course = this.dbService.getAllCategoria();
+    this.compras = this.dbService.getAllCategoria();
   }
 
   ionViewDidLoad() {
@@ -38,7 +38,7 @@ export class ConfiguraçõesPage {
       inputs: [
         {
           name: 'title',
-          placeholder: 'Title'
+          placeholder: 'Nome'
         },
         {
           name: 'numero',

@@ -15,19 +15,19 @@
 
     <ion-item>
       <ion-label fixed>Local: </ion-label>
-      <ion-input type="text" value="" [(ngModel)]="course.tittle"></ion-input>
+      <ion-input type="text" value="" [(ngModel)]="compras.title"></ion-input>
     </ion-item>
   
     <ion-item>
       <ion-label fixed>Valor: </ion-label>
-      <ion-input type="number" value="" [(ngModel)]="course.payload"></ion-input>
+      <ion-input type="number" value="" [(ngModel)]="compras.payload"></ion-input>
     </ion-item>
   
     
     <ion-list>
       <ion-item> 
         <ion-label>Pagamento</ion-label >
-        <ion-select [(ngModel)]="Pagamento" >
+        <ion-select [(ngModel)]="compras.pagamento" >
           <ion-option value="débito">Itau - Débito</ion-option>
           <ion-option value="credito">Master - Crédito</ion-option>
           <ion-option value="credito-visa">Visa - Crédito</ion-option>
@@ -42,7 +42,7 @@
     <ion-list>
       <ion-item> 
         <ion-label>Categoria</ion-label >
-        <ion-select [(ngModel)]="Categorias" >
+        <ion-select [(ngModel)]="compras.categoria" >
           <ion-option value="comida">Comida</ion-option>
           <ion-option value="casa">casa</ion-option>
           <ion-option value="transporte">Transporte</ion-option>
@@ -56,7 +56,7 @@
   
 
   <ion-fab right bottom>
-    <button (click)="save(course)" ion-fab mini><ion-icon name="add"></ion-icon></button>
+    <button (click)="save(compras)" ion-fab mini><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 
 </ion-content>

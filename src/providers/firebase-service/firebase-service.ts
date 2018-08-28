@@ -15,12 +15,12 @@ export class FirebaseServiceProvider {
   private soma = 0;
 
   constructor(public db: AngularFireDatabase) {
-    this.dbRef = this.db.list('course')
+    this.dbRef = this.db.list('compras')
     console.log('Hello FirebaseServiceProvider Provider');
   }
 
   getAll() {
-    return this.db.list('course').snapshotChanges().pipe(map(data => {
+    return this.db.list('compras').snapshotChanges().pipe(map(data => {
       return data.map(d => ({key: d.key, ...d.payload.val()}));
     }));
   }
@@ -37,25 +37,25 @@ export class FirebaseServiceProvider {
 
 
 
-  save(course: any ){
+  save(compras: any ){
     return this.dbRef
-      .push(course)
+      .push(compras)
       .then(r=> console.log(r));
 
   }
 
 
 
-  update(course) {
+  update(compras) {
     return this.dbRef
-      .update(course.key, course)
+      .update(compras.key, compras)
       .then(r => console.log(r));
 
   }
 
-  revome(course){
+  revome(compras){
     return this.dbRef
-      .remove(course.key)
+      .remove(compras.key)
       .then(r => console.log(r))
   }
 

@@ -19,12 +19,12 @@
 
     <ion-item>
       <ion-label fixed>Local: </ion-label>
-      <ion-input type="text" [(ngModel)]="course.tittle"></ion-input>
+      <ion-input type="text" [(ngModel)]="compras.title"></ion-input>
     </ion-item>
   
     <ion-item>
       <ion-label fixed>Valor: </ion-label>
-      <ion-input type="number" [(ngModel)]="course.payload"></ion-input>
+      <ion-input type="number" [(ngModel)]="compras.payload"></ion-input>
     </ion-item>
   
     
@@ -59,8 +59,8 @@
   </ion-list>
   
 
-  <button ion-button full (click)="update(course)">Atualizar curso</button>
-  <button ion-button full color="danger" (click)="remove(course)">deletar curso</button>
+  <button ion-button full (click)="update(compras)">Atualizar curso</button>
+  <button ion-button full color="danger" (click)="remove(compras)">deletar curso</button>
 
 </ion-content>
 

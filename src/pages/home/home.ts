@@ -9,9 +9,11 @@ import { ConfiguraçõesPage } from '../configura\u00E7\u00F5es/configura\u00E7\
 })
 export class HomePage {
 
-  course = {
-    'tittle': '',
+  compras = {
+    'title': '',
     'payload': '',
+    'categoria':'',
+    'pagamento': '',
 
   };
 
@@ -23,9 +25,9 @@ export class HomePage {
 
 
   
-  save(course){
-    console.log(course);
-    this.dbService.save(course);
+  save(compras){
+    console.log(compras);
+    this.dbService.save(compras);
   }
 
   NavConfirg(){

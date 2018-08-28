@@ -9,12 +9,12 @@ import { EditPage } from '../edit/edit';
 })
 export class AboutPage {
 
-  public course;
+  public compras;
   public soma;
 
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
 
-    this.course = this.dbService.getAll();
+    this.compras = this.dbService.getAll();
     this.soma = this.somando();
     
 
@@ -22,17 +22,17 @@ export class AboutPage {
 
   }
 
-  goToSingle(course) {
-    console.log(course.tittle);
-    console.log(course.key);
+  goToSingle(compras) {
+    console.log(compras.title);
+    console.log(compras.key);
     this.navCtrl.push(EditPage, 
-    {'course' : course});
+    {'compras' : compras});
   }
 
   somando() {
-    this.course = this.dbService.getAll();
+    this.compras = this.dbService.getAll();
     this.soma = 0;
-    this.course.forEach(course => {course.forEach(course2 => {this.soma += Number(course2.payload), console.log(course2.payload, this.soma)})});
+    this.compras.forEach(compras => {compras.forEach(compra2 => {this.soma += Number(compra2.payload), console.log(compra2.payload, this.soma)})});
         console.log("oi");
         console.log(this.soma)
         return (this.soma);
@@ -40,9 +40,9 @@ export class AboutPage {
   }
 
   somando2(){
-    this.course = this.dbService.getAll();
+    this.compras = this.dbService.getAll();
     this.soma = 0;
-    this.course.forEach(course => {course.forEach(course2 => {if(course2.tittle == "Gremio"){return (this.soma += Number(course2.payload)), console.log(course2.payload, this.soma)}})});
+    this.compras.forEach(compras => {compras.forEach(compras2 => {if(compras2.title == "Gremio"){return (this.soma += Number(compras2.payload)), console.log(compras2.payload, this.soma)}})});
         console.log("oi");
         console.log(this.soma)
         return (this.soma);

@@ -17,26 +17,26 @@ import { AboutPage } from '../about/about';
 })
 export class EditPage {
 
-  course = {
-    'tittle': '',
+  compras = {
+    'title': '',
     'payload': '',
 
   };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseService: FirebaseServiceProvider) {
-    this.course = this.navParams.get('course');
+    this.compras = this.navParams.get('compras');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditPage');
   }
 
-  update(course){
-    this.firebaseService.update(course);
+  update(compras){
+    this.firebaseService.update(compras);
   }
 
-  remove(course){
-    this.firebaseService.revome(course).then( d => {
+  remove(compras){
+    this.firebaseService.revome(compras).then( d => {
       this.navCtrl.push(AboutPage)});
   }
 }

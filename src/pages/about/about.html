@@ -32,8 +32,8 @@
   </ion-list>
 
   <ion-list>
-    <button ion-item *ngFor="let c of (course|async)?.slice().reverse()" (click)="goToSingle(c)">
-      {{c.tittle}} - {{c.payload}}  
+    <button ion-item *ngFor="let c of (compras|async)?.slice().reverse()" (click)="goToSingle(c)">
+      {{c.title}} - {{c.payload}}  
     </button>
   </ion-list>
 
