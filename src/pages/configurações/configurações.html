@@ -5,36 +5,35 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Configurações</ion-title>
-    
   </ion-navbar>
-
 </ion-header>
 
-<ion-list>
-  <ion-item-sliding>
-    <ion-item *ngFor="let categoria of (categorias|async)">
-      <ion-avatar item-start>
-        <ion-icon name="pizza"></ion-icon>
-      </ion-avatar>
-      <h1>{{categoria.tittle}}</h1>
-      <h2>{{categoria.ordem}}</h2>
-    </ion-item>
-    <ion-item-options side="right">
-      <button ion-button color="primary">
-        <ion-icon name="create"></ion-icon>
-        Edit
-      </button>
-      <button ion-button color="danger">
-        <ion-icon name="trash"></ion-icon>
-        Del
-      </button>
-    </ion-item-options>
-  </ion-item-sliding>
-</ion-list>
-
 <ion-content>
+  <ion-list>
+    <ion-item-sliding>
+      <ion-item *ngFor="let categoria of (categorias|async)">
+        <ion-avatar item-start>
+          <ion-icon name="pizza"></ion-icon>
+        </ion-avatar>
+        <h1>{{categoria.tittle}}</h1>
+        <h2>{{categoria.ordem}}</h2>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary">
+          <ion-icon name="create"></ion-icon>
+          Edit
+        </button>
+        <button ion-button color="danger">
+          <ion-icon name="trash"></ion-icon>
+          Del
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 
+  <ion-fab right bottom>
+    <button (click)="NovaCategoria" ion-fab mini><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 </ion-content>
