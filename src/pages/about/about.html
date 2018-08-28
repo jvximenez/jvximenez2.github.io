@@ -10,20 +10,20 @@
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
 
   <ion-list>
-    <ion-item-sliding>
-      <ion-item *ngFor="let c of (compras|async)?.slice().reverse()">
+    <ion-item-sliding *ngFor="let c of (compras|async)?.slice().reverse()" >
+      <ion-item>
         <ion-icon item-start name="pizza"></ion-icon>
         <h1>{{c.title}}</h1>
         <h2>R${{c.payload}} - {{c.categoria}} </h2>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="primary" (click)="goToSingle(c)">
+        <button ion-button color="primary" (click)="goToSingle(c)" >
           <ion-icon name="create" ></ion-icon>
           Edit
         </button>
         <button ion-button color="danger">
           <ion-icon name="trash"></ion-icon>
-          Del
+          Delf
         </button>
       </ion-item-options>
     </ion-item-sliding>

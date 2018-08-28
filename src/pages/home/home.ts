@@ -17,6 +17,8 @@ export class HomePage {
 
   };
 
+  
+
 
 
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {

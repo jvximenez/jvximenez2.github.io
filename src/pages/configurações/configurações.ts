@@ -17,7 +17,16 @@ import { FirebaseServiceProvider } from '../../providers/firebase-service/fireba
 export class ConfiguraçõesPage {
 
   public compras;
-  public categorias;
+
+  categorias = {
+    'title': '',
+    'payload': '',
+    'categoria':'',
+    'pagamento': '',
+
+  };
+
+
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
