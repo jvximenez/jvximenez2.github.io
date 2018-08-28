@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 
 /**
@@ -19,7 +19,10 @@ export class ConfiguraçõesPage {
   public course;
   public categorias;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,  public dbService: FirebaseServiceProvider) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public dbService: FirebaseServiceProvider,
+    public alertCtrl: AlertController) {
 
     this.course = this.dbService.getAllCategoria();
   }
@@ -28,4 +31,41 @@ export class ConfiguraçõesPage {
     console.log('ionViewDidLoad ConfiguraçõesPage');
   }
 
+  NovaCategoria(){
+    const prompt = this.alertCtrl.create({
+      title: 'Nova Categora',
+      message: "Entre com o nome, número e icone da categoria",
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Title'
+        },
+        {
+          name: 'numero',
+          placeholder:"Número"
+        },
+        {
+          name: 'icon',
+          placeholder: "Ícone"
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            console.log('Saved clicked');
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
 }
+
+
