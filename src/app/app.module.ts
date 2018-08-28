@@ -15,6 +15,7 @@ import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { ToastServiceProvider } from '../providers/toast-service/toast-service';
 import { EditPage } from '../pages/edit/edit';
+import { ConfiguraçõesPage } from '../pages/configura\u00E7\u00F5es/configura\u00E7\u00F5es';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { EditPage } from '../pages/edit/edit';
     HomePage,
     TabsPage,
     EditPage,
+    ConfiguraçõesPage,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ import { EditPage } from '../pages/edit/edit';
     HomePage,
     TabsPage,
     EditPage,
+    ConfiguraçõesPage,
   ],
   providers: [
     StatusBar,
