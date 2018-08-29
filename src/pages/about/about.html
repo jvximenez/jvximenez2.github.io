@@ -23,16 +23,10 @@
         </button>
         <button ion-button color="danger">
           <ion-icon name="trash"></ion-icon>
-          Delf
+          Del
         </button>
       </ion-item-options>
     </ion-item-sliding>
-  </ion-list>
-
-  <ion-list>
-    <button ion-item *ngFor="let c of (compras|async)?.slice().reverse()" (click)="goToSingle(c)">
-      {{c.title}} - {{c.payload}}  
-    </button>
   </ion-list>
 
   <button ion-button (click)="somando2()">{{soma}}</button>
