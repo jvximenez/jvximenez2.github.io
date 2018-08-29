@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { ConfiguraçõesPage } from '../configura\u00E7\u00F5es/configura\u00E7\u00F5es';
+import { StatusBar } from '@ionic-native/status-bar';
 
 @Component({
   selector: 'page-home',
@@ -22,8 +23,12 @@ export class HomePage {
 
 
 
-  constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
+  constructor(public navCtrl: NavController,
+     public dbService: FirebaseServiceProvider,
+     private statusBar: StatusBar) {
+
     this.Criacao()
+    this.statusBar.backgroundColorByHexString('#0000000');
   }
 
 
