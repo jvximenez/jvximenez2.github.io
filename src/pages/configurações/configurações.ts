@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
+import { HomePage } from '../home/home';
+import { EditConfPage } from '../edit-conf/edit-conf';
 
 /**
  * Generated class for the ConfiguraçõesPage page.
@@ -77,6 +79,12 @@ export class ConfiguraçõesPage {
     });
     prompt.present();
   }
-}
+  
 
+
+  EditarCategoria(categoria){
+    this.navCtrl.push(EditConfPage,
+    {'categoria': categoria });
+  }
+}
 

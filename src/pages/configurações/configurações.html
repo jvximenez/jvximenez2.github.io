@@ -12,22 +12,11 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding>
-      <ion-item *ngFor="let categoria of (categorias|async)">
-        <ion-icon item-start name="pizza"></ion-icon>
+    <ion-item>
+      <ion-item *ngFor="let categoria of (categorias|async)" (click)="EditarCategoria(categoria)">
+        <ion-icon item-start name={{categoria.icon}}></ion-icon>
         <h1>{{categoria.numero}}° - {{categoria.title}}</h1>
       </ion-item>
-      <ion-item-options side="right">
-        <button ion-button color="primary">
-          <ion-icon name="create"></ion-icon>
-          Edit
-        </button>
-        <button ion-button color="danger">
-          <ion-icon name="trash"></ion-icon>
-          Del
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
   </ion-list>
 
   <ion-fab right bottom>

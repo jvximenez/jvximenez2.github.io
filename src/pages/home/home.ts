@@ -28,7 +28,7 @@ export class HomePage {
      private statusBar: StatusBar) {
 
     this.Criacao()
-    this.statusBar.backgroundColorByHexString('#0000000');
+    this.statusBar.backgroundColorByHexString('#fffffff');
   }
 
 
