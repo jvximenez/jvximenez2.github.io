@@ -37,7 +37,14 @@ export class FirebaseServiceProvider {
 
 
   save(compras: any ){
-    return this.dbRef
+    return this.db.list('compras')
+      .push(compras)
+      .then(r=> console.log(r));
+
+  }
+
+  saveCategoria(compras: any ){
+    return this.db.list('categorias')
       .push(compras)
       .then(r=> console.log(r));
 

@@ -17,12 +17,11 @@ import { FirebaseServiceProvider } from '../../providers/firebase-service/fireba
 export class ConfiguraçõesPage {
 
   public compras;
-
-  categorias = {
+  public categorias;
+  public categoria = {
     'title': '',
-    'payload': '',
-    'categoria':'',
-    'pagamento': '',
+    'numero': '',
+    'icon':'',
 
   };
 
@@ -33,7 +32,8 @@ export class ConfiguraçõesPage {
     public dbService: FirebaseServiceProvider,
     public alertCtrl: AlertController) {
 
-    this.compras = this.dbService.getAllCategoria();
+    this.categorias = this.dbService.getAllCategoria();
+
   }
 
   ionViewDidLoad() {
@@ -47,7 +47,8 @@ export class ConfiguraçõesPage {
       inputs: [
         {
           name: 'title',
-          placeholder: 'Nome'
+          placeholder: 'Nome',
+
         },
         {
           name: 'numero',
@@ -68,9 +69,10 @@ export class ConfiguraçõesPage {
         {
           text: 'Save',
           handler: data => {
-            console.log('Saved clicked');
+            this.categoria.title = data.title, this.categoria.numero = data.numero, this.categoria.icon = data.icon;
+            this.dbService.saveCategoria(this.categoria);
+            }
           }
-        }
       ]
     });
     prompt.present();
