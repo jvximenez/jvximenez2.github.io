@@ -16,7 +16,6 @@ export class FirebaseServiceProvider {
 
   constructor(public db: AngularFireDatabase) {
     this.dbRef = this.db.list('compras')
-    console.log('Hello FirebaseServiceProvider Provider');
   }
 
   getAll() {

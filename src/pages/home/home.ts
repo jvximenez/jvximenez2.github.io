@@ -14,6 +14,7 @@ export class HomePage {
     'payload': '',
     'categoria':'',
     'pagamento': '',
+    'data': '',
 
   };
 
@@ -22,7 +23,7 @@ export class HomePage {
 
 
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
-
+    this.Criacao()
   }
 
 
@@ -36,4 +37,14 @@ export class HomePage {
     this.navCtrl.push(ConfiguraçõesPage)
   }
 
+
+  Criacao(){
+    var data = new Date();
+    var dia = data.getDate();
+    var mes = data.getMonth() + 1;
+    var ano = data.getFullYear();
+    var hora = data.getHours();
+    var min = data.getMinutes();
+    console.log([[dia, mes, ano].join('/'),[hora,min].join(':')].join(' - '))
+  }
 }
