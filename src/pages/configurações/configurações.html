@@ -14,11 +14,8 @@
   <ion-list>
     <ion-item-sliding>
       <ion-item *ngFor="let categoria of (categorias|async)">
-        <ion-avatar item-start>
-          <ion-icon name="pizza"></ion-icon>
-        </ion-avatar>
-        <h1>{{categoria.title}}</h1>
-        <h2>{{categoria.ordem}}</h2>
+        <ion-icon item-start name="pizza"></ion-icon>
+        <h1>{{categoria.numero}}° - {{categoria.title}}</h1>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="primary">

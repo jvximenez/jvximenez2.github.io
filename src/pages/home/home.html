@@ -9,22 +9,24 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
-  <ion-list no-lines>
+  <ion-grid>
+    <ion-row>
+        <ion-item>
+            <ion-label fixed>Local: </ion-label>
+            <ion-input justify-content-end clearInput="False" autocomplete="on" value="" [(ngModel)]="compras.title"></ion-input>
+          </ion-item>
+    </ion-row>
 
-    <ion-item>
-      <ion-label fixed>Local: </ion-label>
-      <ion-input type="text" value="" [(ngModel)]="compras.title"></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-label fixed>Valor: </ion-label>
-      <ion-input type="number" value="" [(ngModel)]="compras.payload"></ion-input>
-    </ion-item>
-  
+    <ion-row>
+      <ion-item>
+          <ion-label fixed>Valor:</ion-label>
+          <ion-input type="number" value="" [(ngModel)]="compras.payload"></ion-input>
+        </ion-item>
+    </ion-row>
     
-    <ion-list>
+    <ion-row>
       <ion-item> 
         <ion-label>Pagamento</ion-label >
         <ion-select [(ngModel)]="compras.pagamento" >
@@ -36,27 +38,34 @@
           <ion-option value="Nuconta">Nuconta</ion-option>
         </ion-select>
       </ion-item>
-    </ion-list>
-    
-    
-    <ion-list>
-      <ion-item> 
-        <ion-label>Categoria</ion-label >
-        <ion-select [(ngModel)]="compras.categoria" >
-          <ion-option value="comida">Comida</ion-option>
-          <ion-option value="casa">casa</ion-option>
-          <ion-option value="transporte">Transporte</ion-option>
-          <ion-option value="Telefone">Telefone</ion-option>
-          <ion-option value="Data">Date</ion-option>
-          <ion-option value="Paiss">Pais</ion-option>
-        </ion-select>
-      </ion-item>
-    </ion-list> 
-  </ion-list>
-  
+    </ion-row>
 
-  <ion-fab right bottom>
-    <button (click)="save(compras)" ion-fab mini><ion-icon name="add"></ion-icon></button>
-  </ion-fab>
+    <ion-row>
+      <ion-item> 
+          <ion-label>Categoria</ion-label >
+          <ion-select [(ngModel)]="compras.categoria" >
+            <ion-option value="comida">Comida</ion-option>
+            <ion-option value="casa">casa</ion-option>
+            <ion-option value="transporte">Transporte</ion-option>
+            <ion-option value="Telefone">Telefone</ion-option>
+            <ion-option value="Data">Date</ion-option>
+            <ion-option value="Paiss">Pais</ion-option>
+          </ion-select>
+        </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item no-lines>
+
+      </ion-item>
+    </ion-row>
+
+    <ion-row justify-content-center>
+        <button class="btn" ion-button outline (click)="save(compras)">Adicionar</button>
+    </ion-row>
+  </ion-grid>
+
+
+
 
 </ion-content>
