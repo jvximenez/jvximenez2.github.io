@@ -13,25 +13,28 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
-  <ion-list no-lines>
 
-    <ion-item>
-      <ion-label fixed>Local: </ion-label>
-      <ion-input type="text" [(ngModel)]="compras.title"></ion-input>
-    </ion-item>
+  <ion-grid>
+    <ion-row>
+        <ion-item>
+            <ion-label fixed>Local: </ion-label>
+            <ion-input text-right clearInput="true" autocomplete="on" value="" [(ngModel)]="compras.title"></ion-input>
+          </ion-item>
+    </ion-row>
   
-    <ion-item>
-      <ion-label fixed>Valor: </ion-label>
-      <ion-input type="number" [(ngModel)]="compras.payload"></ion-input>
-    </ion-item>
-  
+    <ion-row>
+      <ion-item>
+          <ion-label fixed>Valor:</ion-label>
+          <ion-input text-right type="number" clearInput="true" value="" [(ngModel)]="compras.payload"></ion-input>
+        </ion-item>
+    </ion-row>
     
-    <ion-list>
+    <ion-row>
       <ion-item> 
         <ion-label>Pagamento</ion-label >
-        <ion-select [(ngModel)]="compras.pagamento">
+        <ion-select [(ngModel)]="compras.pagamento" >
           <ion-option value="débito">Itau - Débito</ion-option>
           <ion-option value="credito">Master - Crédito</ion-option>
           <ion-option value="credito-visa">Visa - Crédito</ion-option>
@@ -40,27 +43,33 @@
           <ion-option value="Nuconta">Nuconta</ion-option>
         </ion-select>
       </ion-item>
-    </ion-list>
-    
-    
-    <ion-list>
+    </ion-row>
+
+    <ion-row>
       <ion-item> 
-        <ion-label>Categoria</ion-label >
-        <ion-select [(ngModel)]="compras.categoria" >
-          <ion-option value="comida">Comida</ion-option>
-          <ion-option value="casa">casa</ion-option>
-          <ion-option value="transporte">Transporte</ion-option>
-          <ion-option value="Telefone">Telefone</ion-option>
-          <ion-option value="Data">Date</ion-option>
-          <ion-option value="Paiss">Pais</ion-option>
-        </ion-select>
+          <ion-label>Categoria</ion-label >
+          <ion-select [(ngModel)]="compras.categoria" >
+            <ion-option value="comida">Comida</ion-option>
+            <ion-option value="casa">casa</ion-option>
+            <ion-option value="transporte">Transporte</ion-option>
+            <ion-option value="Telefone">Telefone</ion-option>
+            <ion-option value="Data">Date</ion-option>
+            <ion-option value="Pais">Pais</ion-option>
+          </ion-select>
+        </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item no-lines>
+
       </ion-item>
-    </ion-list> 
-  </ion-list>
-  
+    </ion-row>
 
-  <button ion-button full (click)="update(compras)">Atualizar curso</button>
-  <button ion-button full color="danger" (click)="remove(compras)">deletar curso</button>
-
+    <ion-row justify-content-center>
+      <button ion-button round (click)="update(compras)">Atualizar compra</button>
+      <button ion-button round color="danger" (click)="remove(compras)">  Deletar compra  </button>
+    </ion-row>
+  </ion-grid>
+      
 </ion-content>
 
