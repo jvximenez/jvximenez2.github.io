@@ -10,6 +10,7 @@ import { EditPage } from '../edit/edit';
 export class AboutPage {
 
   public compras;
+  public comidas;
   public soma;
 
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
@@ -47,6 +48,13 @@ export class AboutPage {
         console.log(this.soma)
         return (this.soma);
         
+  }
+
+  comidainha(){
+    this.compras = this.dbService.getAll();
+    this.comidas = [];
+    this.compras.forEach(compras => {compras.forEach(compras2 =>{console.log(compras2.categoria);if(compras2.categoria == "comida"){return(this.comidas.push(compras2.title))}})});
+    console.log(this.comidas)
   }
   
   remover(key){
