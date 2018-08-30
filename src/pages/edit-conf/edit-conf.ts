@@ -15,14 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 })
 export class EditConfPage {
-  categorias = {
+  categoria = {
     'title':'',
     'numero':'',
     'icon':'',
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  this.categorias = this.navParams.get('categorias');
+  this.categoria = this.navParams.get('categoria');
+  
   }
 
   ionViewDidLoad() {

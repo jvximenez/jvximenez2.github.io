@@ -14,8 +14,9 @@
 
 
 <ion-content>
-  <ion-item *ngFor="let categoria of (categorias|async)">
+  <ion-item>
     <ion-icon item-start name={{categoria.icon}}></ion-icon>
-    <h1>{{categoria.numero}}° - {{categoria.title}}</h1>
+    <ion-label>Nome do Item:</ion-label>
+    <ion-input type="text" [(ngModel)]="categoria.icon"></ion-input>
   </ion-item>
 </ion-content>
