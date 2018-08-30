@@ -19,4 +19,24 @@
     <ion-label>Nome do Item:</ion-label>
     <ion-input type="text" [(ngModel)]="categoria.icon"></ion-input>
   </ion-item>
+  <ion-item>
+    <ion-label>Nome da categoria:</ion-label>
+    <ion-input type="text" [(ngModel)]="categoria.title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Número da categoria:</ion-label>
+    <ion-input type="number" [(ngModel)]="categoria.numero"></ion-input>
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-item no-lines></ion-item>
+    </ion-row>
+    <ion-row justify-content-center >
+      <button ion-button round col-5 (click)="atualizar(categoria)">Atualizar</button>
+    </ion-row>
+    <ion-row justify-content-center>
+      <button ion-button round col-5 color="danger" (click)="deletar(categoria)">Deletar</button>
+    </ion-row>
+  </ion-grid>
+    
 </ion-content>

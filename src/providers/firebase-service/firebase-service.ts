@@ -65,4 +65,17 @@ export class FirebaseServiceProvider {
       .then(r => console.log(r))
   }
 
+  updatecat(cat) {
+    return this.db.list('categorias')
+      .update(cat.key, cat)
+      .then(r => console.log(r));
+
+  }
+
+  revomecat(cat){
+    return this.db.list('categorias')
+      .remove(cat.key)
+      .then(r => console.log(r))
+  }
+
 }

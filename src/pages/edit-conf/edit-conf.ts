@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { ConfiguraçõesPage } from '../configura\u00E7\u00F5es/configura\u00E7\u00F5es';
+import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 /**
  * Generated class for the EditConfPage page.
  *
@@ -21,13 +22,23 @@ export class EditConfPage {
     'icon':'',
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseService: FirebaseServiceProvider) {
   this.categoria = this.navParams.get('categoria');
   
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditConfPage');
+  }
+
+  atualizar(categoria){
+    this.firebaseService.updatecat(categoria).then( d => {
+      this.navCtrl.push(ConfiguraçõesPage)});
+  }
+
+  deletar(categoria){
+    this.firebaseService.revomecat(categoria).then( d => {
+      this.navCtrl.push(ConfiguraçõesPage)});
   }
 
 }
