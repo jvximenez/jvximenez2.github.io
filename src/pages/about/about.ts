@@ -50,8 +50,7 @@ export class AboutPage {
   }
   
   remover(key){
-    this.dbService.revome(key).then( d => {
-      this.navCtrl.push(AboutPage)});
+    this.dbService.revome(key).then( d => {console.log("removido")});
   }
     
   
