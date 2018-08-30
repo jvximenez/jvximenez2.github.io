@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { ConfiguraçõesPage } from '../configura\u00E7\u00F5es/configura\u00E7\u00F5es';
 import { StatusBar } from '@ionic-native/status-bar';
+import { getLocaleCurrencyName } from '@angular/common';
 
 @Component({
   selector: 'page-home',
@@ -19,6 +20,8 @@ export class HomePage {
 
   };
 
+  private categorias;
+
   
 
 
@@ -29,6 +32,8 @@ export class HomePage {
 
     this.Criacao()
     this.statusBar.backgroundColorByHexString('#fffffff');
+    this.categorias = this.dbService.getArray('categoria')
+    console.log(this.categorias);
   }
 
 

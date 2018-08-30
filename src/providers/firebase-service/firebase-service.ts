@@ -49,5 +49,12 @@ export class FirebaseServiceProvider {
       .then(r => console.log(r))
   }
 
+  getArray(dado){
+    var teste =  this.getAll(dado)
+    var array = []
+    teste.forEach(dado => dado.forEach(dado2 => array.push(dado2)));
+    return (array)
+    
+  }
 
 }

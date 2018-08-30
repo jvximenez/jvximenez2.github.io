@@ -26,6 +26,11 @@ export class ConfiguraçõesPage {
     'icon':'',
 
   };
+  public pagamento ={
+    'title': '',
+    'numero':'',
+    'icon':'',
+  }
 
 
 
@@ -69,10 +74,17 @@ export class ConfiguraçõesPage {
           }
         },
         {
-          text: 'Save',
+          text: 'Categoria',
           handler: data => {
             this.categoria.title = data.title, this.categoria.numero = data.numero, this.categoria.icon = data.icon;
             this.dbService.save('categoria',this.categoria);
+            }
+          },
+        {
+          text: 'Pagamento',
+          handler: data => {
+            this.pagamento.title = data.title, this.pagamento.numero = data.numero, this.pagamento.icon = data.icon;
+            this.dbService.save('pagamento',this.pagamento);
             }
           }
       ]
@@ -85,6 +97,11 @@ export class ConfiguraçõesPage {
   EditarCategoria(categoria){
     this.navCtrl.push(EditConfPage,
     {'categoria': categoria });
+  }
+
+  EditarPagamento(pagamento){
+    this.navCtrl.push(EditConfPage,
+    {'pagamento': pagamento });
   }
 }
 

@@ -29,7 +29,7 @@
     <ion-row>
       <ion-item> 
         <ion-label>Pagamento</ion-label >
-        <ion-select [(ngModel)]="compras.pagamento" >
+        <ion-select [(ngModel)]="compras.pagamento" interface="popover" >
           <ion-option value="débito">Itau - Débito</ion-option>
           <ion-option value="credito">Master - Crédito</ion-option>
           <ion-option value="credito-visa">Visa - Crédito</ion-option>
@@ -43,13 +43,8 @@
     <ion-row>
       <ion-item> 
           <ion-label>Categoria</ion-label >
-          <ion-select [(ngModel)]="compras.categoria" >
-            <ion-option value="comida">Comida</ion-option>
-            <ion-option value="casa">casa</ion-option>
-            <ion-option value="transporte">Transporte</ion-option>
-            <ion-option value="Telefone">Telefone</ion-option>
-            <ion-option value="Data">Date</ion-option>
-            <ion-option value="Paiss">Pais</ion-option>
+          <ion-select [(ngModel)]="compras.categoria" interface="popover" >
+            <ion-option *ngFor="let categoria of categorias" value="{{categoria.title}}">{{categoria.title}}</ion-option>
           </ion-select>
         </ion-item>
     </ion-row>
