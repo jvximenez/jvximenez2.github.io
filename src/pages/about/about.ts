@@ -48,7 +48,11 @@ export class AboutPage {
         return (this.soma);
         
   }
-    
+  
+  remover(key){
+    this.dbService.revome(key).then( d => {
+      this.navCtrl.push(AboutPage)});
+  }
     
   
 
