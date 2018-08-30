@@ -15,8 +15,9 @@ export class AboutPage {
 
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
 
-    this.compras = this.dbService.getAll();
+    this.compras = this.dbService.getAll('compras');
     this.soma = this.somando();
+    this.comidas = this.comidinha();
     
 
     
@@ -24,41 +25,40 @@ export class AboutPage {
   }
 
   goToSingle(compras) {
-    console.log(compras.title);
-    console.log(compras.key);
     this.navCtrl.push(EditPage, 
     {'compras' : compras});
   }
 
   somando() {
-    this.compras = this.dbService.getAll();
+    this.compras = this.dbService.getAll('compras');
     this.soma = 0;
     this.compras.forEach(compras => {compras.forEach(compra2 => {this.soma += Number(compra2.payload), console.log(compra2.payload, this.soma)})});
-        console.log("oi");
+        
         console.log(this.soma)
         return (this.soma);
         
   }
 
   somando2(){
-    this.compras = this.dbService.getAll();
+    this.compras = this.dbService.getAll('compras');
     this.soma = 0;
-    this.compras.forEach(compras => {compras.forEach(compras2 => {if(compras2.title == "Gremio"){return (this.soma += Number(compras2.payload)), console.log(compras2.payload, this.soma)}})});
-        console.log("oi");
+    this.compras.forEach(compras => {compras.forEach(compras2 => {if(compras2.title == "Gremio"){return (this.soma += Number(compras2.payload))}})});
+        
         console.log(this.soma)
         return (this.soma);
         
   }
 
-  comidainha(){
-    this.compras = this.dbService.getAll();
+  comidinha(){
+    this.compras = this.dbService.getAll('compras');
     this.comidas = [];
-    this.compras.forEach(compras => {compras.forEach(compras2 =>{console.log(compras2.categoria);if(compras2.categoria == "comida"){return(this.comidas.push(compras2.title))}})});
-    console.log(this.comidas)
+    this.compras.forEach(compras => {compras.forEach(compras2 =>{if(compras2.categoria == "comida"){return(this.comidas.push(compras2))}})});
+    return (this.comidas); 
+    
   }
   
   remover(key){
-    this.dbService.revome(key).then( d => {console.log("removido")});
+    this.dbService.revome('compras',key).then( d => {console.log("removido")});
   }
     
   

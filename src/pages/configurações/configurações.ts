@@ -34,7 +34,7 @@ export class ConfiguraçõesPage {
     public dbService: FirebaseServiceProvider,
     public alertCtrl: AlertController) {
 
-    this.categorias = this.dbService.getAllCategoria();
+    this.categorias = this.dbService.getAll('categoria');
 
   }
 
@@ -72,7 +72,7 @@ export class ConfiguraçõesPage {
           text: 'Save',
           handler: data => {
             this.categoria.title = data.title, this.categoria.numero = data.numero, this.categoria.icon = data.icon;
-            this.dbService.saveCategoria(this.categoria);
+            this.dbService.save('categoria',this.categoria);
             }
           }
       ]

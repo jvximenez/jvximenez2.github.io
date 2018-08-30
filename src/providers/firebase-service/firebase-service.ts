@@ -12,70 +12,42 @@ import { map, count } from 'rxjs/operators';
 @Injectable()
 export class FirebaseServiceProvider {
   private dbRef;
-  private soma = 0;
+  
+  
 
   constructor(public db: AngularFireDatabase) {
     this.dbRef = this.db.list('compras')
   }
 
-  getAll() {
-    return this.db.list('compras').snapshotChanges().pipe(map(data => {
-      return data.map(d => ({key: d.key, ...d.payload.val()}));
-    }));
-  }
 
-  getAllCategoria() {
-    return this.db.list('categorias').snapshotChanges().pipe(map(data => {
+  getAll(dado){
+    return this.db.list(dado).snapshotChanges().pipe(map(data => {
       return data.map(d => ({key: d.key, ...d.payload.val()}));
     }));
   }
 
 
-  
 
-
-
-
-  save(compras: any ){
-    return this.db.list('compras')
-      .push(compras)
-      .then(r=> console.log(r));
-
-  }
-
-  saveCategoria(compras: any ){
-    return this.db.list('categorias')
+  save(dado,compras: any ){
+    return this.db.list(dado)
       .push(compras)
       .then(r=> console.log(r));
 
   }
 
 
-
-  update(compras) {
-    return this.dbRef
+  update(dado,compras) {
+    return this.db.list(dado)
       .update(compras.key, compras)
       .then(r => console.log(r));
 
   }
 
-  revome(compras){
-    return this.dbRef
+  revome(dado,compras){
+    return this.db.list(dado)
       .remove(compras.key)
       .then(r => console.log(r))
   }
 
-  updatecat(cat) {
-    return this.db.list('categorias')
-      .update(cat.key, cat)
-      .then(r => console.log(r));
-
-  }
-
-  revomecat(cat){
-    return this.db.list('categorias')
-      .remove(cat.key)
-      .then(r => console.log(r))
-  }
 
 }

@@ -32,11 +32,12 @@ export class EditPage {
   }
 
   update(compras){
-    this.firebaseService.update(compras);
+    this.firebaseService.update('compras',compras).then( d => {
+      this.navCtrl.push(AboutPage)});
   }
 
   remove(compras){
-    this.firebaseService.revome(compras).then( d => {
+    this.firebaseService.revome('compras',compras).then( d => {
       this.navCtrl.push(AboutPage)});
   }
 }

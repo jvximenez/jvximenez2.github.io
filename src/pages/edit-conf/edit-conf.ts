@@ -32,12 +32,12 @@ export class EditConfPage {
   }
 
   atualizar(categoria){
-    this.firebaseService.updatecat(categoria).then( d => {
+    this.firebaseService.update('categoria',categoria).then( d => {
       this.navCtrl.push(ConfiguraçõesPage)});
   }
 
   deletar(categoria){
-    this.firebaseService.revomecat(categoria).then( d => {
+    this.firebaseService.revome('categoria',categoria).then( d => {
       this.navCtrl.push(ConfiguraçõesPage)});
   }
 

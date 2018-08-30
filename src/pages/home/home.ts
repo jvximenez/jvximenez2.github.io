@@ -35,7 +35,7 @@ export class HomePage {
   
   save(compras){
     console.log(compras);
-    this.dbService.save(compras);
+    this.dbService.save('compras',compras);
   }
 
   NavConfirg(){
