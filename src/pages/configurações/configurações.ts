@@ -42,8 +42,6 @@ export class ConfiguraçõesPage {
 
     this.categorias = this.dbService.getAll('categoria');
     this.pagamentos =  this.dbService.getAll('pagamento');
-    console.log(this.pagamentos)
-    console.log(this.categorias)
 
   }
 

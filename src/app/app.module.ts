@@ -16,6 +16,7 @@ import { ToastServiceProvider } from '../providers/toast-service/toast-service';
 import { EditPage } from '../pages/edit/edit';
 import { ConfiguraçõesPage } from '../pages/configura\u00E7\u00F5es/configura\u00E7\u00F5es';
 import { EditConfPage } from '../pages/edit-conf/edit-conf';
+import { EditPagamentoPage } from '../pages/edit-pagamento/edit-pagamento';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { EditConfPage } from '../pages/edit-conf/edit-conf';
     EditPage,
     ConfiguraçõesPage,
     EditConfPage,
+    EditPagamentoPage,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +56,7 @@ import { EditConfPage } from '../pages/edit-conf/edit-conf';
     EditPage,
     ConfiguraçõesPage,
     EditConfPage,
+    EditPagamentoPage,
   ],
   providers: [
     StatusBar,
