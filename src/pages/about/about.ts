@@ -12,12 +12,14 @@ export class AboutPage {
   public compras;
   public comidas;
   public soma;
+  public categorias;
 
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
 
     this.compras = this.dbService.getAll('compras');
     this.soma = this.somando();
     this.comidas = this.comidinha();
+    this.categorias = this.dbService.getArray('categorias')
     
 
     
@@ -61,6 +63,11 @@ export class AboutPage {
     this.dbService.revome('compras',key).then( d => {console.log("removido")});
   }
     
+  icones(categoria){
+    if (categoria == 'Comida'){
+    return ("pizza")}
+
+  }
   
 
 }

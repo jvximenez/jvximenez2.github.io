@@ -12,7 +12,7 @@
   <ion-list>
     <ion-item-sliding *ngFor="let c of (compras|async)?.slice().reverse()" >
       <ion-item>
-        <ion-icon item-start name="pizza"></ion-icon>
+        <ion-icon item-start name=icon({{c.categoria}})></ion-icon>
         <h1>{{c.title}}</h1>
         <h2>R${{c.payload}} - {{c.categoria}} - {{c.pagamento}} </h2>
       </ion-item>

@@ -20,6 +20,7 @@ export class ConfiguraçõesPage {
 
   public compras;
   public categorias;
+  public pagamentos;
   public categoria = {
     'title': '',
     'numero': '',
@@ -30,7 +31,7 @@ export class ConfiguraçõesPage {
     'title': '',
     'numero':'',
     'icon':'',
-  }
+  };
 
 
 
@@ -40,6 +41,7 @@ export class ConfiguraçõesPage {
     public alertCtrl: AlertController) {
 
     this.categorias = this.dbService.getAll('categoria');
+    this.pagamentos =  this.dbService.getAll('pagamento');
 
   }
 

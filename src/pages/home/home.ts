@@ -31,7 +31,7 @@ export class HomePage {
      private statusBar: StatusBar) {
 
     this.Criacao()
-    this.statusBar.backgroundColorByHexString('#fffffff');
+    this.statusBar.backgroundColorByHexString('#ffffff');
     this.categorias = this.dbService.getArray('categoria')
     console.log(this.categorias);
   }
