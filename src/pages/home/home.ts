@@ -33,7 +33,6 @@ export class HomePage {
     this.Criacao()
     this.statusBar.backgroundColorByHexString('#ffffff');
     this.categorias = this.dbService.getArray('categoria')
-    console.log(this.categorias);
   }
 
 

@@ -65,9 +65,7 @@ export class AboutPage {
     
   icon(categoria){
     var icon
-    console.log(this.categorias, "olha as cat")
     this.categorias.forEach(element => {console.log(element); if (element.title == categoria) {icon = element.icon}});
-    console.log(icon)
     return icon
     
 
