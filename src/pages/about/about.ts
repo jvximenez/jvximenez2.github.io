@@ -15,6 +15,7 @@ export class AboutPage {
   public categorias;
 
   public visual;
+  public ordem;
 
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
 
@@ -22,8 +23,10 @@ export class AboutPage {
     this.soma = this.somando();
     this.comidas = this.comidinha();
     this.categorias = this.dbService.getArray('categoria')
+    this.visual = this.visualOrdem()
+    console.log(this.visual,"olha aqui")
 
-    this.visual = this.dbService.getArray('visual')
+    
 
     
 
@@ -74,8 +77,15 @@ export class AboutPage {
 
   }
 
-  PuxaCompras(){
-
+  visualOrdem(){
+    this.visual = this.dbService.getArray('visual')
+    this.visual.sort(function compare(a,b){
+      if (a < b) return -1;
+      if (a > b) return 1;
+      return 0
+      
+    
+    })
   }
   
 

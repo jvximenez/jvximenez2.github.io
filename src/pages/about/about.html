@@ -9,7 +9,8 @@
 <ion-content>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
 
-  <ion-list>
+  <ion-list >
+    <ion-header> - </ion-header>
     <ion-item-sliding *ngFor="let c of (compras|async)?.slice().reverse()" >
       <ion-item>
         <ion-icon item-start [name]=(icon(c.categoria))></ion-icon>
