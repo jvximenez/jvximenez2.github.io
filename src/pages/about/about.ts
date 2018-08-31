@@ -14,13 +14,16 @@ export class AboutPage {
   public soma;
   public categorias;
 
+  public visual;
+
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
 
     this.compras = this.dbService.getAll('compras');
     this.soma = this.somando();
     this.comidas = this.comidinha();
     this.categorias = this.dbService.getArray('categoria')
-    
+
+    this.visual = this.dbService.getArray('visual')
 
     
 
@@ -68,6 +71,10 @@ export class AboutPage {
     this.categorias.forEach(element => {if (element.title == categoria) {icon = element.icon}});
     return icon
     
+
+  }
+
+  PuxaCompras(){
 
   }
   

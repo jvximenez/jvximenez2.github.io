@@ -34,6 +34,11 @@ export class ConfiguraçõesPage {
     'icon':'',
   };
 
+  public visual ={
+    'ano':'',
+    'mes':'',
+  }
+
 
 
   constructor(public navCtrl: NavController,

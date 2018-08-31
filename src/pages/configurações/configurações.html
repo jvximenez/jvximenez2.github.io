@@ -26,9 +26,14 @@
     </ion-item>
   </ion-list>
 
-  <ion-fab right bottom>
-    <button (click)="NovaCategoria()" ion-fab mini><ion-icon name="add"></ion-icon></button>
-  </ion-fab>
 
+  
+      <ion-fab right bottom>
+        <button ion-fab mini ><ion-icon name="arrow-dropleft"></ion-icon></button>
+        <ion-fab-list side="left">
+          <button ion-fab><ion-icon name="logo-facebook" (click)="NovaCategoria()"></ion-icon></button>
+          <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+        </ion-fab-list>
+      </ion-fab>
 
 </ion-content>

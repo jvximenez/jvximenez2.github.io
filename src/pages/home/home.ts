@@ -79,8 +79,5 @@ export class HomePage {
     var mes = data.getMonth() +1;
     var ano = data.getFullYear();
     return([ano,mes].join('/'))
-
-    
-
   }
 }
