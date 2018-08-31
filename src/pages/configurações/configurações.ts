@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { HomePage } from '../home/home';
 import { EditConfPage } from '../edit-conf/edit-conf';
+import { EditPagamentoPage } from '../edit-pagamento/edit-pagamento';
 
 /**
  * Generated class for the ConfiguraçõesPage page.
@@ -102,7 +103,7 @@ export class ConfiguraçõesPage {
   }
 
   EditarPagamento(pagamento){
-    this.navCtrl.push(EditConfPage,
+    this.navCtrl.push(EditPagamentoPage,
     {'pagamento': pagamento });
   }
 }

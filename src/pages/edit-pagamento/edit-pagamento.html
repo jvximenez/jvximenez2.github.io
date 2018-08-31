@@ -6,13 +6,37 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>editPagamento</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
-</ion-content>
+    <ion-navbar>
+      <ion-title>Edição</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content>
+    <ion-item>
+      <ion-icon item-start name={{pagamento.icon}}></ion-icon>
+      <ion-label>Nome do Item:</ion-label>
+      <ion-input type="text" [(ngModel)]="pagamento.icon"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nome da categoria:</ion-label>
+      <ion-input type="text" [(ngModel)]="pagamento.title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Número da categoria:</ion-label>
+      <ion-input type="number" [(ngModel)]="pagamento.numero"></ion-input>
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-item no-lines></ion-item>
+      </ion-row>
+      <ion-row justify-content-center >
+        <button ion-button round col-5 (click)="atualizar(pagamento)">Atualizar</button>
+      </ion-row>
+      <ion-row justify-content-center>
+        <button ion-button round col-5 color="danger" (click)="deletar(pagamento)">Deletar</button>
+      </ion-row>
+    </ion-grid>
+      
+  </ion-content>
