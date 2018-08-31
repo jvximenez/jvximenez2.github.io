@@ -19,6 +19,7 @@ import { EditPagamentoPage } from '../pages/edit-pagamento/edit-pagamento';
 import { AnalisePage } from '../pages/analise/analise';
 
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -30,6 +31,7 @@ import { AnalisePage } from '../pages/analise/analise';
     ConfiguraçõesPage,
     EditConfPage,
     EditPagamentoPage,
+    
   ],
   imports: [
     BrowserModule,

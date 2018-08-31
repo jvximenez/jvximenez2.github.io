@@ -24,6 +24,11 @@
     <ion-item *ngFor="let pagamento of (pagamentos|async)" (click)="EditarPagamento(pagamento)">
       <ion-icon item-start name={{pagamento.icon}}></ion-icon>{{pagamento.numero}}° - {{pagamento.title}}
     </ion-item>
+
+  <ion-list-header>
+      Visualização
+    </ion-list-header>
+    <ion-item *ngFor="let a of (visuals|async)" (click)="remove(a)">{{a.ano}} - {{a.mes}}</ion-item>
   </ion-list>
 
 
@@ -35,5 +40,8 @@
           <button ion-fab><ion-icon name="folder-open" (click)="NovaVisual()"></ion-icon></button>
         </ion-fab-list>
       </ion-fab>
+
+
+
 
 </ion-content>

@@ -21,14 +21,10 @@ export class EditConfPage {
     'numero':'',
     'icon':'',
   };
-  pagamento = {
-    'title':'',
-    'numero':'',
-    'icon':'',
-  }
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseService: FirebaseServiceProvider) {
-  this.pagamento =  this.navParams.get('pagamento');
+    this.categoria =  this.navParams.get('categoria');
   
   }
 

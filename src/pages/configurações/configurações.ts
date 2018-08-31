@@ -22,6 +22,7 @@ export class ConfiguraçõesPage {
   public compras;
   public categorias;
   public pagamentos;
+  public visuals;
   public categoria = {
     'title': '',
     'numero': '',
@@ -48,6 +49,7 @@ export class ConfiguraçõesPage {
 
     this.categorias = this.dbService.getAll('categoria');
     this.pagamentos =  this.dbService.getAll('pagamento');
+    this.visuals = this.dbService.getAll('visual')
 
   }
 
@@ -140,11 +142,17 @@ export class ConfiguraçõesPage {
   EditarCategoria(categoria){
     this.navCtrl.push(EditConfPage,
     {'categoria': categoria });
+    console.log(categoria)
   }
 
   EditarPagamento(pagamento){
     this.navCtrl.push(EditPagamentoPage,
     {'pagamento': pagamento });
+    
+  }
+
+  remove(a){
+    this.dbService.revome('visual',a)
   }
 }
 
