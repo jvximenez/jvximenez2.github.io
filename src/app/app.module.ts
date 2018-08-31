@@ -4,7 +4,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -17,13 +16,14 @@ import { EditPage } from '../pages/edit/edit';
 import { ConfiguraçõesPage } from '../pages/configura\u00E7\u00F5es/configura\u00E7\u00F5es';
 import { EditConfPage } from '../pages/edit-conf/edit-conf';
 import { EditPagamentoPage } from '../pages/edit-pagamento/edit-pagamento';
+import { AnalisePage } from '../pages/analise/analise';
 
 
 @NgModule({
   declarations: [
     MyApp,
     AboutPage,
-    ContactPage,
+    AnalisePage,
     HomePage,
     TabsPage,
     EditPage,
@@ -50,7 +50,7 @@ import { EditPagamentoPage } from '../pages/edit-pagamento/edit-pagamento';
   entryComponents: [
     MyApp,
     AboutPage,
-    ContactPage,
+    AnalisePage,
     HomePage,
     TabsPage,
     EditPage,
