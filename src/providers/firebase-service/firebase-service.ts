@@ -16,7 +16,7 @@ export class FirebaseServiceProvider {
   
 
   constructor(public db: AngularFireDatabase) {
-    this.dbRef = this.db.list('compras')
+    
   }
 
 
@@ -34,6 +34,8 @@ export class FirebaseServiceProvider {
       .then(r=> console.log(r));
 
   }
+
+  
 
 
   update(dado,compras) {
@@ -57,4 +59,11 @@ export class FirebaseServiceProvider {
     
   }
 
+
+  updateG(dado,compras) {
+    return this.db.list(dado)
+      .update(compras.key, compras)
+      .then(r => console.log(r));
+
+  }
 }

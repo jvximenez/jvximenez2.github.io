@@ -20,8 +20,11 @@ export class HomePage {
 
   };
 
+ 
   private categorias;
   private pagamentos;
+  private dataM;
+  
 
   
 
@@ -35,13 +38,24 @@ export class HomePage {
     this.statusBar.backgroundColorByHexString('#ffffff');
     this.categorias = this.dbService.getArray('categoria')
     this.pagamentos = this.dbService.getArray('pagamento')
+    this.dataM = this.AchaMes();
+    this.compras.data = this.Criacao();
+
+
+
+    
   }
 
 
   
   save(compras){
     console.log(compras);
-    this.dbService.save('compras',compras);
+    this.dbService.save((['compras',this.dataM].join('/')),compras);
+  }
+
+  save2(teste){
+    console.log(teste);
+    this.dbService.save('compras','Janeiro');
   }
 
   NavConfirg(){
@@ -56,6 +70,17 @@ export class HomePage {
     var ano = data.getFullYear();
     var hora = data.getHours();
     var min = data.getMinutes();
-    console.log([[dia, mes, ano].join('/'),[hora,min].join(':')].join(' - '))
+    console.log([[dia, mes, ano].join('/'),[hora,min].join(':')].join(' - '));
+    return ([[dia, mes, ano].join('/'),[hora,min].join(':')].join(' - '));
+  }
+
+  AchaMes(){
+    var data = new Date();
+    var mes = data.getMonth() +1;
+    var ano = data.getFullYear();
+    return([ano,mes].join('/'))
+
+    
+
   }
 }
