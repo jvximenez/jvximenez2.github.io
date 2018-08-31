@@ -99,6 +99,41 @@ export class ConfiguraçõesPage {
     });
     prompt.present();
   }
+
+
+  NovaVisual(){
+    const prompt = this.alertCtrl.create({
+      title: 'Nova Visualização',
+      message: "Entre com ano e mes",
+      inputs: [
+        {
+          name: 'ano',
+          placeholder: 'Ano',
+
+        },
+        {
+          name: 'mes',
+          placeholder:"Mes"
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Adicionar',
+          handler: data => {
+            this.visual.ano = data.ano, this.visual.mes = data.mes;
+            this.dbService.save('visual',this.visual);
+            }
+          }
+      ]
+    });
+    prompt.present();
+  }
   
 
 
