@@ -21,6 +21,7 @@ export class HomePage {
   };
 
   private categorias;
+  private pagamentos;
 
   
 
@@ -33,6 +34,7 @@ export class HomePage {
     this.Criacao()
     this.statusBar.backgroundColorByHexString('#ffffff');
     this.categorias = this.dbService.getArray('categoria')
+    this.pagamentos = this.dbService.getArray('pagamento')
   }
 
 

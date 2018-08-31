@@ -20,11 +20,14 @@ export class EditPage {
   compras = {
     'title': '',
     'payload': '',
-
   };
+  private categorias;
+  private pagamentos;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseService: FirebaseServiceProvider) {
     this.compras = this.navParams.get('compras');
+    this.categorias = this.firebaseService.getArray('categoria')
+    this.pagamentos = this.firebaseService.getArray('pagamento')
   }
 
   ionViewDidLoad() {

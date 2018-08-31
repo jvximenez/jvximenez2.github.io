@@ -30,12 +30,7 @@
       <ion-item> 
         <ion-label>Pagamento</ion-label >
         <ion-select [(ngModel)]="compras.pagamento" interface="popover" >
-          <ion-option value="débito">Itau - Débito</ion-option>
-          <ion-option value="credito">Master - Crédito</ion-option>
-          <ion-option value="credito-visa">Visa - Crédito</ion-option>
-          <ion-option value="dinheiro">Dinheiro</ion-option>
-          <ion-option value="N26">N26</ion-option>
-          <ion-option value="Nuconta">Nuconta</ion-option>
+          <ion-option *ngFor="let pagamento of pagamentos">{{pagamento.title}}</ion-option>
         </ion-select>
       </ion-item>
     </ion-row>
