@@ -19,7 +19,7 @@ export class AboutPage {
     this.compras = this.dbService.getAll('compras');
     this.soma = this.somando();
     this.comidas = this.comidinha();
-    this.categorias = this.dbService.getArray('categorias')
+    this.categorias = this.dbService.getArray('categoria')
     
 
     
@@ -63,9 +63,13 @@ export class AboutPage {
     this.dbService.revome('compras',key).then( d => {console.log("removido")});
   }
     
-  icones(categoria){
-    if (categoria == 'Comida'){
-    return ("pizza")}
+  icon(categoria){
+    var icon
+    console.log(this.categorias, "olha as cat")
+    this.categorias.forEach(element => {console.log(element); if (element.title == categoria) {icon = element.icon}});
+    console.log(icon)
+    return icon
+    
 
   }
   

@@ -12,7 +12,7 @@
   <ion-list>
     <ion-item-sliding *ngFor="let c of (compras|async)?.slice().reverse()" >
       <ion-item>
-        <ion-icon item-start name=icon({{c.categoria}})></ion-icon>
+        <ion-icon item-start [name]=(icon(c.categoria))></ion-icon>
         <h1>{{c.title}}</h1>
         <h2>R${{c.payload}} - {{c.categoria}} - {{c.pagamento}} </h2>
       </ion-item>
@@ -21,7 +21,7 @@
           <ion-icon name="create" ></ion-icon>
           Edit
         </button>
-        <button ion-button color="danger"(click)="remover(c)">
+        <button ion-button color="danger"(click)="icon(c.categoria)">
           <ion-icon name="trash"></ion-icon>
           Del
         </button>
@@ -31,6 +31,7 @@
 
   <button ion-button (click)="somando2()">{{soma}}</button>
   <button ion-button (click)="comidainha()">{{soma}}</button>
+  
 
   
 
