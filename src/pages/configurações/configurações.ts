@@ -38,6 +38,7 @@ export class ConfiguraçõesPage {
   public visual ={
     'ano':'',
     'mes':'',
+    'final':'',
   }
 
 
@@ -128,7 +129,7 @@ export class ConfiguraçõesPage {
         {
           text: 'Adicionar',
           handler: data => {
-            this.visual.ano = data.ano, this.visual.mes = data.mes;
+            this.visual.ano = data.ano, this.visual.mes = data.mes, this.visual.final = data.ano + (data.mes-1)/12;
             this.dbService.save('visual',this.visual);
             }
           }
