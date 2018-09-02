@@ -112,11 +112,14 @@ export class ConfiguraçõesPage {
         {
           name: 'ano',
           placeholder: 'Ano',
+          type: 'number',
 
         },
         {
           name: 'mes',
-          placeholder:"Mes"
+          placeholder:"Mes",
+          type: 'number',
+
         }
       ],
       buttons: [
@@ -129,7 +132,7 @@ export class ConfiguraçõesPage {
         {
           text: 'Adicionar',
           handler: data => {
-            this.visual.ano = data.ano, this.visual.mes = data.mes, this.visual.final = data.ano + (data.mes-1)/12;
+            this.visual.ano = data.ano, this.visual.mes = data.mes, this.visual.final = ((data.ano) + (data.mes-1)/12);
             this.dbService.save('visual',this.visual);
             }
           }
