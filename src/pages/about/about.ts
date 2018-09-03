@@ -20,15 +20,9 @@ export class AboutPage {
 
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
     this.categorias = this.dbService.getArray('categoria')
-    this.visual= this.visualOrdem();
-    console.log(this.visual);
-    this.getCompras(this.visual);
-    
-    
-
-    
-
-    
+    this.compras = this.dbService.getAll('compras/2018/9')
+    console.log(this.compras)
+    this.gettestes();
 
   }
 
@@ -66,7 +60,7 @@ export class AboutPage {
   }
   
   remover(key){
-    this.dbService.revome('compras',key).then( d => {console.log("removido")});
+    this.dbService.revome('compras/2018/9',key).then( d => {console.log("removido")});
   }
     
   icon(categoria){
@@ -78,9 +72,11 @@ export class AboutPage {
   }
 
   visualOrdem(){
-    var newvis = {};
+    var newvis = [];
+    var compras = [];
     this.visual = this.dbService.getAll('visual')
-    this.visual = this.visual.forEach(visual1 => {visual1.forEach(visual2 => {newvis.push(visual2)})})
+    this.visual = this.visual.forEach(visual1 => {visual1.forEach(visual2 => {newvis.push(visual2), compras.push(this.dbService.getAll(['compras',visual2.ano,visual2.mes].join('/')))})})
+    console.log(compras,"olha as compras aqui");
     newvis.sort(function compare(a,b){
       if (a.final < b.final) return -1;
       if (a.final > b.final) return 1;
@@ -89,13 +85,13 @@ export class AboutPage {
   }
 
 
-  getCompras(visual){
-    var compras;
-    console.log(visual, "sempre aqui");
-    compras = visual.forEach(element => {console.log(element, "esses os elementos")});
+
+  gettestes(){
+    var teste = this.dbService.getArray('compras')
+    console.log (teste, "testee")}
       
     
 
-  }
+  
 
 }
