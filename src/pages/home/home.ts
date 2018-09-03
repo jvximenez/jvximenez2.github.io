@@ -4,6 +4,7 @@ import { FirebaseServiceProvider } from '../../providers/firebase-service/fireba
 import { ConfiguraçõesPage } from '../configura\u00E7\u00F5es/configura\u00E7\u00F5es';
 import { StatusBar } from '@ionic-native/status-bar';
 import { getLocaleCurrencyName } from '@angular/common';
+import { stringify } from '@angular/core/src/util';
 
 @Component({
   selector: 'page-home',
@@ -17,17 +18,15 @@ export class HomePage {
     'categoria':'',
     'pagamento': '',
     'data': '',
+    'ano':'',
+    'mes':'',
+    'total':'',
 
   };
 
  
   private categorias;
   private pagamentos;
-  private dataM;
-  
-
-  
-
 
 
   constructor(public navCtrl: NavController,
@@ -38,8 +37,11 @@ export class HomePage {
     this.statusBar.backgroundColorByHexString('#ffffff');
     this.categorias = this.dbService.getArray('categoria')
     this.pagamentos = this.dbService.getArray('pagamento')
-    this.dataM = this.AchaMes();
+    console.log(this.pagamentos.get)
+    this.compras.mes = String(this.AchaMes());
+    this.compras.ano = String(this.achaAno());
     this.compras.data = this.Criacao();
+    this.compras.total = String(this.Total())
 
 
 
@@ -50,7 +52,7 @@ export class HomePage {
   
   save(compras){
     console.log(compras);
-    this.dbService.save((['compras',this.dataM].join('/')),compras);
+    this.dbService.save('compras',compras);
   }
 
   save2(teste){
@@ -74,10 +76,31 @@ export class HomePage {
     return ([[dia, mes, ano].join('/'),[hora,min].join(':')].join(' - '));
   }
 
+  Total(){
+    var total;
+    var data = new Date();
+    var dia = data.getDate();
+    var mes = data.getMonth();
+    var ano = data.getFullYear();
+    var hora = data.getHours();
+    var min = data.getMinutes();
+    total = (ano + (mes)/12 + dia/31);
+    return total
+    
+    return ([[dia, mes, ano].join('/'),[hora,min].join(':')].join(' - '));
+  }
+
   AchaMes(){
     var data = new Date();
     var mes = data.getMonth() +1;
-    var ano = data.getFullYear();
-    return([ano,mes].join('/'))
-  }
+    
+    return(mes) 
+   }
+
+   achaAno(){
+     var data = new Date();
+     var ano = data.getFullYear();
+    return((ano));
+   }
+  
 }

@@ -9,24 +9,26 @@
 <ion-content>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
 
-  <ion-list>
-    <ion-item-sliding *ngFor="let c of (compras | async)">
-      <ion-item>
-        <ion-icon item-start [name]=(icon(c.categoria))></ion-icon>
-        <h1>{{c.title}}</h1>
-        <h2>R${{c.payload}} - {{c.categoria}} - {{c.pagamento}} </h2>
-      </ion-item>
-      <ion-item-options side="right">
-        <button ion-button color="primary" (click)="goToSingle(c)" >
-          <ion-icon name="create" ></ion-icon>
-          Edit
-        </button>
-        <button ion-button color="danger"(click)="remover(c)">
-          <ion-icon name="trash"></ion-icon>
-          Del
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
+  <ion-list *ngFor= ""> 
+    <ion-list-header>{{vis.mes}} - {{vis.ano}}
+      <ion-item-sliding *ngFor="let c of (compras | async)">
+        <ion-item>
+          <ion-icon item-start [name]=(icon(c.categoria))></ion-icon>
+          <h1>{{c.title}} - {{c.ano}} - {{c.mes}} </h1>
+          <h2>R${{c.payload}} - {{c.categoria}} - {{c.pagamento}} </h2>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="primary" (click)="goToSingle(c)" >
+            <ion-icon name="create" ></ion-icon>
+            Edit
+          </button>
+          <button ion-button color="danger"(click)="remover(c)">
+            <ion-icon name="trash"></ion-icon>
+            Del
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list-header>
     
   </ion-list>
 </ion-content>
