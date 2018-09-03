@@ -86,8 +86,7 @@ export class HomePage {
     var min = data.getMinutes();
     total = (ano + (mes)/12 + dia/31);
     return total
-    
-    return ([[dia, mes, ano].join('/'),[hora,min].join(':')].join(' - '));
+  
   }
 
   AchaMes(){

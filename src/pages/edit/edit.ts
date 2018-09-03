@@ -41,12 +41,12 @@ export class EditPage {
   }
 
   update(compras){
-    this.firebaseService.update('compras/2018/9',compras).then( d => {
+    this.firebaseService.update('compras',compras).then( d => {
       this.navCtrl.push(AboutPage)});
   }
 
   remove(compras){
-    this.firebaseService.revome('compras/2018/9',compras).then( d => {
+    this.firebaseService.revome('compras',compras).then( d => {
       this.navCtrl.push(AboutPage)});
   }
 }

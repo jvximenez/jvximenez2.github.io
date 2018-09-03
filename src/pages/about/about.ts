@@ -20,7 +20,7 @@ export class AboutPage {
 
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
     this.categorias = this.dbService.getArray('categoria')
-    this.compras = this.dbService.getAll('compras/2018')
+    this.compras = this.dbService.getAll('compras')
     this.visual = this.dbService.getAll('visual')
     console.log(this.visual, "visu")
     console.log(this.compras)
@@ -88,11 +88,8 @@ export class AboutPage {
 
 
 
-  gettestes(){
-    var teste = this.dbService.getArray('compras')
-    console.log (teste, "testee")
-    return (teste)
-  } ;
+    
+  
       
     
 

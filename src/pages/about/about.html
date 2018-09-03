@@ -9,8 +9,8 @@
 <ion-content>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
 
-  <ion-list *ngFor= ""> 
-    <ion-list-header>{{vis.mes}} - {{vis.ano}}
+  <ion-list> 
+    <ion-list-header>
       <ion-item-sliding *ngFor="let c of (compras | async)">
         <ion-item>
           <ion-icon item-start [name]=(icon(c.categoria))></ion-icon>

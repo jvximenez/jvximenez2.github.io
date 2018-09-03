@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, snapshotChanges } from 'angularfire2/database';
 import { map, count } from 'rxjs/operators';
+import firebase from 'firebase';
 
 /*
   Generated class for the FirebaseServiceProvider provider.
@@ -78,4 +79,5 @@ export class FirebaseServiceProvider {
       .then(r => console.log(r));
 
   }
+
 }
