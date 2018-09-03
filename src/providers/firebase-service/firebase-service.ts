@@ -64,8 +64,8 @@ export class FirebaseServiceProvider {
   }
 
 
-  updateG(dado,compras) {
-    return this.db.list(dado)
+  updateG(lista,compras) {
+    return this.db.list(lista)
       .update(compras.key, compras)
       .then(r => console.log(r));
 

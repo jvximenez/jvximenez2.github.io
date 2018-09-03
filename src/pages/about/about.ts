@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { EditPage } from '../edit/edit';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'page-about',
@@ -18,12 +19,10 @@ export class AboutPage {
   public ordem;
 
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
-
-    this.compras = this.dbService.getAll('compras/2018/9/.');
-    console.log(this.compras, "array de compras");
     this.categorias = this.dbService.getArray('categoria')
-    this.visual = this.visualOrdem()
-    console.log(this.visual, " array de visual");
+    this.visual= this.visualOrdem();
+    this.compras = this.visulArray(this.visual);
+    
 
     
 
@@ -83,9 +82,24 @@ export class AboutPage {
       if (a.final > b.final) return 1;
       return 0;});
       return(this.visual);
-      
+
+  }
+
+  visulArray(array){
+    console.log(array, "aqui array")
+    array.array.forEach(element => { console.log(element), this.compras.push(this.getCompras(element.ano,element.mes))});
+    console.log(this.compras, " aqui compras")
+    return (this.compras)
     
-    
+  }
+
+
+  getCompras(ano,mes){
+    console.log(ano,mes,"esse sao ano e mes")
+    this.compras =  this.dbService.getArray(["compras",ano,mes].join('/'))
+    console.log(this.compras, "e essas sao as compras")
+    return this.compras
+
   }
   
 
