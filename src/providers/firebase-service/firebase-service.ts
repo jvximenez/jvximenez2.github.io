@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, snapshotChanges } from 'angularfire2/database';
 import { map, count } from 'rxjs/operators';
 
 /*
@@ -26,7 +26,11 @@ export class FirebaseServiceProvider {
     }));
   }
 
-
+  getAllchild(dado){
+    return this.db.list(dado).snapshotChanges().pipe(map(data => {
+      return data.map(d => ({key: d.key, ...d.payload.val()}));
+    }));
+  }
 
   save(dado,compras: any ){
     return this.db.list(dado)

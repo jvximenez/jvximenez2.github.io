@@ -11,7 +11,7 @@
 
   <ion-list *ngFor="let vis of visual">
     <ion-list-header> {{vis.mes}} - {{vis.ano}} </ion-list-header>
-    <ion-item-sliding *ngFor="let c of (compras|async)?.slice().reverse()" >
+    <ion-item-sliding *ngFor="let c of compras">
       <ion-item>
         <ion-icon item-start [name]=(icon(c.categoria))></ion-icon>
         <h1>{{c.title}}</h1>
@@ -29,12 +29,5 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-
-  <button ion-button (click)="somando2()">{{soma}}</button>
-  <button ion-button (click)="comidainha()">{{soma}}</button>
-  
-
-  
-
 
 </ion-content>

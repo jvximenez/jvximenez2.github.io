@@ -19,12 +19,11 @@ export class AboutPage {
 
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
 
-    this.compras = this.dbService.getAll('compras');
-    this.soma = this.somando();
-    this.comidas = this.comidinha();
+    this.compras = this.dbService.getAll('compras/2018/9/.');
+    console.log(this.compras, "array de compras");
     this.categorias = this.dbService.getArray('categoria')
     this.visual = this.visualOrdem()
-    console.log(this.visual,"olha aqui")
+    console.log(this.visual, " array de visual");
 
     
 
@@ -42,7 +41,7 @@ export class AboutPage {
     this.soma = 0;
     this.compras.forEach(compras => {compras.forEach(compra2 => {this.soma += Number(compra2.payload), console.log(compra2.payload, this.soma)})});
         
-        console.log(this.soma)
+        
         return (this.soma);
         
   }
@@ -52,7 +51,7 @@ export class AboutPage {
     this.soma = 0;
     this.compras.forEach(compras => {compras.forEach(compras2 => {if(compras2.title == "Gremio"){return (this.soma += Number(compras2.payload))}})});
         
-        console.log(this.soma)
+        
         return (this.soma);
         
   }
@@ -83,7 +82,6 @@ export class AboutPage {
       if (a.final < b.final) return -1;
       if (a.final > b.final) return 1;
       return 0;});
-      console.log(this.visual,"e esse?")
       return(this.visual);
       
     

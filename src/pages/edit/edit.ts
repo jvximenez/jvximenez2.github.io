@@ -20,7 +20,12 @@ export class EditPage {
   compras = {
     'title': '',
     'payload': '',
+    'categoria':'',
+    'pagamento': '',
+    'data': '',
+
   };
+  
   private categorias;
   private pagamentos;
 
