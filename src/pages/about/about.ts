@@ -21,7 +21,9 @@ export class AboutPage {
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
     this.categorias = this.dbService.getArray('categoria')
     this.visual= this.visualOrdem();
-    this.compras = this.visulArray(this.visual);
+    console.log(this.visual);
+    this.getCompras(this.visual);
+    
     
 
     
@@ -36,7 +38,7 @@ export class AboutPage {
   }
 
   somando() {
-    this.compras = this.dbService.getAll('compras');
+    var compras = this.dbService.getAll('compras');
     this.soma = 0;
     this.compras.forEach(compras => {compras.forEach(compra2 => {this.soma += Number(compra2.payload), console.log(compra2.payload, this.soma)})});
         
@@ -46,7 +48,7 @@ export class AboutPage {
   }
 
   somando2(){
-    this.compras = this.dbService.getAll('compras');
+    var compras = this.dbService.getAll('compras');
     this.soma = 0;
     this.compras.forEach(compras => {compras.forEach(compras2 => {if(compras2.title == "Gremio"){return (this.soma += Number(compras2.payload))}})});
         
@@ -56,7 +58,7 @@ export class AboutPage {
   }
 
   comidinha(){
-    this.compras = this.dbService.getAll('compras');
+    var compras = this.dbService.getAll('compras');
     this.comidas = [];
     this.compras.forEach(compras => {compras.forEach(compras2 =>{if(compras2.categoria == "comida"){return(this.comidas.push(compras2))}})});
     return (this.comidas); 
@@ -76,31 +78,24 @@ export class AboutPage {
   }
 
   visualOrdem(){
-    this.visual = this.dbService.getArray('visual')
-    this.visual.sort(function compare(a,b){
+    var newvis = {};
+    this.visual = this.dbService.getAll('visual')
+    this.visual = this.visual.forEach(visual1 => {visual1.forEach(visual2 => {newvis.push(visual2)})})
+    newvis.sort(function compare(a,b){
       if (a.final < b.final) return -1;
       if (a.final > b.final) return 1;
       return 0;});
-      return(this.visual);
-
+      return(newvis);
   }
 
-  visulArray(array){
-    console.log(array, "aqui array")
-    array.array.forEach(element => { console.log(element), this.compras.push(this.getCompras(element.ano,element.mes))});
-    console.log(this.compras, " aqui compras")
-    return (this.compras)
+
+  getCompras(visual){
+    var compras;
+    console.log(visual, "sempre aqui");
+    compras = visual.forEach(element => {console.log(element, "esses os elementos")});
+      
     
-  }
-
-
-  getCompras(ano,mes){
-    console.log(ano,mes,"esse sao ano e mes")
-    this.compras =  this.dbService.getArray(["compras",ano,mes].join('/'))
-    console.log(this.compras, "e essas sao as compras")
-    return this.compras
 
   }
-  
 
 }

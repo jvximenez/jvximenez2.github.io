@@ -63,6 +63,14 @@ export class FirebaseServiceProvider {
     
   }
 
+  getArray2(dado){
+    var teste =  this.getAll(dado)
+    var array = {}
+    array = teste.forEach(dado => dado.forEach(dado2 =>{}));
+    return (teste)
+    
+  }
+
 
   updateG(lista,compras) {
     return this.db.list(lista)
