@@ -16,7 +16,7 @@ export class AboutPage {
   public categorias;
 
   public visual;
-  public ordem;
+  public varredura = [];
 
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
     this.categorias = this.dbService.getArray('categoria')
@@ -24,7 +24,8 @@ export class AboutPage {
     this.visual = this.dbService.getAll('visual')
 
 
-    this.DefinindoArrays();
+    this.varredura = this.DefinindoArrays();
+    console.log((this.varredura),"varredura aquio");
     
 
   }
@@ -61,31 +62,30 @@ export class AboutPage {
   }
 
   DefinindoArrays(){
-    var anos = []
-    var meses = []
+    var varredura = [];
     var compras = this.dbService.getAll('compras')
     console.log(compras)
     compras.forEach(itens => {
-    itens.forEach(item => {console.log(item,"itens aqui"); if (Boolean(this.verificoSeEstaNaLista(item.ano,anos)) == false) {anos.push(item.ano)}})})
-    console.log(anos,"os anos são")
-    }
-
-  
-
-    verificoSeEstaNaLista(item,lista){
-      console.log(item,lista,"olhe esses valores")
-      var contador = 0
-      lista.forEach(element => { if(element == item) {contador =+ 1 }})
-      if (contador > 0){return true}
-      return true
-        
+    itens.forEach(item => {if (Boolean(this.verificoSeEstaNaLista(item['ano'],item['mes'],varredura)) == false) {varredura.push(([item['ano'],item['mes']].join('-')))}; 
+    })})
+    return(varredura)
+    };
+    
+    
     
 
-        
-      
+  
+
+    verificoSeEstaNaLista(ano,mes,lista){
+      console.log(ano,mes,lista,"olhe esses valores")
+      var contador = 0;
+      var item = ([ano,mes].join('-'));
+      lista.forEach(element => { if(element == item) {contador =+ 1 }})
+      if (contador > 0){return true}
+      return false
 
     }
-  
+    
 
 
   
