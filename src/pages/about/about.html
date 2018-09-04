@@ -13,7 +13,7 @@
     <div  >
     <ion-list-header *ngFor="let a of varredura">{{a}}
       <div *ngFor="let c of (compras | async)"> 
-      <ion-item-sliding *ngIf = "([c.ano,c.mes].join('-')) == a">
+      <ion-item-sliding *ngIf = "([c.ano,c.mes].join(' - ')) == a">
         <ion-item>
           <ion-icon item-start [name]=(icon(c.categoria))></ion-icon>
           <h1>{{c.title}} - {{c.ano}} - {{c.mes}} </h1>

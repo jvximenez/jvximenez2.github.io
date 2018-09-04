@@ -32,4 +32,7 @@ export class AnalisePage {
     console.log('ionViewDidLoad AnalisePage');
   }
 
+
+  
+
 }

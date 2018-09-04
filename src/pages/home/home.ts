@@ -101,5 +101,14 @@ export class HomePage {
      var ano = data.getFullYear();
     return((ano));
    }
+
+
+   criacaoObjeto(nome){
+     var teste = {}
+     Object.defineProperty('compras',nome,{value: "sdadsa",writable: true,
+     enumerable: true,
+     configurable: true });
+      this.save(teste);
+   }
   
 }

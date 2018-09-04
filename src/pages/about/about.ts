@@ -66,7 +66,7 @@ export class AboutPage {
     var compras = this.dbService.getAll('compras')
     console.log(compras)
     compras.forEach(itens => {
-    itens.forEach(item => {if (Boolean(this.verificoSeEstaNaLista(item['ano'],item['mes'],varredura)) == false) {varredura.push(([item['ano'],item['mes']].join('-')))}; 
+    itens.forEach(item => {if (Boolean(this.verificoSeEstaNaLista(item['ano'],item['mes'],varredura)) == false) {varredura.push(([item['ano'],item['mes']].join(' - ')))}; 
     })})
     return(varredura)
     };
@@ -86,7 +86,7 @@ export class AboutPage {
 
     }
     
-
+    
 
   
 
