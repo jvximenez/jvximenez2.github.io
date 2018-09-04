@@ -14,5 +14,27 @@
 
 
 <ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      {{teste.mes}}-{{teste.ano}}
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-item>
+            <ion-label fixed></ion-label>
+            <ion-input text-right  autocomplete="on" value="gdfgf"></ion-input>
+            <ion-input text-right autocomplete="on" value="gdfgf"></ion-input>
+          </ion-item>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 
+
+
+
+  <ion-fab right bottom>
+    <button ion-fab mini ><ion-icon name="add" (click)=adicionar()></ion-icon></button>
+  </ion-fab>
 </ion-content>

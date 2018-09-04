@@ -15,7 +15,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AnalisePage {
 
+  teste = {
+    'categoria 1' : [4.5],
+    'categoria 2' : [4.5],
+    'categoria 3' : [4.5],
+    'categoria 4' : [4.5],
+    'mes':"9",
+    'ano':'2018',
+  }
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
   }
 
   ionViewDidLoad() {
