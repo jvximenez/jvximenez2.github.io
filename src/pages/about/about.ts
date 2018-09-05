@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { EditPage } from '../edit/edit';
-import { forkJoin } from 'rxjs';
+import { forkJoin, empty } from 'rxjs';
 
 @Component({
   selector: 'page-about',
@@ -22,10 +22,8 @@ export class AboutPage {
     this.categorias = this.dbService.getArray('categoria')
     this.compras = this.dbService.getAll('compras')
     this.visual = this.dbService.getAll('visual')
-
-
-    this.varredura = this.DefinindoArrays();
-    console.log((this.varredura),"varredura aquio");
+    this.DefinindoArrays()
+    
     
 
   }
@@ -62,13 +60,19 @@ export class AboutPage {
   }
 
   DefinindoArrays(){
+    var array = [];
+    var comprasSeparadas;
     var varredura = [];
-    var compras = this.dbService.getAll('compras')
-    console.log(compras)
+    var compras = this.dbService.getAll('compras');
     compras.forEach(itens => {
-    itens.forEach(item => {if (Boolean(this.verificoSeEstaNaLista(item['ano'],item['mes'],varredura)) == false) {varredura.push(([item['ano'],item['mes']].join(' - ')))}; 
-    })})
-    return(varredura)
+    itens.forEach(item => {if (Boolean(this.verificoSeEstaNaLista(item['ano'], item['mes'],varredura)) == false) {varredura.push(([item['ano'],item['mes']].join(' - ')))}; 
+    })});
+    array.push(varredura);
+    compras.forEach(itens => {console.log(itens,"olha os itens"); comprasSeparadas = this.ListaDeListasComKey(varredura,itens) })
+    console.log("valor da compra separada", Array(comprasSeparadas));
+    array.push(comprasSeparadas)
+    console.log(array, "array final")
+    return(array)
     };
     
     
@@ -77,7 +81,6 @@ export class AboutPage {
   
 
     verificoSeEstaNaLista(ano,mes,lista){
-      console.log(ano,mes,lista,"olhe esses valores")
       var contador = 0;
       var item = ([ano,mes].join(' - '));
       lista.forEach(element => { if(element == item) {contador =+ 1 }})
@@ -85,8 +88,33 @@ export class AboutPage {
       return false
 
     }
+
+    ListaDeListasComKey(lista,itens){
+      var arrayPr = [];
+      console.log(arrayPr,"primeiro array");
+      var arrayL = [];
+      var cont = 0;
+      var adicao;
+      while (cont < lista.length) {
+        arrayPr.push(arrayL)
+        cont += 1
+        console.log("esse é o arrayPr sem nada",arrayPr)
+      }
+      console.log("esse é o arrayPr sem nada",arrayPr)
+      itens.forEach(item => {adicao = (this.verificoSeigual(item['ano'],item['mes'],lista));  console.log(adicao,"adicao"); (arrayPr[adicao][arrayPr[adicao].length])=(adicao); console.log("esse valor array P de cada iteracao", arrayPr)});
+      console.log("esse array P completo ", arrayPr);
+      return (arrayPr)
+
+    }
     
-    
+    verificoSeigual(ano,mes,lista){
+      var contador = -1;
+      var espera;
+      var item = ([ano,mes].join(' - '));
+      lista.forEach(element => {contador += 1; if (element == item) {espera = contador}})
+      return (espera);
+
+    }
 
   
 
