@@ -25,6 +25,7 @@ export class AboutPage {
     this.DefinindoArrays()
     
     
+    
 
   }
 
@@ -100,10 +101,10 @@ export class AboutPage {
         cont += 1
         console.log("esse é o arrayPr sem nada",arrayPr)
       }
-      console.log("esse é o arrayPr sem nada",arrayPr)
-      itens.forEach(item => {adicao = (this.verificoSeigual(item['ano'],item['mes'],lista));  console.log(adicao,"adicao"); (arrayPr[adicao][arrayPr[adicao].length])=(adicao); console.log("esse valor array P de cada iteracao", arrayPr)});
-      console.log("esse array P completo ", arrayPr);
-      return (arrayPr)
+        console.log("esse é o arrayPr sem nada",arrayPr)
+        itens.forEach(item => {adicao = (this.verificoSeigual(item['ano'],item['mes'],lista));  console.log(adicao,"adicao"); arrayPr = this.PUSH(arrayPr,item,adicao); console.log("esse valor array P de cada iteracao", arrayPr)});
+        console.log("esse array P completo ", arrayPr);
+        return (arrayPr)
 
     }
     
@@ -115,6 +116,18 @@ export class AboutPage {
       return (espera);
 
     }
+
+    PUSH(lista,item,adicao){
+      console.log(lista,item,adicao, "primeira");
+      lista[adicao].push(item);
+      console.log(lista,item,adicao, "segunda");
+      return(lista);
+
+
+
+
+    }
+
 
   
 
