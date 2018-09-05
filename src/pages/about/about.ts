@@ -79,7 +79,7 @@ export class AboutPage {
     verificoSeEstaNaLista(ano,mes,lista){
       console.log(ano,mes,lista,"olhe esses valores")
       var contador = 0;
-      var item = ([ano,mes].join('-'));
+      var item = ([ano,mes].join(' - '));
       lista.forEach(element => { if(element == item) {contador =+ 1 }})
       if (contador > 0){return true}
       return false
