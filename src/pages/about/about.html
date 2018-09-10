@@ -36,4 +36,34 @@
   
 
   </ion-list>
+
+
+
+  <ion-list *ngFor="let itens of (compras2 | async)">
+    <div>
+    <ion-list-header>Ola
+      <div *ngFor="let c of (compras | async)"> 
+      <ion-item-sliding *ngIf = "([c.ano,c.mes].join(' - ')) == a">
+        <ion-item>
+          <ion-icon item-start [name]=(icon(c.categoria))></ion-icon>
+          <h1>{{c.title}} - {{c.ano}} - {{c.mes}} </h1>
+          <h2>R${{c.payload}} - {{c.categoria}} - {{c.pagamento}} </h2>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="primary" (click)="goToSingle(c)" >
+            <ion-icon name="create" ></ion-icon>
+            Edit
+          </button>
+          <button ion-button color="danger"(click)="remover(c)">
+            <ion-icon name="trash"></ion-icon>
+            Del
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
+    </ion-list-header>
+  </div>
+  
+
+  </ion-list>
 </ion-content>
