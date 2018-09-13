@@ -12,26 +12,29 @@ export class AboutPage {
   
 
   public compras;
-  compras2;
+  
   public comidas;
   public soma;
   public categorias;
   
 
   public visual;
+
   public varredura;
+  public total;
+  public produtos = [];
 
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
     this.categorias = this.dbService.getArray('categoria')
     this.compras = this.dbService.getAll('compras')
     this.visual = this.dbService.getAll('visual')
-    this.varredura = this.DefinindoArrays();
-    console.log(this.varredura);
+    this.total = this.DefinindoArrays();
+    
+    console.log(this.total[0][1], "eaeee");
+    this.varredura = (this.total[0])
+    console.log("aqui varredura e compras", this.varredura, this.produtos)
     
   
-    
-    
-    
     
 
   }
@@ -69,27 +72,17 @@ export class AboutPage {
 
   DefinindoArrays(){
     var array = [];
-    var a =1;
-    var PF;
-    var compras2;
     var varredura = [];
     var compras = this.dbService.getAll('compras');
     compras.forEach(itens => {
     itens.forEach(item => {if (Boolean(this.verificoSeEstaNaLista(item['ano'], item['mes'],varredura)) == false) {varredura.push(([item['ano'],item['mes']].join(' - ')))}
     })});
     array.push(varredura);
-    compras.forEach(itens => {if (a==1){ compras2 = this.ListaDeListasComKey(varredura,itens); console.log(compras2,"n entendo"); compras2 = 1; console.log(compras2,"n entendo mesmo"); return (compras2 = 2)}})
-    compras2 = 555
-    console.log(compras2, "olha essa porra aqui")
-    return (compras2);
+    compras.forEach(itens => {array.push(this.ListaDeListasComKey(varredura,itens))})
+    console.log(array, "olha essa porra aqui")
+    return (array)
   };
     
-    quesaco(varredura){
-      var compras = this.dbService.getAll('compras');
-      var comprasSeparadas = [];
-      compras.forEach(itens => { console.log(itens,"olha os itens");  comprasSeparadas = this.ListaDeListasComKey(varredura,itens), console.log(comprasSeparadas,"n entendo")})
-      console.log(comprasSeparadas, "olha essa porra aqui")
-    }
   
 
     verificoSeEstaNaLista(ano,mes,lista){
