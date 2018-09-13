@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { EditPage } from '../edit/edit';
-import { forkJoin, empty } from 'rxjs';
 
 @Component({
   selector: 'page-about',
@@ -28,6 +27,9 @@ export class AboutPage {
     this.categorias = this.dbService.getArray('categoria')
     this.compras = this.dbService.getAll('compras')
     this.visual = this.dbService.getAll('visual')
+    this.varredura = this.DefinindoArrays();
+    console.log("EAE?")
+    console.log(this.visual)
   
   
     
@@ -52,8 +54,8 @@ export class AboutPage {
 
   somando(){
     var compras = this.dbService.getAll('compras');
-    this.soma = 0;
-    this.compras.forEach(compras => {compras.forEach(compras2 => {if(compras2.title == "Gremio"){return (this.soma += Number(compras2.payload))}})});
+    var soma = 0;
+    compras.forEach(compras => {compras.forEach(compras2 => {if(compras2.title == "Gremio"){return (this.soma += Number(compras2.payload))}})});
     return (this.soma);
         
   };
@@ -75,7 +77,7 @@ export class AboutPage {
     compras.forEach(itens => {array.push(this.ListaDeListasComKey(varredura,itens))})
     array.push(varredura);
     console.log(array, "olha essa porra aqui")
-    return (array)
+    return (varredura)
   };
     
   
@@ -89,44 +91,45 @@ export class AboutPage {
 
     }
 
-    ListaDeListasComKey(lista,itens){
-      let arrayPr = [];
-      
-
-      var cont = 0;
-      var adicao;
-      while (cont < lista.length) {
-        arrayPr.push([]);
-        cont += 1
-        };
-        itens.forEach(item => { adicao = (this.verificoSeigual(item['ano'],item['mes'],lista)); arrayPr = this.PUSH(arrayPr,item,adicao);});
-        console.log("esse array P completo ", arrayPr);
-        return (arrayPr);
-
-    }
+  ListaDeListasComKey(lista,itens){
+    let arrayPr = [];
     
-    verificoSeigual(ano,mes,lista){
-      var contador = -1;
-      var espera;
-      var item = ([ano,mes].join(' - '));
-      lista.forEach(element => {contador += 1; if (element == item) {espera = contador}})
-      return (espera);
 
-    };
+    var cont = 0;
+    var adicao;
+    while (cont < lista.length) {
+      arrayPr.push([]);
+      cont += 1
+      };
+      itens.forEach(item => { adicao = (this.verificoSeigual(item['ano'],item['mes'],lista)); arrayPr = this.PUSH(arrayPr,item,adicao);});
+      console.log("esse array P completo ", arrayPr);
+      return (arrayPr);
 
-    PUSH(lista,item,adicao){
-      lista[adicao][(lista[adicao].length)]=  Object(item);
-      return(lista);
+  }
+  
+  verificoSeigual(ano,mes,lista){
+    var contador = -1;
+    var espera;
+    var item = ([ano,mes].join(' - '));
+    lista.forEach(element => {contador += 1; if (element == item) {espera = contador}})
+    return (espera);
 
-    };
+  };
 
-    dia(dia){
-      var retornavel;
-      var fileds = dia.split('/')
-      retornavel = fileds[0];
-      return (retornavel);
+  PUSH(lista,item,adicao){
+    lista[adicao][(lista[adicao].length)]=  Object(item);
+    return(lista);
 
-    };
+  };
+
+  dia(dia){
+    var retornavel;
+    console.log(dia)
+    var fileds = dia.split('/')
+    retornavel = fileds[0];
+    return (retornavel);
+
+  };
 
 
   
