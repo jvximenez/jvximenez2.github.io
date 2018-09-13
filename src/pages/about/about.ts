@@ -55,7 +55,7 @@ export class AboutPage {
   somando(){
     var compras = this.dbService.getAll('compras');
     var soma = 0;
-    compras.forEach(compras => {compras.forEach(compras2 => {if(compras2.title == "Gremio"){return (this.soma += Number(compras2.payload))}})});
+    compras.forEach(compras => {compras.forEach(compras2 => {if(compras2['title'] == "Gremio"){return (this.soma += Number(compras2['payload']))}})});
     return (this.soma);
         
   };
