@@ -29,8 +29,10 @@ export class AboutPage {
     this.compras = this.dbService.getAll('compras')
     this.visual = this.dbService.getAll('visual')
     this.total = this.DefinindoArrays();
+
+    console.log(this.total, "ah senhor, total aqui")
     
-    console.log(this.total[0][1], "eaeee");
+    this.total.forEach (item =>console.log(item[0] , "olha o testetetete"));
     this.varredura = (this.total[0])
     console.log("aqui varredura e compras", this.varredura, this.produtos)
     
@@ -77,8 +79,8 @@ export class AboutPage {
     compras.forEach(itens => {
     itens.forEach(item => {if (Boolean(this.verificoSeEstaNaLista(item['ano'], item['mes'],varredura)) == false) {varredura.push(([item['ano'],item['mes']].join(' - ')))}
     })});
-    array.push(varredura);
     compras.forEach(itens => {array.push(this.ListaDeListasComKey(varredura,itens))})
+    array.push(varredura);
     console.log(array, "olha essa porra aqui")
     return (array)
   };
