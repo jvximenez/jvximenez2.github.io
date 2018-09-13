@@ -28,14 +28,7 @@ export class AboutPage {
     this.categorias = this.dbService.getArray('categoria')
     this.compras = this.dbService.getAll('compras')
     this.visual = this.dbService.getAll('visual')
-    this.total = this.DefinindoArrays();
-
-    console.log(this.total, "ah senhor, total aqui")
-    
-    this.total.forEach (item =>console.log(item[0] , "olha o testetetete"));
-    this.varredura = (this.total[0])
-    console.log("aqui varredura e compras", this.varredura, this.produtos)
-    
+  
   
     
 
@@ -87,7 +80,7 @@ export class AboutPage {
     
   
 
-    verificoSeEstaNaLista(ano,mes,lista){
+  verificoSeEstaNaLista(ano,mes,lista){
       var contador = 0;
       var item = ([ano,mes].join(' - '));
       lista.forEach(element => { if(element == item) {contador =+ 1 }});
@@ -124,6 +117,14 @@ export class AboutPage {
     PUSH(lista,item,adicao){
       lista[adicao][(lista[adicao].length)]=  Object(item);
       return(lista);
+
+    };
+
+    dia(dia){
+      var retornavel;
+      var fileds = dia.split('/')
+      retornavel = fileds[0];
+      return (retornavel);
 
     };
 
