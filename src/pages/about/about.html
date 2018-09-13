@@ -18,12 +18,12 @@
           <ion-icon item-start [name]=(icon(c.categoria))></ion-icon>
           <ion-grid>
             <ion-row>
-              <ion-col col-10>
+              <ion-col col-8>
                 <h1>{{c.title}}</h1>
-                <h2>R${{c.payload}} - {{c.categoria}} - {{c.pagamento}} </h2>
+                <h2>{{dia(c.data)}}/{{c.mes}} - {{c.categoria}} - {{c.pagamento}} </h2>
               </ion-col>
-              <ion-col col-2>
-                <h1 class="dia">{{dia(c.data)}}</h1>
+              <ion-col col-4>
+                <h1 class="dia">R${{c.payload}}</h1>
               </ion-col>
             </ion-row>
           </ion-grid>
