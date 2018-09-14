@@ -18,6 +18,30 @@
       <ion-card-header>
         {{varr}}
       </ion-card-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            Categoria
+          </ion-col>
+          <ion-col>
+            Previsto
+          </ion-col>
+          <ion-col>
+            Gasto
+          </ion-col>
+        </ion-row>
+        <ion-row *ngFor = "let cat of categorias">
+          <ion-col>
+              {{cat.title}}
+          </ion-col>
+          <ion-col>
+              "Ainda Não"
+          </ion-col>
+          <ion-col>
+            {{somaCat(cat.title,varr)}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
     </ion-card>
 
