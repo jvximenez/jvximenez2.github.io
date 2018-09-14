@@ -5,6 +5,7 @@ import { ConfiguraçõesPage } from '../configura\u00E7\u00F5es/configura\u00E7\
 import { StatusBar } from '@ionic-native/status-bar';
 import { getLocaleCurrencyName } from '@angular/common';
 import { stringify } from '@angular/core/src/util';
+import { AboutPage } from '../about/about';
 
 @Component({
   selector: 'page-home',
@@ -111,4 +112,10 @@ export class HomePage {
       this.save(teste);
    }
   
+
+   swipe(event) {
+    if(event.direction === 2) {
+      this.navCtrl.parent.select(1)
+    }
+  }
 }

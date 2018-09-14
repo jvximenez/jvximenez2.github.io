@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
+import chartJs from 'chart.js';
 
 
 /**
@@ -16,6 +17,9 @@ import { FirebaseServiceProvider } from '../../providers/firebase-service/fireba
   templateUrl: 'analise.html',
 })
 export class AnalisePage {
+  @ViewChild('barCanvas') barCanvas;
+  barChart: any;
+
 
   teste = {
     'categoria 1' : [4.5],
@@ -46,7 +50,9 @@ export class AnalisePage {
     this.visual = this.dbService.getAll('visual')
     this.varredura = this.DefinindoArrays();
     this.ComprasArray = this.arrayCompras(this.compras);
-
+    this.ngAfterViewInit()
+    // this.valoresChart = this.getGastoChart('2019 - 9')//
+    
 
     //chart//
     this.categoriasChart = (this.getChartCat(this.categorias));
@@ -67,11 +73,66 @@ export class AnalisePage {
       
     console.log(arrayC,"XCCC")
     return (arrayC)
-      
-    
-
   }
  
+  ngAfterViewInit(){
+    setTimeout(()=> {
+      this.barChart = this.getBarChart();
+    },150)
+
+  }
+
+  getChart(context, charType, data, options){
+    return new chartJs(context, {
+      data,
+      options,
+      type: charType
+    })
+  }
+
+  getBarChart(){
+    const data = {
+      labels: this.categoriasChart,
+      datasets: [{
+        label: 'Planejado',
+        data: [45,13],
+        backgroundColor:  'rgb(20,0,255)',
+        borderWidth: 1
+    },{
+      label: 'Gasto',
+      data: [56,44],
+      backgroundColor: 'rgb(255,0,0)',
+      borderWidth: 1
+    }],
+  
+  };
+
+  const options = {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+
+  return this.getChart(this.barCanvas.nativeElement, 'bar', data, options);
+}
+
+
+  getGastoChart(data){
+    console.log("entrou")
+    let arrayGastos = []
+    let valorCat
+    this.categorias.forEach(cat => this.ComprasArray.forEach(item => {if (String(item[2]) == String(cat) && 
+      String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0])}}
+    ), arrayGastos.push(valorCat))
+    console.log(arrayGastos)
+  
+    return(arrayGastos)
+
+  }
 
   ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -173,6 +234,12 @@ somaTotal(data){
   );
 
   return(valorTotal)
+}
+
+swipe(event) {
+  if(event.direction === 4) {
+    this.navCtrl.parent.select(1);
+  }
 }
 
 

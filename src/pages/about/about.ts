@@ -36,6 +36,15 @@ export class AboutPage {
 
   }
 
+  swipe(event) {
+    if(event.direction === 2) {
+      this.navCtrl.parent.select(2);
+    }
+    if(event.direction === 4) {
+      this.navCtrl.parent.select(0);
+    }
+  }
+
   remover(key){
     this.dbService.revome('compras',key).then( d => {console.log("removido")});
   }

@@ -7,41 +7,43 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <div class="main-content" (swipe)="swipe($event)">
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
 
-  <ion-list>
-    <div >
-    <ion-list-header *ngFor="let a of varredura">{{a}}
-      <div *ngFor="let c of (compras | async)"> 
-      <ion-item-sliding *ngIf = "([c.ano,c.mes].join(' - ')) == a">
-        <ion-item>
-          <ion-icon item-start [name]=(icon(c.categoria))></ion-icon>
-          <ion-grid>
-            <ion-row>
-              <ion-col col-8>
-                <h1>{{c.title}}</h1>
-                <h2>{{dia(c.data)}}/{{c.mes}} - {{c.categoria}} - {{c.pagamento}} </h2>
-              </ion-col>
-              <ion-col col-4>
-                <h1 class="dia">R${{c.payload}}</h1>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-          
-        </ion-item>
-        <ion-item-options side="right">
-          <button ion-button color="primary" (click)="goToSingle(c)" >
-            <ion-icon name="create" ></ion-icon>
-            Edit
-          </button>
-          <button ion-button color="danger"(click)="remover(c)">
-            <ion-icon name="trash"></ion-icon>
-            Del
-          </button>
-        </ion-item-options>
-      </ion-item-sliding>
-    </div>
-    </ion-list-header>
-    </div>
-  </ion-list>
+    <ion-list>
+      <div >
+      <ion-list-header *ngFor="let a of varredura">{{a}}
+        <div *ngFor="let c of (compras | async)"> 
+        <ion-item-sliding *ngIf = "([c.ano,c.mes].join(' - ')) == a">
+          <ion-item>
+            <ion-icon item-start [name]=(icon(c.categoria))></ion-icon>
+            <ion-grid>
+              <ion-row>
+                <ion-col col-8>
+                  <h1>{{c.title}}</h1>
+                  <h2>{{dia(c.data)}}/{{c.mes}} - {{c.categoria}} - {{c.pagamento}} </h2>
+                </ion-col>
+                <ion-col col-4>
+                  <h1 class="dia">R${{c.payload}}</h1>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="primary" (click)="goToSingle(c)" >
+              <ion-icon name="create" ></ion-icon>
+              Edit
+            </button>
+            <button ion-button color="danger"(click)="remover(c)">
+              <ion-icon name="trash"></ion-icon>
+              Del
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </div>
+      </ion-list-header>
+      </div>
+    </ion-list>
+  </div>
 </ion-content>

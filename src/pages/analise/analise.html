@@ -14,14 +14,12 @@
 
 
 <ion-content padding>
-    <div style="display: block;">
-      <canvas baseChart
-        [data]='chartData'
-        [backgroundColor] = "Blue"
-        [labels] = 'categoriasChart'
-        [chartType]='chartType'>
-      </canvas>
-    </div>
+  <div class="main-content" (swipe)="swipe($event)">
+   <ion-card>
+     <ion-card-content>
+       <canvas #barCanvas></canvas>
+     </ion-card-content>
+   </ion-card>
 
     <ion-card *ngFor = "let varr of varredura">
       <ion-card-header>
@@ -106,4 +104,6 @@
   <ion-fab right bottom>
     <button ion-fab mini ><ion-icon name="add" (click)=adicionar()></ion-icon></button>
   </ion-fab>
+
+  </div>
 </ion-content>
