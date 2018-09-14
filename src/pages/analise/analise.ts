@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 
+
 /**
  * Generated class for the AnalisePage page.
  *
@@ -33,8 +34,13 @@ export class AnalisePage {
 
   public ComprasArray = [];
 
+  ///////////chars public //////////////
+  public categoriasChart
+  public valoresChart
+  ///////////////////////////////////////
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: FirebaseServiceProvider) {
-    this.categorias = this.dbService.getArray('categoria')
+    this.categorias = this.dbService.getAll('categoria')
     this.pagamentos = this.dbService.getArray('pagamento')
     this.compras = this.dbService.getAll('compras')
     this.visual = this.dbService.getAll('visual')
@@ -42,9 +48,33 @@ export class AnalisePage {
     this.ComprasArray = this.arrayCompras(this.compras);
 
 
-    console.log(this.ComprasArray, "ae")
+    //chart//
+    this.categoriasChart = (this.getChartCat(this.categorias));
+
+    console.log(this.categorias,(this.categoriasChart), "ae")
 
   }
+
+  ////////////////////////////////////////////////CHARTS/////////////////////////////////////
+  public chartLabels:String[] = Array(this.categoriasChart);
+  public chartData:number[] = [100,10,1,0,10,1,0,1,0,1,0];
+  public chartType:String = 'bar';
+
+
+  getChartCat(categorias){
+    let arrayC = [];
+    categorias.forEach(element => { element.forEach( item => {arrayC.push(item['title'])})});
+      
+    console.log(arrayC,"XCCC")
+    return (arrayC)
+      
+    
+
+  }
+ 
+
+  ///////////////////////////////////////////////////////////////////////////////////////////
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AnalisePage');

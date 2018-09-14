@@ -124,7 +124,6 @@ export class AboutPage {
 
   dia(dia){
     var retornavel;
-    console.log(dia)
     var fileds = dia.split('/')
     retornavel = fileds[0];
     return (retornavel);

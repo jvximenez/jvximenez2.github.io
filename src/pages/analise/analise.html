@@ -14,6 +14,15 @@
 
 
 <ion-content padding>
+    <div style="display: block;">
+      <canvas baseChart
+        [data]='chartData'
+        [backgroundColor] = "Blue"
+        [labels] = 'categoriasChart'
+        [chartType]='chartType'>
+      </canvas>
+    </div>
+
     <ion-card *ngFor = "let varr of varredura">
       <ion-card-header>
         {{varr}}
@@ -30,7 +39,7 @@
             Gasto
           </ion-col>
         </ion-row>
-        <ion-row *ngFor = "let cat of categorias">
+        <ion-row *ngFor = "let cat of (categorias | async)">
           <ion-col>
               {{cat.title}}
           </ion-col>
@@ -64,10 +73,9 @@
             <ion-col>
             </ion-col>
         </ion-row>
-
       </ion-grid>
-
     </ion-card>
+
 
 
 

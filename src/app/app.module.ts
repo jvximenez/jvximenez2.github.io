@@ -17,6 +17,7 @@ import { ConfiguraçõesPage } from '../pages/configura\u00E7\u00F5es/configura\
 import { EditConfPage } from '../pages/edit-conf/edit-conf';
 import { EditPagamentoPage } from '../pages/edit-pagamento/edit-pagamento';
 import { AnalisePage } from '../pages/analise/analise';
+import { ChartsModule} from 'ng2-charts' ;
 
 
 
@@ -36,6 +37,7 @@ import { AnalisePage } from '../pages/analise/analise';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    ChartsModule,
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyCS77TuCe2jrXqmSDh9Ivs7gWedPM7PJ3E",
       authDomain: "ionic3-gastos-45fd4.firebaseapp.com",
