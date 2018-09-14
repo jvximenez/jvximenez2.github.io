@@ -50,14 +50,15 @@ export class AnalisePage {
     this.visual = this.dbService.getAll('visual')
     this.varredura = this.DefinindoArrays();
     this.ComprasArray = this.arrayCompras(this.compras);
-    this.ngAfterViewInit()
-    // this.valoresChart = this.getGastoChart('2019 - 9')//
+ 
+    
     
 
     //chart//
     this.categoriasChart = (this.getChartCat(this.categorias));
+    this.valoresChart = this.getGastoChart("2018 - 9", this.categoriasChart, this.ComprasArray)
 
-    console.log(this.categorias,(this.categoriasChart), "ae")
+    console.log(this.categorias,(this.categoriasChart),this.ComprasArray, "ae")
 
   }
 
@@ -121,16 +122,17 @@ export class AnalisePage {
 }
 
 
-  getGastoChart(data){
-    console.log("entrou")
+  getGastoChart(data, categoriasChart, ComprasArray){
+    console.log("entrou", categoriasChart, ComprasArray)
     let arrayGastos = []
-    let valorCat
-    this.categorias.forEach(cat => this.ComprasArray.forEach(item => {if (String(item[2]) == String(cat) && 
-      String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0])}}
-    ), arrayGastos.push(valorCat))
-    console.log(arrayGastos)
+    let valorCat = 0
+    let cont = -1
+    ComprasArray.forEach(item => console.log(item,"iteem")) //{ cont += 1; console.log(item, "item"); if (String(item[2]) == String(categoriasChart[cont]) && 
+     // String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0])}
+  //  arrayGastos.push(valorCat)})
+   // console.log(arrayGastos, " olha eles aqui")
   
-    return(arrayGastos)
+   // return(arrayGastos)
 
   }
 
