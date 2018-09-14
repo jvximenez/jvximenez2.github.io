@@ -29,11 +29,13 @@ export class AnalisePage {
   public compras;
   public visual;
   public varredura;
+  public pagamentos;
 
   public ComprasArray = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: FirebaseServiceProvider) {
     this.categorias = this.dbService.getArray('categoria')
+    this.pagamentos = this.dbService.getArray('pagamento')
     this.compras = this.dbService.getAll('compras')
     this.visual = this.dbService.getAll('visual')
     this.varredura = this.DefinindoArrays();
@@ -52,7 +54,7 @@ export class AnalisePage {
   arrayCompras(compras){
     let array = []
     let linha = []
-    compras.forEach( itens => itens.forEach(item => {linha = [], linha.push(item.payload,[item.ano,item.mes].join(' - '),item.categoria), array.push(linha)}))
+    compras.forEach( itens => itens.forEach(item => {linha = [], linha.push(item.payload,[item.ano,item.mes].join(' - '),item.categoria,item.pagamento), array.push(linha)}))
     
     return (array)
  
@@ -117,10 +119,34 @@ PUSH(lista,item,adicao){
 
 somaCat(categoria,data){
   var valorCat = 0 
-  this.ComprasArray.forEach(item => {if (String(item[2]) == String(categoria) && String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0]); console.log("aqui", valorCat)}}
+  this.ComprasArray.forEach(item => {if (String(item[2]) == String(categoria) && 
+    String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0])}}
   );
 
   return(valorCat)
 }
+
+somaPagamento(pagamento,data){
+  var valorPag = 0 
+  this.ComprasArray.forEach(item => {if (String(item[3]) == String(pagamento) && 
+    String(item[1]) == String(data)) { valorPag = valorPag + Number(item[0])}}
+  );
+
+  return(valorPag)
+}
+
+
+
+somaTotal(data){
+  var valorTotal = 0
+  this.ComprasArray.forEach(item => {if (String(item[2]) != "Pais" && String(item[1]) == String(data)) { valorTotal = valorTotal + Number(item[0])}}
+  );
+
+  return(valorTotal)
+}
+
+
+
+
 
 }

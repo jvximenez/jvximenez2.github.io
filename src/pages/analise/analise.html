@@ -38,29 +38,33 @@
               "Ainda Não"
           </ion-col>
           <ion-col>
-            {{somaCat(,varr)}}
-          </ion-col>
+              {{somaCat(cat.title,varr)}}
+          </ion-col>  
         </ion-row>
+
         <ion-row>
             <ion-col>
               Total
             </ion-col>
             <ion-col>
-              
-              
-              
-              
-              
-              
-              
-              
-              
               "Ainda Não"
             </ion-col>
             <ion-col>
-              {{somaCat(cat.title,varr)}}
+                {{somaTotal(varr)}}
             </ion-col>
         </ion-row>
+
+        <ion-row *ngFor="let pagamento of pagamentos">
+            <ion-col>
+              {{pagamento.title}}
+            </ion-col>
+            <ion-col>
+                {{somaPagamento(pagamento.title,varr)}}
+            </ion-col>
+            <ion-col>
+            </ion-col>
+        </ion-row>
+
       </ion-grid>
 
     </ion-card>
