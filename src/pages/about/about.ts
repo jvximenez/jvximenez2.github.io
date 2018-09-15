@@ -25,7 +25,8 @@ export class AboutPage {
 
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
     this.categorias = this.dbService.getArray('categoria')
-    this.compras = this.dbService.getAll('compras')
+    this.compras = (this.dbService.getAll('compras')).orderBy('title');
+    
     this.visual = this.dbService.getAll('visual')
     this.varredura = this.DefinindoArrays();
     console.log("EAE?")
