@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import chartJs from 'chart.js';
 import { AnaliseCategoriaPage } from '../analise-categoria/analise-categoria';
+import { AnalisePagamentoPage } from '../analise-pagamento/analise-pagamento';
 
 
 /**
@@ -268,7 +269,7 @@ swipe(event) {
   }
 
   goToAnalisePag(data,pagamento){
-    this.navCtrl.push(AnaliseCategoriaPage, 
+    this.navCtrl.push(AnalisePagamentoPage, 
       {'data' : data,
       'pagamento': pagamento,
        'compra': this.compras });
