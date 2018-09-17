@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import chartJs from 'chart.js';
+import { AnaliseCategoriaPage } from '../analise-categoria/analise-categoria';
 
 
 /**
@@ -54,7 +55,6 @@ export class AnalisePage {
 
     this.testemassa = this.varredura[0]
 
-    console.log(this.testemassa, this.varredura, "varrre")
     
  
     
@@ -83,7 +83,7 @@ export class AnalisePage {
       this.barChart = this.getBarChart();
     },500)
     setTimeout(()=> {
-      this.valoresChart = this.getGastoChart("2018 - 9", this.categorias, this.compras)
+      this.valoresChart = this.getGastoChart(this.varredura[0], this.categorias, this.compras)
     },300)
 
   }
@@ -260,7 +260,12 @@ swipe(event) {
     this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
-
+  goToAnalise(data,categoria){
+  this.navCtrl.push(AnaliseCategoriaPage, 
+    {'data' : data,
+    'categoria': categoria,
+     'compra': this.compras });
+  }
 
 
 

@@ -18,6 +18,7 @@ import { EditConfPage } from '../pages/edit-conf/edit-conf';
 import { EditPagamentoPage } from '../pages/edit-pagamento/edit-pagamento';
 import { AnalisePage } from '../pages/analise/analise';
 import { ChartsModule} from 'ng2-charts' ;
+import { AnaliseCategoriaPage } from '../pages/analise-categoria/analise-categoria';
 
 
 
@@ -32,6 +33,7 @@ import { ChartsModule} from 'ng2-charts' ;
     ConfiguraçõesPage,
     EditConfPage,
     EditPagamentoPage,
+    AnaliseCategoriaPage,
     
   ],
   imports: [
@@ -61,6 +63,7 @@ import { ChartsModule} from 'ng2-charts' ;
     ConfiguraçõesPage,
     EditConfPage,
     EditPagamentoPage,
+    AnaliseCategoriaPage,
   ],
   providers: [
     StatusBar,

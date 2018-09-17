@@ -40,7 +40,7 @@
             Gasto
           </ion-col>
         </ion-row>
-        <ion-row *ngFor = "let cat of (categorias | async)">
+        <ion-row *ngFor = "let cat of (categorias | async)" (click)="goToAnalise(varr,cat.title)">
           <ion-col>
               {{cat.title}}
           </ion-col>
