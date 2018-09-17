@@ -267,6 +267,13 @@ swipe(event) {
      'compra': this.compras });
   }
 
+  goToAnalisePag(data,pagamento){
+    this.navCtrl.push(AnaliseCategoriaPage, 
+      {'data' : data,
+      'pagamento': pagamento,
+       'compra': this.compras });
+    }
+
 
 
 }

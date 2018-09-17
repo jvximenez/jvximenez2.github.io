@@ -19,6 +19,7 @@ import { EditPagamentoPage } from '../pages/edit-pagamento/edit-pagamento';
 import { AnalisePage } from '../pages/analise/analise';
 import { ChartsModule} from 'ng2-charts' ;
 import { AnaliseCategoriaPage } from '../pages/analise-categoria/analise-categoria';
+import { AnalisePagamentoPage } from '../pages/analise-pagamento/analise-pagamento';
 
 
 
@@ -34,6 +35,7 @@ import { AnaliseCategoriaPage } from '../pages/analise-categoria/analise-categor
     EditConfPage,
     EditPagamentoPage,
     AnaliseCategoriaPage,
+    AnalisePagamentoPage,
     
   ],
   imports: [
@@ -64,6 +66,7 @@ import { AnaliseCategoriaPage } from '../pages/analise-categoria/analise-categor
     EditConfPage,
     EditPagamentoPage,
     AnaliseCategoriaPage,
+    AnalisePagamentoPage,
   ],
   providers: [
     StatusBar,

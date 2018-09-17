@@ -1,5 +1,5 @@
 <!--
-  Generated template for the AnaliseCategoriaPage page.
+  Generated template for the AnalisePagamentoPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,16 +7,17 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Analise da categoria</ion-title>
+    <ion-title>Analise Pagamento</ion-title>
   </ion-navbar>
 
 </ion-header>
+
 
 <ion-content>
     <ion-list>
       <ion-list-header >{{dataEnviada}}
         <div *ngFor="let c of (compras | async )"> 
-        <ion-item-sliding *ngIf = "([c.ano,c.mes].join(' - ')) == dataEnviada && c.categoria == categoriaEnviada">
+        <ion-item-sliding *ngIf = "([c.ano,c.mes].join(' - ')) == dataEnviada && c.pagamento == pagamentoEnviado">
           <ion-item>
             <ion-icon item-start [name]=(icon(c.categoria))></ion-icon>
             <ion-grid>
@@ -47,6 +48,5 @@
       </ion-list-header>
     </ion-list>
 </ion-content>
-
 
 

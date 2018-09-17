@@ -64,7 +64,7 @@
             </ion-col>
         </ion-row>
 
-        <ion-row *ngFor="let pagamento of pagamentos">
+        <ion-row *ngFor="let pagamento of pagamentos" (click)="goToAnalise(varr,pagamento.title)">
             <ion-col>
               {{pagamento.title}}
             </ion-col>
