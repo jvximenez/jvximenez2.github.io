@@ -85,7 +85,7 @@ export class HomePage {
     var ano = data.getFullYear();
     var hora = data.getHours();
     var min = data.getMinutes();
-    total = (ano + (mes)/12 + dia/31);
+    total = Number(ano*10000 + (mes+1)*100 + dia);
     return total
   
   }

@@ -22,7 +22,7 @@ export class FirebaseServiceProvider {
 
 
   getAll(dado){
-    return this.db.list(dado).snapshotChanges().pipe(map(data => {
+    return this.db.list(dado, ref => ref.orderByChild('total')).snapshotChanges().pipe(map(data => {
       return data.map(d => ({key: d.key, ...d.payload.val()}));
     }));
   }

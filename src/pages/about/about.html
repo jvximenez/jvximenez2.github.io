@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content>
-  <div class="main-content" (swipe)="swipe($event)">
+  
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
 
     <ion-list>
@@ -45,5 +45,6 @@
       </ion-list-header>
       </div>
     </ion-list>
+  <div class="main-content" (swipe)="swipe($event)">
   </div>
 </ion-content>

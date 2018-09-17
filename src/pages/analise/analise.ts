@@ -216,7 +216,7 @@ somaCat(categoria,data){
     String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0])}}
   );
 
-  return(valorCat)
+  return((valorCat))
 }
 
 somaPagamento(pagamento,data){
@@ -225,7 +225,7 @@ somaPagamento(pagamento,data){
     String(item[1]) == String(data)) { valorPag = valorPag + Number(item[0])}}
   );
 
-  return(valorPag)
+  return(Math.round(valorPag))
 }
 
 
@@ -235,7 +235,7 @@ somaTotal(data){
   this.ComprasArray.forEach(item => {if (String(item[2]) != "Pais" && String(item[1]) == String(data)) { valorTotal = valorTotal + Number(item[0])}}
   );
 
-  return(valorTotal)
+  return(Math.round(valorTotal))
 }
 
 swipe(event) {
