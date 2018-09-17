@@ -56,7 +56,7 @@ export class AnalisePage {
 
     //chart//
     this.categoriasChart = (this.getChartCat(this.categorias));
-    this.valoresChart = this.getGastoChart("2018 - 9", this.categoriasChart, this.ComprasArray)
+    this.valoresChart = this.getGastoChart("2018 - 9", this.categorias, this.compras)
 
     console.log(this.categorias,(this.categoriasChart),this.ComprasArray, "ae")
 
@@ -71,8 +71,7 @@ export class AnalisePage {
   getChartCat(categorias){
     let arrayC = [];
     categorias.forEach(element => { element.forEach( item => {arrayC.push(item['title'])})});
-      
-    console.log(arrayC,"XCCC")
+    
     return (arrayC)
   }
  
@@ -122,26 +121,20 @@ export class AnalisePage {
 }
 
 
-  getGastoChart(data, categoriasChart, ComprasArray){
-    console.log("entrou", categoriasChart, ComprasArray)
-    let arrayGastos = []
-    let valorCat = 0
-    let cont = -1
-    ComprasArray.forEach(item => console.log(item,"iteem")) //{ cont += 1; console.log(item, "item"); if (String(item[2]) == String(categoriasChart[cont]) && 
-     // String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0])}
-  //  arrayGastos.push(valorCat)})
-   // console.log(arrayGastos, " olha eles aqui")
-  
-   // return(arrayGastos)
+  getGastoChart(data, categorias, compras){
+    console.log("entrou", categorias, compras);
+    let array = []
+    let linha = []
+    let soma = 0
+    categorias.forEach( itens => itens.forEach(item => { soma = 0, console.log(item.title); 
+      (compras.forEach( a => a.forEach(compra => { if(compra.categoria == item.title) { console.log ("somou", soma,compra.categoria,  item.title ); soma = soma + Number(compra.payload)}})));console.log(soma, "sominha final"); linha.push(soma)}))
+      
+    console.log(linha, "testeeee")
+    return (array)
 
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////
-
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AnalisePage');
-  }
 
 
   arrayCompras(compras){
@@ -162,7 +155,7 @@ export class AnalisePage {
     })});
     compras.forEach(itens => {array.push(this.ListaDeListasComKey(varredura,itens))})
     array.push(varredura);
-    console.log(array, "olha essa porra aqui")
+    console.log(array)
     return (varredura)
   };
 
@@ -189,7 +182,7 @@ ListaDeListasComKey(lista,itens){
     cont += 1
     };
     itens.forEach(item => { adicao = (this.verificoSeigual(item['ano'],item['mes'],lista)); arrayPr = this.PUSH(arrayPr,item,adicao);});
-    console.log("esse array P completo ", arrayPr);
+    console.log(arrayPr);
     return (arrayPr);
 
 }
