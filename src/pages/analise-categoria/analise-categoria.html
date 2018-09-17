@@ -12,4 +12,41 @@
 
 </ion-header>
 
+<ion-content padding>
+    <ion-list>
+      <ion-list-header >{{dataEnviada}}
+        <div *ngFor="let c of (compras | async )"> 
+        <ion-item-sliding *ngIf = "([c.ano,c.mes].join(' - ')) == dataEnviada && c.categoria == categoriaEnviada">
+          <ion-item>
+            <ion-icon item-start [name]=(icon(c.categoria))></ion-icon>
+            <ion-grid>
+              <ion-row>
+                <ion-col col-8>
+                  <h1>{{c.title}}</h1>
+                  <h2>{{dia(c.data)}}/{{c.mes}} - {{c.categoria}} - {{c.pagamento}} </h2>
+                </ion-col>
+                <ion-col col-4>
+                  <h1 class="dia">R${{c.payload}}</h1>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="primary" (click)="goToSingle(c)" >
+              <ion-icon name="create" ></ion-icon>
+              Edit
+            </button>
+            <button ion-button color="danger"(click)="remover(c)">
+              <ion-icon name="trash"></ion-icon>
+              Del
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </div>
+      </ion-list-header>
+    </ion-list>
+</ion-content>
+
+
 
