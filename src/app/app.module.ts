@@ -20,6 +20,8 @@ import { AnalisePage } from '../pages/analise/analise';
 import { ChartsModule} from 'ng2-charts' ;
 import { AnaliseCategoriaPage } from '../pages/analise-categoria/analise-categoria';
 import { AnalisePagamentoPage } from '../pages/analise-pagamento/analise-pagamento';
+import { PrevisãoPage } from '../pages/previs\u00E3o/previs\u00E3o';
+import { AddPrevisãoPage } from '../pages/add-previs\u00E3o/add-previs\u00E3o';
 
 
 
@@ -36,6 +38,8 @@ import { AnalisePagamentoPage } from '../pages/analise-pagamento/analise-pagamen
     EditPagamentoPage,
     AnaliseCategoriaPage,
     AnalisePagamentoPage,
+    PrevisãoPage,
+    AddPrevisãoPage,
     
   ],
   imports: [
@@ -67,6 +71,8 @@ import { AnalisePagamentoPage } from '../pages/analise-pagamento/analise-pagamen
     EditPagamentoPage,
     AnaliseCategoriaPage,
     AnalisePagamentoPage,
+    PrevisãoPage,
+    AddPrevisãoPage,
   ],
   providers: [
     StatusBar,

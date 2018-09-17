@@ -4,6 +4,7 @@ import { FirebaseServiceProvider } from '../../providers/firebase-service/fireba
 import chartJs from 'chart.js';
 import { AnaliseCategoriaPage } from '../analise-categoria/analise-categoria';
 import { AnalisePagamentoPage } from '../analise-pagamento/analise-pagamento';
+import { PrevisãoPage } from '../previs\u00E3o/previs\u00E3o';
 
 
 /**
@@ -274,6 +275,10 @@ swipe(event) {
       'pagamento': pagamento,
        'compra': this.compras });
     }
+
+  previsao(){
+    this.navCtrl.push(PrevisãoPage)
+  }
 
 
 
