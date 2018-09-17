@@ -33,7 +33,8 @@ export class AnalisePage {
   public categorias;
   public compras;
   public visual;
-  public varredura;
+  public varredura: String[];
+  public testemassa;
   public pagamentos;
 
   public ComprasArray = [];
@@ -50,15 +51,17 @@ export class AnalisePage {
     this.visual = this.dbService.getAll('visual')
     this.varredura = this.DefinindoArrays();
     this.ComprasArray = this.arrayCompras(this.compras);
+
+    this.testemassa = this.varredura[0]
+
+    console.log(this.testemassa, this.varredura, "varrre")
+    
  
     
     
 
     //chart//
     this.categoriasChart = (this.getChartCat(this.categorias));
-    this.valoresChart = this.getGastoChart("2018 - 9", this.categorias, this.compras)
-
-    console.log(this.categorias,(this.categoriasChart),this.ComprasArray, "ae")
 
   }
 
@@ -78,7 +81,10 @@ export class AnalisePage {
   ngAfterViewInit(){
     setTimeout(()=> {
       this.barChart = this.getBarChart();
-    },150)
+    },500)
+    setTimeout(()=> {
+      this.valoresChart = this.getGastoChart("2018 - 9", this.categorias, this.compras)
+    },300)
 
   }
 
@@ -95,14 +101,14 @@ export class AnalisePage {
       labels: this.categoriasChart,
       datasets: [{
         label: 'Planejado',
-        data: [45,13],
-        backgroundColor:  'rgb(20,0,255)',
-        borderWidth: 1
+        data: [0,0,0,0,0,0,0],
+        backgroundColor:  '#2f6acf',
+        borderWidth: 2
     },{
       label: 'Gasto',
-      data: [56,44],
-      backgroundColor: 'rgb(255,0,0)',
-      borderWidth: 1
+      data: this.valoresChart,
+      backgroundColor: '#32b9db',
+      borderWidth: 2
     }],
   
   };
@@ -111,8 +117,15 @@ export class AnalisePage {
     scales: {
       yAxes: [{
         ticks: {
-          beginAtZero: true
+          beginAtZero: true,
+          autoSkip: false,
         }
+      }],
+      xAxes: [{
+        ticks: {
+          autoSkip: false,
+        }
+
       }]
     }
   }
@@ -123,15 +136,10 @@ export class AnalisePage {
 
   getGastoChart(data, categorias, compras){
     console.log("entrou", categorias, compras);
-    let array = []
     let linha = []
-    let soma = 0
-    categorias.forEach( itens => itens.forEach(item => { soma = 0, console.log(item.title); 
-      (compras.forEach( a => a.forEach(compra => { if(compra.categoria == item.title) { console.log ("somou", soma,compra.categoria,  item.title ); soma = soma + Number(compra.payload)}})));console.log(soma, "sominha final"); linha.push(soma)}))
-      
+    categorias.forEach(itens => {itens.forEach(item => {linha.push(this.somaCat2(item.title,data))})})
     console.log(linha, "testeeee")
-    return (array)
-
+    return (linha)
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////
@@ -147,16 +155,16 @@ export class AnalisePage {
   }
   
   DefinindoArrays(){
-    var array = [];
+    var array: String[] = [];
     var varredura = [];
     var compras = this.dbService.getAll('compras');
     compras.forEach(itens => {
     itens.forEach(item => {if (Boolean(this.verificoSeEstaNaLista(item['ano'], item['mes'],varredura)) == false) {varredura.push(([item['ano'],item['mes']].join(' - ')))}
     })});
-    compras.forEach(itens => {array.push(this.ListaDeListasComKey(varredura,itens))})
-    array.push(varredura);
+    compras.forEach(itens => {array.push(String(this.ListaDeListasComKey(varredura,itens)))})
+    array.push(String(varredura));
     console.log(array)
-    return (varredura)
+    return ((varredura))
   };
 
   
@@ -209,7 +217,18 @@ somaCat(categoria,data){
     String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0])}}
   );
 
-  return((valorCat))
+  return(Math.round(valorCat))
+}
+
+
+somaCat2(categoria,data){
+  console.log(categoria,data)
+  let valorCat = 0 
+  this.ComprasArray.forEach(item => {if (String(item[2]) == String(categoria) && 
+    String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0]), console.log(item[0],data, "5555555555")}}
+  );
+  console.log(valorCat,"aaaa")
+  return(Math.round(valorCat))
 }
 
 somaPagamento(pagamento,data){
@@ -236,6 +255,10 @@ swipe(event) {
     this.navCtrl.parent.select(1);
   }
 }
+
+  atualiza(){
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
+  }
 
 
 
