@@ -59,11 +59,12 @@ export class AnalisePage {
 
 
   
-  grafico(previsao,data,compras){
+  grafico(previsao,data,compras,comprasArray){
     this.navCtrl.push(GraficosPage, 
       {'previsao' : previsao,
       'data':data,
-      'compras':compras});
+      'compras':compras,
+      'comprasArray': comprasArray});
     }
   
 
