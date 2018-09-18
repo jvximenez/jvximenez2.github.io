@@ -39,6 +39,7 @@ export class AnalisePage {
   public varredura: String[];
   public testemassa;
   public pagamentos;
+  public previsto;
 
   public ComprasArray = [];
 
@@ -49,6 +50,7 @@ export class AnalisePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: FirebaseServiceProvider) {
     this.categorias = this.dbService.getAll('categoria')
+    this.previsto = this.dbService.getAll('previsto')
     this.pagamentos = this.dbService.getArray('pagamento')
     this.compras = this.dbService.getAll('compras')
     this.visual = this.dbService.getAll('visual')
@@ -280,6 +282,12 @@ swipe(event) {
     this.navCtrl.push(PrevisãoPage)
   }
 
+  getPrevisto(cat,data,previsto ){
+    let valor = 0
+    previsto.forEach( a => a.forEach ( item => { if (data == item.total) {valor = item[cat], console.log('iguaal')}}))
+    return valor
+
+  }
 
 
 }
