@@ -5,6 +5,7 @@ import chartJs from 'chart.js';
 import { AnaliseCategoriaPage } from '../analise-categoria/analise-categoria';
 import { AnalisePagamentoPage } from '../analise-pagamento/analise-pagamento';
 import { PrevisãoPage } from '../previs\u00E3o/previs\u00E3o';
+import { GraficosPage } from '../graficos/graficos';
 
 
 /**
@@ -47,18 +48,24 @@ export class AnalisePage {
     this.compras = this.dbService.getAll('compras')
     this.ComprasArray = this.arrayCompras(this.compras);
 
-
- 
-    
-    
-
     //chart//
     this.categoriasChart = (this.getChartCat(this.categorias));
+
+   
 
   }
 
   ////////////////////////////////////////////////CHARTS/////////////////////////////////////
 
+
+  
+  grafico(previsao,data,compras){
+    this.navCtrl.push(GraficosPage, 
+      {'previsao' : previsao,
+      'data':data,
+      'compras':compras});
+    }
+  
 
   getChartCat(categorias){
     let arrayC = [];
@@ -219,7 +226,7 @@ swipe(event) {
   retornaKeys(prev){
     let array;
     array = Object.keys(prev);
-    console.log(array, " array loco")
+
     return array
   }
  

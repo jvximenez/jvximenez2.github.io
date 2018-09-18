@@ -22,6 +22,7 @@ import { AnaliseCategoriaPage } from '../pages/analise-categoria/analise-categor
 import { AnalisePagamentoPage } from '../pages/analise-pagamento/analise-pagamento';
 import { PrevisãoPage } from '../pages/previs\u00E3o/previs\u00E3o';
 import { AddPrevisãoPage } from '../pages/add-previs\u00E3o/add-previs\u00E3o';
+import { GraficosPage } from '../pages/graficos/graficos';
 
 
 
@@ -40,6 +41,7 @@ import { AddPrevisãoPage } from '../pages/add-previs\u00E3o/add-previs\u00E3o';
     AnalisePagamentoPage,
     PrevisãoPage,
     AddPrevisãoPage,
+    GraficosPage,
     
   ],
   imports: [
@@ -73,6 +75,7 @@ import { AddPrevisãoPage } from '../pages/add-previs\u00E3o/add-previs\u00E3o';
     AnalisePagamentoPage,
     PrevisãoPage,
     AddPrevisãoPage,
+    GraficosPage,
   ],
   providers: [
     StatusBar,
