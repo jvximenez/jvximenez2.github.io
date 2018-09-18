@@ -24,14 +24,7 @@ export class AnalisePage {
   barChart: any;
 
 
-  teste = {
-    'categoria 1' : [4.5],
-    'categoria 2' : [4.5],
-    'categoria 3' : [4.5],
-    'categoria 4' : [4.5],
-    'mes':"9",
-    'ano':'2018',
-  }
+  
 
   public categorias;
   public compras;
@@ -40,6 +33,8 @@ export class AnalisePage {
   public testemassa;
   public pagamentos;
   public previsto;
+  public previstoArrayVal;
+  public previstoArrayNam;
 
   public ComprasArray = [];
 
@@ -51,7 +46,7 @@ export class AnalisePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: FirebaseServiceProvider) {
     this.categorias = this.dbService.getAll('categoria')
-    this.previsto = this.dbService.getAll('previsto')
+    this.previsto = this.dbService.getAll('previsao')
     this.pagamentos = this.dbService.getArray('pagamento')
     this.compras = this.dbService.getAll('compras')
     this.visual = this.dbService.getAll('visual')
@@ -60,15 +55,13 @@ export class AnalisePage {
 
     this.testemassa = this.varredura[0]
 
-    
  
     
     
 
     //chart//
     this.categoriasChart = (this.getChartCat(this.categorias));
-
-    this.valoresPrevistos = this.getArrayPrevisto(this.previsto, this.categoriasChart)
+    this.valoresPrevistos = this.getValPrev(this.varredura[0],this.categoriasChart, this.previsto);
 
   }
 
@@ -147,6 +140,16 @@ export class AnalisePage {
     categorias.forEach(itens => {itens.forEach(item => {linha.push(this.somaCat2(item.title,data))})})
     console.log(linha, "testeeee")
     return (linha)
+  }
+
+
+  getValPrev(data,categorias,compras){
+    console.log("entrou", categorias, compras);
+    let linha = []
+    categorias.forEach(itens => {itens.forEach(item => {linha.push(this.somaCat2(item.title,data))})})
+    console.log(linha, "testeeee")
+    return (linha)
+
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////
@@ -285,17 +288,19 @@ swipe(event) {
     this.navCtrl.push(PrevisãoPage)
   }
 
-  getPrevisto(cat,data,previsto ){
-    let valor = 0
-    previsto.forEach( a => a.forEach ( item => { if (data == item.total) {valor = item[cat], console.log('iguaal')}}))
-    return valor
 
-  }
 
-  getArrayPrevisto(previsto,categorias){
-    console.log(previsto, categorias," odei meu trab so qn ")
-    categorias.forEach(d=> console.log(d, "horrivel!!!!!!!!!!!!!!!!!!"))
+  ///////////////////////////////<< PREVISAO >>////////////////////////////////////
+
+
+  retornaKeys(prev){
+    let array;
+    array = Object.keys(prev);
+    console.log(array, " array loco")
+    return array
   }
+ 
+  
 
 
 }

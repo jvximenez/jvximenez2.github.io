@@ -27,9 +27,9 @@
       <canvas #barCanvas height="200vh" ></canvas>
     </div>
 
-    <ion-card *ngFor = "let varr of varredura">
+    <ion-card *ngFor = "let prev of (previsto | async)">
       <ion-card-header>
-        {{varr}}
+        {{prev.total}}
       </ion-card-header>
       <ion-grid>
         <ion-row>
@@ -43,17 +43,20 @@
             Gasto
           </ion-col>
         </ion-row>
-        <ion-row *ngFor = "let cat of (categorias | async)" (click)="goToAnalise(varr,cat.title)">
-          <ion-col>
-              {{cat.title}}
-          </ion-col>
-          <ion-col>
-              "ainda nao"
-          </ion-col>
-          <ion-col>
-              {{somaCat(cat.title,varr)}}
-          </ion-col>  
-        </ion-row>
+
+        <div *ngFor = "let keyy of retornaKeys(prev)">
+          <ion-row *ngIf="keyy != 'key' && keyy != 'total' && keyy != 'ano' && keyy != 'mes'"  (click)="goToAnalise(prev.total,keyy)">
+            <ion-col>
+                {{keyy}}
+            </ion-col>
+            <ion-col>
+                {{prev[keyy]}}
+            </ion-col>
+            <ion-col>
+                {{somaCat(keyy,prev.total)}}
+            </ion-col>  
+          </ion-row>
+        </div>
 
         <ion-row>
             <ion-col>
@@ -63,7 +66,7 @@
               "Ainda Não"
             </ion-col>
             <ion-col>
-                {{somaTotal(varr)}}
+                {{somaTotal(prev.total)}}
             </ion-col>
         </ion-row>
 
@@ -79,37 +82,5 @@
         </ion-row>
       </ion-grid>
     </ion-card>
-
-
-
-
-
-
-
-
-  <ion-card>
-    <ion-card-header>
-      {{teste.mes}}-{{teste.ano}}
-    </ion-card-header>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-item>
-            <ion-label fixed></ion-label>
-            <ion-input text-right  autocomplete="on" value="gdfgf"></ion-input>
-            <ion-input text-right autocomplete="on" value="gdfgf"></ion-input>
-          </ion-item>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-
-
-
-
-  <ion-fab right bottom>
-    <button ion-fab mini ><ion-icon name="add" (click)=adicionar()></ion-icon></button>
-  </ion-fab>
-
   </div>
 </ion-content>

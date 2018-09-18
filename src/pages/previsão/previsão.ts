@@ -88,18 +88,11 @@ export class PrevisãoPage {
    }
 
 
-   acharValores(variavel){
-     let array = [];
-     array.push(Object.keys(variavel))
-     console.log(array)
-     return (array)
-   }
-
    retornaKeys(prev){
-     console.log("entrou")
+    
      let array;
      array = Object.keys(prev);
-     console.log(array)
+     
      return array
    }
 
