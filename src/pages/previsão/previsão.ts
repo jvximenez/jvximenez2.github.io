@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AddPrevisãoPage } from '../add-previs\u00E3o/add-previs\u00E3o';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
-
+import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the PrevisãoPage page.
  *
@@ -25,7 +25,7 @@ export class PrevisãoPage {
   public previsoes;
   public valores;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: FirebaseServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: FirebaseServiceProvider, public alertCtrl: AlertController) {
     this.categorias = this.dbService.getAll('categoria');
     this.addPrevisao(this.categorias);
     this.previsoes =  this.dbService.getAll('previsao')
@@ -40,7 +40,7 @@ export class PrevisãoPage {
       enumerable: true,   // não enumerável
       configurable: true, // não configurável
       writable: true,     // não gravável
-      value: ''
+      value: '0'
     })
 
     return this.previsao;
@@ -103,4 +103,32 @@ export class PrevisãoPage {
      return array
    }
 
+   save(item){
+     this.dbService.update('previsao',item)
+   }
+
+   deletar(item){
+    const confirm = this.alertCtrl.create({
+      title: 'Deletar esse item?',
+      message: 'deseja confirmar? essa mudança sera irreversível',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Confirma',
+          handler: () => { this.dbService.revome('previsao',item)
+            console.log('Agree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
 }
+   
+
+

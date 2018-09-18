@@ -20,9 +20,30 @@
 
 <ion-content padding>
   <ion-card *ngFor = "let prev of (previsoes | async)" >
-    <ion-card-header *ngFor = "let keyy of retornaKeys(prev)">
-         {{keyy}}
-    </ion-card-header>
+    <ion-card-header>{{prev.total}}</ion-card-header>
+    <ion-list>
+      <div *ngFor = "let keyy of retornaKeys(prev)">
+        <ion-item *ngIf="keyy != 'key'">
+          <ion-label fixed>{{keyy}}</ion-label>
+          <ion-input type="text" value="" [(ngModel)]="prev[keyy]"></ion-input>
+        </ion-item>
+      </div>
+    </ion-list>
+    
+    <ion-item></ion-item>
+    <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col col-3 justify-content-center>
+        <button ion-button round class="botao" full color ="danger" clear (click)="deletar(prev)">Deletar</button>
+      </ion-col>
+     </ion-row>
+     <ion-row justify-content-center>
+      <ion-col col-3 justify-content-center>
+        <button ion-button round class="botao" clear full (click)="save(prev)" >Atualizar</button>
+      </ion-col>
+    </ion-row>
+    <ion-item></ion-item>
+    </ion-grid>
   </ion-card>
 
 </ion-content>
