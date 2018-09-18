@@ -104,13 +104,6 @@ export class HomePage {
    }
 
 
-   criacaoObjeto(nome){
-     var teste = {}
-     Object.defineProperty('compras',nome,{value: "sdadsa",writable: true,
-     enumerable: true,
-     configurable: true });
-      this.save(teste);
-   }
   
 
    swipe(event) {

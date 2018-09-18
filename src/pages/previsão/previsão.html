@@ -9,7 +9,7 @@
   <ion-navbar>
     <ion-title>Previsão</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="novaPrev()">
+      <button ion-button icon-only (click)="savePrevisao(previsao, categorias)">
         <ion-icon name="add"></ion-icon>
       </button> 
       </ion-buttons>
@@ -19,9 +19,9 @@
 
 
 <ion-content padding>
-  <ion-card>
-    <ion-card-header>
-      ola
+  <ion-card *ngFor = "let prev of (previsoes | async)" >
+    <ion-card-header *ngFor = "let keyy of retornaKeys(prev)">
+         {{keyy}}
     </ion-card-header>
   </ion-card>
 
