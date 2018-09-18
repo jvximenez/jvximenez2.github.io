@@ -50,10 +50,10 @@ export class GraficosPage {
   ngAfterViewInit(){
     setTimeout(()=> {
       this.barChart = this.getBarChart();
-    },1000)
+    },100)
     setTimeout(()=> {
       this.valoresGastos = this.getGastoChart(this.data, this.categorias, this.compras)
-    },500)
+    },50)
 }
 
   getCategorias(previsao){
@@ -75,7 +75,7 @@ export class GraficosPage {
   getGastoChart(data, categorias, compras){
     console.log("entrou", categorias, compras);
     let linha = []
-    categorias.forEach(item => {linha.push(this.somaCat2(item.title,data))})
+    categorias.forEach(item => {linha.push(this.somaCat2(item,data))})
     console.log(linha, "testeeee")
     return (linha)
   }

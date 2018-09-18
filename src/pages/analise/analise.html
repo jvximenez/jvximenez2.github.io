@@ -10,7 +10,7 @@
     <ion-title>Analise </ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="atualiza()">
-        <ion-icon name="refresh"></ion-icon>
+        <ion-icon name="sync"></ion-icon>
       </button>
         <button ion-button icon-only (click)="previsao()">
           <ion-icon name="add"></ion-icon>
@@ -23,14 +23,19 @@
 
 <ion-content padding>
   <div class="main-content" (swipe)="swipe($event)">
-    <div>
-      <canvas #barCanvas height="200vh" ></canvas>
-    </div>
-
     <ion-card *ngFor = "let prev of (previsto | async)">
-      <ion-card-header>
-        {{prev.total}}
-      </ion-card-header>
+      <ion-row>
+        <ion-col col-10>
+          <ion-card-header> {{prev.total}} </ion-card-header>  
+        </ion-col>
+        <ion-col col-2>
+        <ion-buttons end>
+          <button ion-button icon-only end clear (click)="grafico(prev,prev.total,compras,ComprasArray)">
+          <ion-icon name="stats"></ion-icon></button>
+        </ion-buttons>
+        </ion-col>
+      </ion-row>
+      
       <ion-grid>
         <ion-row>
           <ion-col>
@@ -81,7 +86,7 @@
             </ion-col>
         </ion-row>
       </ion-grid>
-      <button ion-button (click)="grafico(prev,prev.total,compras,ComprasArray)">ola</button>
+      
     </ion-card>
   </div>
 </ion-content>

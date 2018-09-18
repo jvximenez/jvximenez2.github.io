@@ -21,8 +21,6 @@ import { GraficosPage } from '../graficos/graficos';
   templateUrl: 'analise.html',
 })
 export class AnalisePage {
-  @ViewChild('barCanvas') barCanvas;
-  barChart: any;
 
 
   
@@ -75,15 +73,6 @@ export class AnalisePage {
     return (arrayC)
   }
  
-  ngAfterViewInit(){
-    setTimeout(()=> {
-      this.barChart = this.getBarChart();
-    },500)
-    setTimeout(()=> {
-      this.valoresChart = this.getGastoChart('2018 - 9', this.categorias, this.compras)
-    },300)
-
-  }
 
   getChart(context, charType, data, options){
     return new chartJs(context, {
@@ -127,7 +116,7 @@ export class AnalisePage {
     }
   }
 
-  return this.getChart(this.barCanvas.nativeElement, 'bar', data, options);
+  return 0;
 }
 
 
