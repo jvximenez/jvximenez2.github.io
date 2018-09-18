@@ -44,8 +44,9 @@ export class AnalisePage {
   public ComprasArray = [];
 
   ///////////chars public //////////////
-  public categoriasChart
-  public valoresChart
+  public categoriasChart;
+  public valoresChart;
+  public valoresPrevistos;
   ///////////////////////////////////////
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: FirebaseServiceProvider) {
@@ -66,6 +67,8 @@ export class AnalisePage {
 
     //chart//
     this.categoriasChart = (this.getChartCat(this.categorias));
+
+    this.valoresPrevistos = this.getArrayPrevisto(this.previsto, this.categoriasChart)
 
   }
 
@@ -287,6 +290,11 @@ swipe(event) {
     previsto.forEach( a => a.forEach ( item => { if (data == item.total) {valor = item[cat], console.log('iguaal')}}))
     return valor
 
+  }
+
+  getArrayPrevisto(previsto,categorias){
+    console.log(previsto, categorias," odei meu trab so qn ")
+    categorias.forEach(d=> console.log(d, "horrivel!!!!!!!!!!!!!!!!!!"))
   }
 
 
