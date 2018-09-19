@@ -23,6 +23,8 @@ export class ConfiguraçõesPage {
   public categorias;
   public pagamentos;
   public visuals;
+  public atalhos;
+
   public categoria = {
     'title': '',
     'numero': '',
@@ -41,6 +43,13 @@ export class ConfiguraçõesPage {
     'final':'',
   }
 
+  public atalho ={
+    'title':'',
+    'gasto':'',
+    'categoria':'',
+    'pagamento':'',
+  }
+
 
 
   constructor(public navCtrl: NavController,
@@ -51,6 +60,7 @@ export class ConfiguraçõesPage {
     this.categorias = this.dbService.getAll('categoria');
     this.pagamentos =  this.dbService.getAll('pagamento');
     this.visuals = this.dbService.getAll('visual')
+    this.atalhos = this.dbService.getAll('atalho')
 
   }
 
@@ -140,6 +150,57 @@ export class ConfiguraçõesPage {
     });
     prompt.present();
   }
+
+  NovoAtalho(){
+      const prompt = this.alertCtrl.create({
+        title: 'Novo atalho',
+        inputs: [
+          {
+            name: 'title',
+            placeholder: 'Nome',
+            type: 'text',
+  
+          },
+          {
+            name: 'Valor',
+            placeholder:"Valor",
+            type: 'number',
+  
+          },
+          {
+            name: 'Categoria',
+            placeholder:"Categoria",
+            type: 'text',
+  
+          },
+          {
+            name: 'Pagamentos',
+            placeholder:"Pagamentos",
+            type: 'text',
+  
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: data => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Adicionar',
+            handler: data => {
+              this.atalho.title = data.title, this.atalho.gasto = data.Valor, this.atalho.categoria = data.Categoria, this.atalho.pagamento = data.Pagamentos;
+              this.dbService.save('atalho',this.atalho);
+              }
+            }
+        ]
+      });
+      prompt.present();
+    }
+  
+  
+
   
 
 
@@ -157,6 +218,10 @@ export class ConfiguraçõesPage {
 
   remove(a){
     this.dbService.revome('visual',a)
+  }
+
+  removeAtalho(a){
+    this.dbService.revome('atalho',a)
   }
 }
 

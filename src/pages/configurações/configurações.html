@@ -26,20 +26,26 @@
     </ion-item>
 
   <ion-list-header>
+      Atalhos
+    </ion-list-header>
+    <ion-item *ngFor="let atalho of (atalhos|async)" (click)="removeAtalho(atalho)">{{atalho.title}}</ion-item>
+  
+
+  <ion-list-header>
       Visualização
     </ion-list-header>
     <ion-item *ngFor="let a of (visuals|async)" (click)="remove(a)">{{a.ano}} - {{a.mes}}</ion-item>
   </ion-list>
 
-
   
-      <ion-fab right bottom>
-        <button ion-fab mini ><ion-icon name="arrow-dropleft"></ion-icon></button>
-        <ion-fab-list side="left">
-          <button ion-fab><ion-icon name="folder" (click)="NovaCategoria()"></ion-icon></button>
-          <button ion-fab><ion-icon name="folder-open" (click)="NovaVisual()"></ion-icon></button>
-        </ion-fab-list>
-      </ion-fab>
+    <ion-fab right bottom>
+      <button ion-fab mini ><ion-icon name="arrow-dropleft"></ion-icon></button>
+      <ion-fab-list side="left">
+        <button ion-fab><ion-icon name="folder" (click)="NovaCategoria()"></ion-icon></button>
+        <button ion-fab><ion-icon name="folder-open" (click)="NovaVisual()"></ion-icon></button>
+        <button ion-fab><ion-icon name="list-box" (click)="NovoAtalho()"></ion-icon></button>
+      </ion-fab-list>
+    </ion-fab>
 
 
 
