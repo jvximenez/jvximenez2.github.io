@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Toggle } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { ConfiguraçõesPage } from '../configura\u00E7\u00F5es/configura\u00E7\u00F5es';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -12,6 +12,17 @@ import { AboutPage } from '../about/about';
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+  doRefresh(refresher) {
+    this.show = !this.show
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 50);
+  }
+
+  public show = false;
 
   compras = {
     'title': '',
@@ -107,8 +118,25 @@ export class HomePage {
   
 
    swipe(event) {
-    if(event.direction === 2) {
+    if(event.direction == 2) {
       this.navCtrl.parent.select(1)
     }
+    if(event.direction == 16) {
+      console.log("false")
+      this.show = false
+      return this.show
+    }
+    if(event.direction == 16) {
+      console.log("true")
+      this.show = true
+      return this.show
+    }
+
+    
+  }
+
+  Louco(){
+    this.show = false;
+    
   }
 }
