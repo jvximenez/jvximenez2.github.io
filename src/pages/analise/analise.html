@@ -12,7 +12,7 @@
       <button ion-button icon-only (click)="atualiza()">
         <ion-icon name="sync"></ion-icon>
       </button>
-        <button ion-button icon-only (click)="previsao()">
+        <button ion-button icon-only (click)="previsao(ComprasArray)">
           <ion-icon name="add"></ion-icon>
         </button>
     </ion-buttons>
@@ -68,19 +68,19 @@
               Total
             </ion-col>
             <ion-col>
-              "Ainda Não"
+              {{retornaArray(prev)}}
             </ion-col>
             <ion-col>
                 {{somaTotal(prev.total)}}
             </ion-col>
         </ion-row>
 
-        <ion-row *ngFor="let pagamento of pagamentos" (click)="goToAnalisePag(varr,pagamento.title)">
+        <ion-row *ngFor="let pagamento of pagamentos" (click)="goToAnalisePag(prev.total,pagamento.title)">
             <ion-col>
               {{pagamento.title}}
             </ion-col>
             <ion-col>
-                {{somaPagamento(pagamento.title,varr)}}
+                {{somaPagamento(pagamento.title, prev.total)}}
             </ion-col>
             <ion-col>
             </ion-col>

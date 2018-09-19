@@ -17,6 +17,8 @@ import chartJs from 'chart.js';
 export class GraficosPage {
   @ViewChild('barCanvas') barCanvas;
   barChart: any;
+  @ViewChild('pieCanvas') pieCanvas;
+  pieChart: any;
 
 
   public compras;
@@ -29,6 +31,9 @@ export class GraficosPage {
   public valoresPrevistos;
 
   public valoresGastos;
+
+  
+  public gradiente;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -47,10 +52,29 @@ export class GraficosPage {
 
   }
 
+  gradienteX(val){
+    let array = []
+    let b =47
+    let c = 106
+    let branc1 =255
+    let incremento1 = (b - branc1)/val.lenght
+    let incremento2 = (b - branc1)/val.lenght
+    let a = 0
+    while (a < (val.lenght)){
+      b += incremento1
+      c += incremento2
+
+      
+    }
+  }
+
+
   ngAfterViewInit(){
     setTimeout(()=> {
       this.barChart = this.getBarChart();
+      this.pieChart = this.getPieChart();
     },100)
+
     setTimeout(()=> {
       this.valoresGastos = this.getGastoChart(this.data, this.categorias, this.compras)
     },50)
@@ -124,6 +148,7 @@ export class GraficosPage {
       }]
     }
   }
+  
 
   return this.getChart(this.barCanvas.nativeElement, 'bar', data, options);
 }
@@ -136,7 +161,30 @@ export class GraficosPage {
     })
   }
 
+  getPieChart(){
+    const data = {
+      labels: this.categorias,
+      datasets: [{
+        label: 'Planejado',
+        data: this.valoresPrevistos,
+        backgroundColor:  '#2f6acf',
+        borderWidth: 2
+    },{
+      label: 'Gasto',
+      data: this.valoresGastos,
+      backgroundColor: '#32b9db',
+      borderWidth: 2
+    }],
+  
+  };
 
+  const options = {
+  }
+  
+
+  return this.getChart(this.pieCanvas.nativeElement, 'pie', data, options);
+    
+  }
 
 
 }

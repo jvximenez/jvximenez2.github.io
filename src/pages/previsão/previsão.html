@@ -21,13 +21,33 @@
 <ion-content padding>
   <ion-card *ngFor = "let prev of (previsoes | async)" >
     <ion-card-header>{{prev.total}}</ion-card-header>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          Categoria
+        </ion-col>
+        <ion-col>
+          Previsto
+        </ion-col>
+        <ion-col>
+          Gasto
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
     <ion-list>
       <div *ngFor = "let keyy of retornaKeys(prev)">
         <ion-item *ngIf="keyy != 'key'">
           <ion-label fixed>{{keyy}}</ion-label>
           <ion-input type="text" value="" [(ngModel)]="prev[keyy]"></ion-input>
+          <ion-input type="text"  readonly='true' value="{{somaCat(keyy,prev.total)}}" ></ion-input>
         </ion-item>
       </div>
+      <ion-item>
+        <ion-label fixed>Soma</ion-label>
+        <ion-input type="text" value="{{retornaArray(prev)}}" readonly='true'></ion-input>
+      </ion-item>
     </ion-list>
     
     <ion-item></ion-item>

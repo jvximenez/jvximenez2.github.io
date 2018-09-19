@@ -25,10 +25,17 @@ export class PrevisãoPage {
   public previsoes;
   public valores;
 
+  public ComprasArray;
+
+  
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: FirebaseServiceProvider, public alertCtrl: AlertController) {
     this.categorias = this.dbService.getAll('categoria');
     this.addPrevisao(this.categorias);
     this.previsoes =  this.dbService.getAll('previsao')
+
+    this.ComprasArray = this.navParams.get('ComprasArray')
+
   }
 
   ionViewDidLoad() {
@@ -121,7 +128,41 @@ export class PrevisãoPage {
     });
     confirm.present();
   }
+
+
+
+/////////////////////////// funcoes juntas///////////////////
+ 
+  retornaArray(prevv){
+    console.log(prevv)
+    let cat = this.getCategorias(prevv)
+    let a = 0 ;
+    cat.forEach (element => a += (Number(prevv[element])))
+    console.log(a, " valor de A")
+    return a
+
+
+  }
+
+  getCategorias(previsao){
+    let a = Object.keys(previsao)
+    console.log(previsao,"aqui", a)
+    let array = []
+    a.forEach(element => { if(element != 'key' && element != 'total' && element != 'mes' && element != 'ano') {array.push(element)} 
+    });
+    return (array)
+    
+  }
+  ////////////////////////////acabou///////////////////
+
+  somaCat(categoria,data){
+    var valorCat = 0 
+    this.ComprasArray.forEach(item => {if (String(item[2]) == String(categoria) && 
+      String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0])}}
+    );
+
+    return(Math.round(valorCat))
+  }
+
+
 }
-   
-
-

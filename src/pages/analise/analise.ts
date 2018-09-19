@@ -141,13 +141,13 @@ export class AnalisePage {
   }
 
 
-somaCat(categoria,data){
-  var valorCat = 0 
-  this.ComprasArray.forEach(item => {if (String(item[2]) == String(categoria) && 
-    String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0])}}
-  );
+  somaCat(categoria,data){
+    var valorCat = 0 
+    this.ComprasArray.forEach(item => {if (String(item[2]) == String(categoria) && 
+      String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0])}}
+    );
 
-  return(Math.round(valorCat))
+    return(Math.round(valorCat))
 }
 
 
@@ -204,8 +204,9 @@ swipe(event) {
        'compra': this.compras });
     }
 
-  previsao(){
-    this.navCtrl.push(PrevisãoPage)
+  previsao(compras){
+    this.navCtrl.push(PrevisãoPage,
+      {'ComprasArray': compras})
   }
 
 
@@ -219,6 +220,29 @@ swipe(event) {
 
     return array
   }
+
+  retornaArray(prevv){
+    console.log(prevv)
+    let cat = this.getCategorias(prevv)
+    let a = 0 ;
+    cat.forEach (element => a += (Number(prevv[element])))
+    console.log(a, " valor de A")
+    return a
+
+
+  }
+
+  getCategorias(previsao){
+    let a = Object.keys(previsao)
+    console.log(previsao,"aqui", a)
+    let array = []
+    a.forEach(element => { if(element != 'key' && element != 'total' && element != 'mes' && element != 'ano') {array.push(element)} 
+    });
+    return (array)
+    
+  }
+
+
  
   
 
