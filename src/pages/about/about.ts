@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { EditPage } from '../edit/edit';
+import "rxjs/add/operator/map";
 
 @Component({
   selector: 'page-about',
@@ -23,9 +24,11 @@ export class AboutPage {
   public total;
   public produtos = [];
 
+  
+
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
     this.categorias = this.dbService.getArray('categoria')
-    this.compras = this.dbService.getAll('compras')
+    this.compras = (this.dbService.getAll('compras')).map(a => a.reverse());
     this.visual = this.dbService.getAll('visual')
     this.varredura = this.DefinindoArrays();
     console.log("EAE?")

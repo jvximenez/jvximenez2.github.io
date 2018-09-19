@@ -38,6 +38,27 @@
           <ion-input text-right type="number" clearInput="true" value="" [(ngModel)]="compras.payload"></ion-input>
         </ion-item>
     </ion-row>
+
+    <ion-row>
+      <ion-item>
+          <ion-label fixed>Ano: </ion-label>
+          <ion-input text-right clearInput="true" autocomplete="on" value="" [(ngModel)]="compras.ano"></ion-input>
+        </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+          <ion-label fixed>Mes </ion-label>
+          <ion-input text-right clearInput="true" autocomplete="on" value="" [(ngModel)]="compras.mes"></ion-input>
+        </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+          <ion-label fixed>Total: </ion-label>
+          <ion-input text-right clearInput="true" autocomplete="on" value="" [(ngModel)]="compras.total"></ion-input>
+        </ion-item>
+    </ion-row>
     
     <ion-row>
       <ion-item> 
@@ -56,6 +77,8 @@
           </ion-select>
         </ion-item>
     </ion-row>
+
+    
 
     <ion-row>
       <ion-item no-lines>
