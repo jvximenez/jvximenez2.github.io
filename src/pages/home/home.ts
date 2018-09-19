@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { getLocaleCurrencyName } from '@angular/common';
 import { stringify } from '@angular/core/src/util';
 import { AboutPage } from '../about/about';
+import { EditAtalhoPage } from '../edit-atalho/edit-atalho';
 
 @Component({
   selector: 'page-home',
@@ -36,6 +37,8 @@ export class HomePage {
 
   };
 
+  public atalhos;
+
  
   private categorias;
   private pagamentos;
@@ -49,12 +52,13 @@ export class HomePage {
     this.statusBar.backgroundColorByHexString('#ffffff');
     this.categorias = this.dbService.getArray('categoria')
     this.pagamentos = this.dbService.getArray('pagamento')
+    this.atalhos = this.dbService.getAll('atalho')
     console.log(this.pagamentos.get)
     this.compras.mes = String(this.AchaMes());
     this.compras.ano = String(this.achaAno());
     this.compras.data = this.Criacao();
     this.compras.total = String(this.Total())
-
+    
 
 
     
@@ -139,4 +143,20 @@ export class HomePage {
     this.show = false;
     
   }
+
+  saveAtalho(compras, atalho){
+    console.log(compras);
+    compras.title = atalho.title;
+    compras.categoria = atalho.categoria;
+    compras.payload = atalho.gasto;
+    compras.pagamento = atalho.pagamento;
+    this.dbService.save('compras',compras);
+  }
+
+  atalhoPush(atalho){
+    this.navCtrl.push(EditAtalhoPage, {
+      'atalho': atalho
+    })
+  }
+  
 }

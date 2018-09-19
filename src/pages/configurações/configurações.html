@@ -28,7 +28,7 @@
   <ion-list-header>
       Atalhos
     </ion-list-header>
-    <ion-item *ngFor="let atalho of (atalhos|async)" (click)="removeAtalho(atalho)">{{atalho.title}}</ion-item>
+    <ion-item *ngFor="let atalho of (atalhos|async)" (click)="EditarAtalho(atalho)">{{atalho.title}}</ion-item>
   
 
   <ion-list-header>
@@ -37,7 +37,7 @@
     <ion-item *ngFor="let a of (visuals|async)" (click)="remove(a)">{{a.ano}} - {{a.mes}}</ion-item>
   </ion-list>
 
-  
+
     <ion-fab right bottom>
       <button ion-fab mini ><ion-icon name="arrow-dropleft"></ion-icon></button>
       <ion-fab-list side="left">

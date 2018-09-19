@@ -4,6 +4,7 @@ import { FirebaseServiceProvider } from '../../providers/firebase-service/fireba
 import { HomePage } from '../home/home';
 import { EditConfPage } from '../edit-conf/edit-conf';
 import { EditPagamentoPage } from '../edit-pagamento/edit-pagamento';
+import { EditAtalhoPage } from '../edit-atalho/edit-atalho';
 
 /**
  * Generated class for the ConfiguraçõesPage page.
@@ -220,8 +221,10 @@ export class ConfiguraçõesPage {
     this.dbService.revome('visual',a)
   }
 
-  removeAtalho(a){
-    this.dbService.revome('atalho',a)
+  EditarAtalho(item){
+    console.log(item,"uhu")
+    this.navCtrl.push(EditAtalhoPage, {
+      'atalho' : item })
   }
 }
 
