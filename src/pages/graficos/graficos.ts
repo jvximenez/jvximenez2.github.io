@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import chartJs from 'chart.js';
+import {gradient} from 'gradient-color'
 
 /**
  * Generated class for the GraficosPage page.
@@ -19,6 +20,7 @@ export class GraficosPage {
   barChart: any;
   @ViewChild('pieCanvas') pieCanvas;
   pieChart: any;
+  
 
 
   public compras;
@@ -33,7 +35,7 @@ export class GraficosPage {
   public valoresGastos;
 
   
-  public gradiente;
+  public gradiente = [];
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -46,6 +48,10 @@ export class GraficosPage {
     this.categorias = this.getCategorias(this.categorias)
 
     this.valoresPrevistos = this.getValoresPrevistos( this.categorias, this.previsao )
+
+    this.gradiente = this.Color(11);
+    console.log("HAHAAHAHAH")
+    
 
     
 
@@ -167,12 +173,12 @@ export class GraficosPage {
       datasets: [{
         label: 'Planejado',
         data: this.valoresPrevistos,
-        backgroundColor:  '#2f6acf',
+        backgroundColor:  this.gradiente,
         borderWidth: 2
     },{
       label: 'Gasto',
       data: this.valoresGastos,
-      backgroundColor: '#32b9db',
+      backgroundColor: this.gradiente,
       borderWidth: 2
     }],
   
@@ -185,6 +191,22 @@ export class GraficosPage {
   return this.getChart(this.pieCanvas.nativeElement, 'pie', data, options);
     
   }
+
+  Color(a){
+    console.log("entrouuuuuuuuu", a)
+    let array= []
+    let sempre = Math.round(255/(a-1))
+    let c = 0
+    let b = 0
+    while (b < a) {
+      b +=1
+      array.push(('rgba(' + String(c)+','+ String(c)+ ','+'230)'))
+      c += sempre;
+    } 
+    console.log(array,"cores")
+    return array
+  }
+
 
 
 }
