@@ -30,7 +30,7 @@ export class AboutPage {
     this.categorias = this.dbService.getArray('categoria')
     this.compras = (this.dbService.getAll('compras')).map(a => a.reverse());
     this.visual = this.dbService.getAll('visual')
-    this.varredura = this.DefinindoArrays();
+    this.varredura = (this.DefinindoArrays());
     console.log("EAE?")
     console.log(this.visual)
   
@@ -82,7 +82,7 @@ export class AboutPage {
   DefinindoArrays(){
     var array = [];
     var varredura = [];
-    var compras = this.dbService.getAll('compras');
+    var compras = this.dbService.getAll('compras').map(a=> a.reverse());
     compras.forEach(itens => {
     itens.forEach(item => {if (Boolean(this.verificoSeEstaNaLista(item['ano'], item['mes'],varredura)) == false) {varredura.push(([item['ano'],item['mes']].join(' - ')))}
     })});
