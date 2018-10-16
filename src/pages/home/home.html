@@ -18,21 +18,21 @@
     <ion-row> 
         <ion-item>
             <ion-label fixed>Local: </ion-label>
-            <ion-input text-right clearInput="true" autocomplete="on" value="" [(ngModel)]="compras.title"></ion-input>
+            <ion-input text-right clearInput="true" autocomplete="on" (keyup.enter)="moveFocus(b)" value="" [(ngModel)]="compras.title"></ion-input>
           </ion-item>
     </ion-row>
 
     <ion-row>
       <ion-item>
           <ion-label fixed>Valor:</ion-label>
-          <ion-input  text-right type="number" clearInput="true" value="" [(ngModel)]="compras.payload"></ion-input>
+          <ion-input  text-right type="number" clearInput="true" value="" #b  [(ngModel)]="compras.payload"></ion-input>
         </ion-item>
     </ion-row>
     
     <ion-row>
       <ion-item> 
         <ion-label>Pagamento</ion-label >
-        <ion-select [(ngModel)]="compras.pagamento" interface="popover" >
+        <ion-select #c [(ngModel)]="compras.pagamento" interface="popover" >
           <ion-option *ngFor="let pagamento of pagamentos">{{pagamento.title}}</ion-option>
         </ion-select>
       </ion-item>

@@ -64,7 +64,14 @@ export class HomePage {
     
   }
 
+  moveFocus(nextElement) {
+    nextElement.setFocus();
+  }
 
+  cliczera(id){
+    id.getElementById().click()
+    
+  }
   
   save(compras){
     console.log(compras);
