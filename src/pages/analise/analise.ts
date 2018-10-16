@@ -134,7 +134,7 @@ export class AnalisePage {
   arrayCompras(compras){
     let array = []
     let linha = []
-    compras.forEach( itens => itens.forEach(item => {linha = [], linha.push(item.payload,[item.ano,item.mes].join(' - '),item.categoria,item.pagamento), array.push(linha)}))
+    compras.forEach( itens => itens.forEach(item => {linha = [], linha.push(item.payload,[item.ano,item.mes].join(' - '),item.categoria,item.pagamento,item.total), array.push(linha)}))
     
     return (array)
  
@@ -170,6 +170,30 @@ somaPagamento(pagamento,data){
   return(Math.round(valorPag))
 }
 
+somaSemana(semana,data){
+  var SemanPag = 0
+  if (semana == 1){
+    var a = 1
+    var b = 7
+  }
+  if (semana == 2){
+    var a = 8
+    var b = 14
+  }
+  if (semana == 3){
+    var a = 15
+    var b = 21
+  }
+  if (semana == 4){
+    var a = 22
+    var b = 31
+  }
+
+  this.ComprasArray.forEach(item => {if ((Number(item[4].substr(-2, 2))) >= a && (Number(item[4].substr(-2, 2)))  <= b && String(item[1]) == String(data)) { SemanPag = SemanPag + Number(item[0])}}
+  );
+
+  return(Math.round(SemanPag))
+}
 
 
 somaTotal(data){
