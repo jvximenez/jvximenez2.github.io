@@ -30,9 +30,9 @@
     </ion-row>
     
     <ion-row>
-      <ion-item> 
+      <ion-item (press)="Favorito()"> 
         <ion-label>Pagamento</ion-label >
-        <ion-select #c [(ngModel)]="compras.pagamento" interface="popover" >
+        <ion-select #c [(ngModel)]="compras.pagamento" interface="popover">
           <ion-option *ngFor="let pagamento of pagamentos">{{pagamento.title}}</ion-option>
         </ion-select>
       </ion-item>
@@ -54,7 +54,8 @@
     </ion-row>
 
     <ion-row justify-content-center>
-        <button class="btn" ion-button outline (click)="save(compras)">Adicionar</button>
+        <button class="btn3" ion-button round outline (click)="ontem(compras)">Ontem</button>
+        <button class="btn3" ion-button round (click)="save(compras)">Adicionar</button>
     </ion-row>
   </ion-grid>
 
