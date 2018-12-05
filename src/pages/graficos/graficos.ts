@@ -117,7 +117,7 @@ export class GraficosPage {
       String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0]), console.log(item[0],data, "5555555555")}}
     );
     console.log(valorCat,"aaaa")
-    return(Math.round(valorCat))
+    return(nd(valorCat))
   }
 
 

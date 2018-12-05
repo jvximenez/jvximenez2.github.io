@@ -42,11 +42,11 @@ export class EditPage {
 
   update(compras){
     this.firebaseService.update('compras',compras).then( d => {
-      this.navCtrl.push(AboutPage)});
+      this.navCtrl.pop()});
   }
 
   remove(compras){
     this.firebaseService.revome('compras',compras).then( d => {
-      this.navCtrl.push(AboutPage)});
+      this.navCtrl.pop()});
   }
 }
