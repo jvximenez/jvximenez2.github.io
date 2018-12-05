@@ -48,16 +48,16 @@ export class HomePage {
      public dbService: FirebaseServiceProvider,
      private statusBar: StatusBar) {
 
-    this.Criacao()
+    this.Criacao(0)
     this.statusBar.backgroundColorByHexString('#ffffff');
     this.categorias = this.dbService.getArray('categoria')
     this.pagamentos = this.dbService.getArray('pagamento')
     this.atalhos = this.dbService.getAll('atalho')
-    console.log(this.pagamentos.get)
+
     this.compras.mes = String(this.AchaMes());
     this.compras.ano = String(this.achaAno());
-    this.compras.data = this.Criacao();
-    this.compras.total = String(this.Total())
+    this.compras.data = this.Criacao(0);
+    this.compras.total = String(this.Total(0))
     
 
 
@@ -71,7 +71,14 @@ export class HomePage {
  
   
   save(compras){
-    console.log(compras);
+    this.Criacao(0)
+    this.dbService.save('compras',compras);
+  }
+
+  ontem(compras){
+    this.Criacao(1)
+    this.compras.data = this.Criacao(1);
+    this.compras.total = String(this.Total(1))
     this.dbService.save('compras',compras);
   }
 
@@ -85,9 +92,9 @@ export class HomePage {
   }
 
 
-  Criacao(){
+  Criacao(A){
     var data = new Date();
-    var dia = data.getDate();
+    var dia = data.getDate()-A;
     var mes = data.getMonth() + 1;
     var ano = data.getFullYear();
     var hora = data.getHours();
@@ -96,10 +103,10 @@ export class HomePage {
     return ([[dia, mes, ano].join('/'),[hora,min].join(':')].join(' - '));
   }
 
-  Total(){
+  Total(A){
     var total;
     var data = new Date();
-    var dia = data.getDate();
+    var dia = data.getDate()-A;
     var mes = data.getMonth();
     var ano = data.getFullYear();
     var hora = data.getHours();
@@ -161,6 +168,10 @@ export class HomePage {
     this.navCtrl.push(EditAtalhoPage, {
       'atalho': atalho
     })
+  }
+
+  Favorito(){
+    this.compras.pagamento = "N26"
   }
   
 }

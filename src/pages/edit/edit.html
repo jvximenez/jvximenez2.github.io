@@ -87,8 +87,12 @@
     </ion-row>
 
     <ion-row justify-content-center>
-      <button ion-button round (click)="update(compras)">Atualizar compra</button>
-      <button ion-button round color="danger" (click)="remove(compras)">  Deletar compra  </button>
+        <ion-row justify-content-center >
+            <button ion-button round outline class="btn3" col-5 color="danger" (click)="deletar(compras)">Deletar</button>
+        </ion-row>
+        <ion-row justify-content-center>
+            <button ion-button round outline class="btn3" col-5 (click)="atualizar(compras)">Atualizar</button>
+        </ion-row>
     </ion-row>
   </ion-grid>
       
