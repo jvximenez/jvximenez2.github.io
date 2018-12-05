@@ -32,7 +32,7 @@ export class PrevisãoPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: FirebaseServiceProvider, public alertCtrl: AlertController) {
     this.categorias = this.dbService.getAll('categoria');
     this.addPrevisao(this.categorias);
-    this.previsoes =  this.dbService.getAll('previsao')
+    this.previsoes =  this.dbService.getAll2('previsao').map(a => a.reverse())
 
     this.ComprasArray = this.navParams.get('ComprasArray')
 

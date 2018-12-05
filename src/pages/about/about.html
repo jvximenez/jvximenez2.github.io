@@ -15,16 +15,22 @@
       <ion-list-header *ngFor="let a of varredura">{{a}}
         <div *ngFor="let c of (compras | async )"> 
         <ion-item-sliding *ngIf = "([c.ano,c.mes].join(' - ')) == a">
-          <ion-item>
+          <ion-item class="altura">
             <ion-icon item-start [name]=(icon(c.categoria))></ion-icon>
              <ion-grid>
               <ion-row>
-                <ion-col col-8>
+                <ion-col col-9>
                   <h1>{{c.title}}</h1>
-                  <h2>{{dia(c.data)}}/{{c.mes}} - {{c.categoria}} - {{c.pagamento}} </h2>
+                  <h2>{{c.categoria}} - {{c.pagamento}} </h2>
                 </ion-col>
-                <ion-col col-4>
-                  <h1 class="dia">R${{c.payload}}</h1>
+                <ion-col col-3>
+                  <ion-row justify-content-center>
+                    <h1 class="dia">€{{c.payload}}</h1>
+                  </ion-row>
+                  <ion-row justify-content-center>
+                    <h1 class ="dia2">{{dia(c.data)}}/{{c.mes}} </h1>
+                  </ion-row>
+                  
                 </ion-col>
               </ion-row>
             </ion-grid>

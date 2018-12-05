@@ -41,7 +41,7 @@ export class AnalisePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: FirebaseServiceProvider) {
     this.categorias = this.dbService.getAll('categoria')
-    this.previsto = this.dbService.getAll('previsao')
+    this.previsto = this.dbService.getAll2('previsao').map(a => a.reverse())
     this.pagamentos = this.dbService.getArray('pagamento')
     this.compras = this.dbService.getAll('compras')
     this.ComprasArray = this.arrayCompras(this.compras);
