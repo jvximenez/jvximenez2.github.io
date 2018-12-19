@@ -44,6 +44,66 @@ $colors: (
 
 $text-input-highlight-color-valid:( #2b5eb8 );
 
+@font-face{
+  font-family: 'Open Sans';
+  font-style: 'Normal';
+  font-weight: 400;
+  src: url('../assets/fonts/GoogleSans-Regular.ttf')
+}
+
+@font-face{
+  font-family: 'Open Sans';
+  font-style: 'Bold';
+  font-weight: 700;
+  src: url('../assets/fonts/GoogleSans-Bold.ttf')
+}
+
+@font-face{
+  font-family: 'Open Sans';
+  font-style: 'Bold Italic';
+  font-weight: 400;
+  src: url('../assets/fonts/GoogleSans-BoldItalic.ttf')
+}
+
+@font-face{
+  font-family: 'Open Sans';
+  font-style: 'Italic';
+  font-weight: 400;
+  src: url('../assets/fonts/GoogleSans-Italic.ttf')
+}
+
+@font-face{
+  font-family: 'Open Sans';
+  font-style: 'Medium';
+  font-weight: 400;
+  src: url('../assets/fonts/GoogleSans-Medium.ttf')
+}
+
+$font-family-base: "Open Sans";
+body{
+  font-family: "Open Sans" !important;
+  font-weight: 400   !important;
+}
+
+h1,h2,button{
+  font-family: "Open Sans" !important;
+  font-style: "Bold" !important;
+  font-weight: 400 !important;
+}
+
+h3{
+  font-family: "Open Sans" !important;
+  font-style: "Bold" !important;
+  font-weight: 200 !important;
+}
+
+.tab-button-text {
+  font-family: "Open Sans" !important;
+  font-style: "bold" !important;
+  font-weight: 400 !important;
+}
+
+
 
 // App iOS Variables
 // --------------------------------------------------

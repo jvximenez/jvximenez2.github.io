@@ -24,6 +24,8 @@ export class HomePage {
   }
 
   public show = false;
+  public showGraf = false;
+
 
   compras = {
     'title': '',
@@ -42,7 +44,16 @@ export class HomePage {
  
   private categorias;
   private pagamentos;
+  public previsto;
 
+  public mes;
+  public ano;
+  public Compras;
+  public ComprasArray;
+  public ArrayTotal;
+
+  public array1 = [1,2,3,4,5]
+  public array2 = [5,6,7,1,2]
 
   constructor(public navCtrl: NavController,
      public dbService: FirebaseServiceProvider,
@@ -58,6 +69,14 @@ export class HomePage {
     this.compras.ano = String(this.achaAno());
     this.compras.data = this.Criacao(0);
     this.compras.total = String(this.Total(0))
+
+    this.mes = this.AchaMes();
+    this.ano = this.achaAno();
+
+    this.previsto = this.dbService.getAll('previsao')
+    this.Compras = (this.dbService.getAllQuantidade('compras',50)).map(a => a.reverse());
+    this.ArrayTotal =  this.CriaArrayGrafico('Mercado')
+    console.log(this.ArrayTotal, this.Compras)
     
 
 
@@ -119,7 +138,6 @@ export class HomePage {
   AchaMes(){
     var data = new Date();
     var mes = data.getMonth() +1;
-    
     return(mes) 
    }
 
@@ -173,5 +191,34 @@ export class HomePage {
   Favorito(){
     this.compras.pagamento = "N26"
   }
+
+  arrayCompras(compras){
+    let array = []
+    let linha = []
+    compras.forEach( itens => itens.forEach(item => {linha = [], linha.push(item.payload,[item.ano,item.mes].join(' - '),item.categoria,item.pagamento,item.total), array.push(linha)}))
+    
+    return (array)
+ 
+  }
+
+
+
+  CriaArrayGrafico(Categoria){
+    var ArrayT = [0,0,0,0]
+    this.Compras.forEach(itens => itens.forEach (item => {if(item.categoia == Categoria && item.ano == this.ano && item.mes == this.mes){ArrayT[1] += Number(item.payload), console.log(item, ArrayT)}}))
+    this.previsto.forEach(itens => itens.forEach (item => {if(item.ano == this.ano && item.mes == this.mes){ArrayT[1] += Number(item[Categoria])}}))
+    this.Compras.forEach(itens => itens.forEach (item => {if(item.ano == this.ano && item.mes == this.mes){ArrayT[2] += Number(item.payload), console.log(ArrayT)}}))
+    this.previsto.forEach(itens => itens.forEach (item => {if(item.ano == this.ano && item.mes == this.mes){this.SomaCat(item)}}))
+    return (ArrayT)
+
+  }
+
+  SomaCat(item){
+  }
+
+  
+
+
+
   
 }
