@@ -1,11 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, TestabilityRegistry } from '@angular/core';
 import { NavController, Toggle } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { ConfiguraçõesPage } from '../configura\u00E7\u00F5es/configura\u00E7\u00F5es';
 import { StatusBar } from '@ionic-native/status-bar';
-import { getLocaleCurrencyName } from '@angular/common';
-import { stringify } from '@angular/core/src/util';
-import { AboutPage } from '../about/about';
 import { EditAtalhoPage } from '../edit-atalho/edit-atalho';
 
 @Component({
@@ -76,19 +73,36 @@ export class HomePage {
     this.previsto = this.dbService.getAll('previsao')
     this.Compras = (this.dbService.getAllQuantidade('compras',50)).map(a => a.reverse());
     this.ArrayTotal =  this.CriaArrayGrafico('Mercado')
-    console.log(this.ArrayTotal, this.Compras)
-    
+    console.log(this.ArrayTotal,"5555555555555555555555555555555555555555555555555555555555555555555555555555555")
 
 
     
+  }
+
+  ngAfterViewInit(){
+    setTimeout(()=> {
+      this.teste(this.ArrayTotal)
+    },7000)}
+
+  teste(array){
+    console.log(array,"qwertassssssddddddddddddddddddddddddddddddddddddddddddddddd")
+    
+    var a1 = (String(array[0]/array[3])+'%')
+    var a2 = (String((array[0]+array[1])/array[3])+'%')
+    var a3 = (String((array[2]/array[3]))+'%')
+    var a4 = (String(array[3])+'%')
+    console.log(a1,a2,a3,a4)
+
+    document.getElementById("Grafcat").style.width = a1
+    document.getElementById("GrafCatPrev").style.width = a2
+    document.getElementById("GrafTotal").style.width = a3
+    document.getElementById("GrafTotalPrev").style.width = a4
   }
 
   moveFocus(nextElement) {
     nextElement.setFocus();
   }
 
- 
-  
   save(compras){
     this.Criacao(0)
     this.dbService.save('compras',compras);
@@ -201,19 +215,39 @@ export class HomePage {
  
   }
 
+  retornaArray(prevv){
+    console.log(prevv)
+    let cat = this.getCategorias(prevv)
+    let a = 0 ;
+    cat.forEach (element => a += (Number(prevv[element])))
+    console.log(a, " valor de A")
+    return a
+
+
+  }
+
+  getCategorias(previsao){
+    let a = Object.keys(previsao)
+    console.log(previsao,"aqui", a)
+    let array = []
+    a.forEach(element => { if(element != 'key' && element != 'total' && element != 'mes' && element != 'ano') {array.push(element)} 
+    });
+    return (array)
+    
+  }
+
+  
+
 
 
   CriaArrayGrafico(Categoria){
     var ArrayT = [0,0,0,0]
-    this.Compras.forEach(itens => itens.forEach (item => {if(item.categoia == Categoria && item.ano == this.ano && item.mes == this.mes){ArrayT[1] += Number(item.payload), console.log(item, ArrayT)}}))
+    this.Compras.forEach(itens => itens.forEach (item => {if(item.categoria == Categoria && item.ano == this.ano && Number(item.mes) == Number(this.mes)){ArrayT[0] += Number(item.payload), console.log(item, ArrayT,"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")}}))
     this.previsto.forEach(itens => itens.forEach (item => {if(item.ano == this.ano && item.mes == this.mes){ArrayT[1] += Number(item[Categoria])}}))
-    this.Compras.forEach(itens => itens.forEach (item => {if(item.ano == this.ano && item.mes == this.mes){ArrayT[2] += Number(item.payload), console.log(ArrayT)}}))
-    this.previsto.forEach(itens => itens.forEach (item => {if(item.ano == this.ano && item.mes == this.mes){this.SomaCat(item)}}))
+    this.Compras.forEach(itens => itens.forEach (item => {if(item.ano == this.ano && item.mes == this.mes){ArrayT[2] += Number(item.payload)}}))
+    this.previsto.forEach(itens => itens.forEach (item => {if(item.ano == this.ano && item.mes == this.mes){ArrayT[3] += Number(this.retornaArray(item))}}))
     return (ArrayT)
 
-  }
-
-  SomaCat(item){
   }
 
   

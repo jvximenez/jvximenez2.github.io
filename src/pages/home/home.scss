@@ -18,24 +18,77 @@ page-home {
   
     }
 
-      .btn3 {
-        display:block;
-        height: 50px;
-        width: 80px;
-        border: 1.5px solid;
-        font-size: 11px;
-        margin: 10px;
-    
-    }
+  .btn3 {
+    display:block;
+    height: 50px;
+    width: 80px;
+    border: 1.5px solid;
+    font-size: 11px;
+    margin: 10px;
 
-    .input{
-        text-align: right;
-        justify-content: right;
+  }
 
-    }
+  .input{
+      text-align: right;
+      justify-content: right;
 
-    .main-content {
-        height: 100%;
-      }
+  }
 
+  .main-content {
+    height: 100%;
+  }
+
+
+
+  .progress {
+    position: relative;
+    height: 8px;
+    display: block;
+    width: 95%;
+    background-color: grey;
+    border-radius: 52px;
+    background-clip: padding-box;
+    margin: 1rem 1rem 1rem 1rem;
+    overflow: hidden; }
+    .progress .determinate1 {
+      position: absolute;
+      background-color: inherit;
+      top: 0;
+      bottom: 0;
+      background-color: green;
+      transition: width .3s linear; }
+    .progress .determinate2 {
+    position: absolute;
+    background-color: inherit;
+    top: 0;
+    bottom: 0;
+    background-color: #23509c;
+    transition: width .3s linear; }
+                
+.progress2 {
+  position: relative;
+  height: 8px;
+  display: block;
+  width: 95%;
+  background-color: grey;
+  border-radius: 52px;
+  background-clip: padding-box;
+  margin: 1rem 1rem 1rem 1rem;
+  overflow: hidden; }
+  .progress2 .determinate1 {
+    position: absolute;
+    background-color: inherit;
+    top: 0;
+    bottom: 0;
+    background-color: green;
+    transition: width .3s linear; }
+  .progress2 .determinate2 {
+  position: absolute;
+  background-color: inherit;
+  top: 0;
+  bottom: 0;
+  background-color: #23509c;
+  transition: width .3s linear; }
+       
+          
 }

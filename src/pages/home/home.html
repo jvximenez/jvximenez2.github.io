@@ -69,11 +69,15 @@
     </ion-grid>
   </div>
 
-  <ion-card ngFor="let prev of (previsto | async)">
-    Oi - Testando
-  </ion-card>
-
-
-
-</div>
+  <p>Progresso:</p>
+  <div class="progress"  (click)=teste(totalM)>
+    <div class="determinate1" style="width: 0%" id="GrafTotalPrev" ></div>
+    <div class="determinate2" style="width: 0%" id="GrafTotal" ></div>
+  </div>
+  <div class="progress2" (click)=teste(totalM)>
+    <div class="determinate1" style="width: 0%" id="GrafCatPrev" ></div>
+    <div class="determinate2" style="width: 0%" id="GrafCat" ></div>
+  </div>
+  
+  </div>
 </ion-content>
