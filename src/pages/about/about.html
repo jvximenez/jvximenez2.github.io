@@ -20,15 +20,15 @@
              <ion-grid>
               <ion-row>
                 <ion-col col-9>
-                  <h1>{{c.title}}</h1>
-                  <h2>{{c.categoria}} - {{c.pagamento}} </h2>
+                  <h2>{{c.title}}</h2>
+                  <h3>{{c.categoria}} - {{c.pagamento}} </h3>
                 </ion-col>
                 <ion-col col-3>
                   <ion-row justify-content-center>
-                    <h1 class="dia">€{{c.payload}}</h1>
+                    <p class="dia">€{{c.payload}}</p>
                   </ion-row>
                   <ion-row justify-content-center>
-                    <h1 class ="dia2">{{dia(c.data)}}/{{c.mes}} </h1>
+                    <h2 class ="dia2">{{dia(c.data)}}/{{c.mes}} </h2>
                   </ion-row>
                   
                 </ion-col>

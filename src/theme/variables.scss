@@ -77,10 +77,12 @@ $text-input-highlight-color-valid:( #2b5eb8 );
   font-style: 'Medium';
   font-weight: 400;
   src: url('../assets/fonts/GoogleSans-Medium.ttf')
+
 }
 
-$font-family-base: "Open Sans";
-body{
+
+$font-family-base: "Open Sans" sans-serif !important;
+body,p{
   font-family: "Open Sans" !important;
   font-weight: 400   !important;
 }
