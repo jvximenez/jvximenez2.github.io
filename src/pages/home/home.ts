@@ -20,7 +20,7 @@ export class HomePage {
   }
 
   public show = false;
-  public showGraf = true;
+  public showGraf = false;
 
 
   compras = {

@@ -53,14 +53,14 @@ page-home {
 
   .progress {
     position: relative;
-    height: 8px;
+    height: 9px;
     display: block;
     width: 100%;
     background-color: grey;
-    border-radius: 52px;
+    border-radius: 3px;
     background-clip: padding-box;
-    padding: 0.5rem 0.5em 0.5rem 0.5rem;
-    margin: 1.25rem 0.1rem 0.1rem 0.1rem;
+    padding: 0.7rem 0.1em 0.1rem 0.0rem;
+    margin: 1.7rem 0.1rem 0.1rem 0.1rem;
     overflow: hidden; }
     .progress .determinate1 {
       position: absolute;
@@ -68,25 +68,25 @@ page-home {
       top: 0;
       bottom: 0;
       background-color: #2f6acf;
-      transition: width .3s linear; }
+      transition: width .7s linear; }
     .progress .determinate2 {
     position: absolute;
     background-color: inherit;
     top: 0;
     bottom: 0;
     background-color: #23509c;
-    transition: width .3s linear; }
+    transition: width .8s linear; }
                 
 .progress2 {
   position: relative;
-  height: 8px;
+  height: 9px;
   display: block;
   width: 100%;
   background-color: grey;
-  border-radius: 52px;
+  border-radius: 2px;
   background-clip: padding-box;
-  padding: 0.5rem 0.5em 0.5rem 0.5rem;
-  margin: 1.25rem 0.5em 0.5rem 0.5rem;
+  padding: 0.5rem 0.3em 0.3rem 0rem;
+  margin: 1.25rem 0.3em 0.3rem 0.3rem;
   overflow: hidden; }
   .progress2 .determinate1 {
     position: absolute;
@@ -94,14 +94,14 @@ page-home {
     top: 0;
     bottom: 0;
     background-color: #2f6acf;
-    transition: width .3s linear; }
+    transition: width .7s linear; }
   .progress2 .determinate2 {
   position: absolute;
   background-color: inherit;
   top: 0;
   bottom: 0;
   background-color: #23509c;
-  transition: width .3s linear; }
+  transition: width .8s linear; }
        
           
 }
