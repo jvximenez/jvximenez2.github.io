@@ -38,24 +38,36 @@ page-home {
     height: 100%;
   }
 
+  .paragrafo{
+    padding-block-start: 10px;
+    padding-inline-start: 10px;
+  }
+
+  .badge{
+    padding: 0.3rem 0.3em 0.3rem 0.3rem;
+    margin: 1rem 0em 0rem 0rem;
+    background-color: black;
+  }
+
 
 
   .progress {
     position: relative;
     height: 8px;
     display: block;
-    width: 95%;
+    width: 100%;
     background-color: grey;
     border-radius: 52px;
     background-clip: padding-box;
-    margin: 1rem 1rem 1rem 1rem;
+    padding: 0.5rem 0.5em 0.5rem 0.5rem;
+    margin: 1.25rem 0.1rem 0.1rem 0.1rem;
     overflow: hidden; }
     .progress .determinate1 {
       position: absolute;
       background-color: inherit;
       top: 0;
       bottom: 0;
-      background-color: green;
+      background-color: #2f6acf;
       transition: width .3s linear; }
     .progress .determinate2 {
     position: absolute;
@@ -69,18 +81,19 @@ page-home {
   position: relative;
   height: 8px;
   display: block;
-  width: 95%;
+  width: 100%;
   background-color: grey;
   border-radius: 52px;
   background-clip: padding-box;
-  margin: 1rem 1rem 1rem 1rem;
+  padding: 0.5rem 0.5em 0.5rem 0.5rem;
+  margin: 1.25rem 0.5em 0.5rem 0.5rem;
   overflow: hidden; }
   .progress2 .determinate1 {
     position: absolute;
     background-color: inherit;
     top: 0;
     bottom: 0;
-    background-color: green;
+    background-color: #2f6acf;
     transition: width .3s linear; }
   .progress2 .determinate2 {
   position: absolute;
