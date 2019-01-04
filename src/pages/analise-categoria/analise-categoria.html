@@ -12,21 +12,33 @@
 
 </ion-header>
 
+
+
 <ion-content>
+  
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+
     <ion-list>
-      <ion-list-header >{{dataEnviada}}
+      <div >
+        <ion-list-header >{{dataEnviada}}
         <div *ngFor="let c of (compras | async )"> 
-        <ion-item-sliding *ngIf = "([c.ano,c.mes].join(' - ')) == dataEnviada && c.categoria == categoriaEnviada">
-          <ion-item>
+            <ion-item-sliding *ngIf = "([c.ano,c.mes].join(' - ')) == dataEnviada && c.categoria == categoriaEnviada">
+              <ion-item class="altura">
             <ion-icon item-start [name]=(icon(c.categoria))></ion-icon>
-            <ion-grid>
+             <ion-grid>
               <ion-row>
-                <ion-col col-8>
-                  <h1>{{c.title}}</h1>
-                  <h2>{{dia(c.data)}}/{{c.mes}} - {{c.categoria}} - {{c.pagamento}} </h2>
+                <ion-col col-9>
+                  <h2>{{c.title}}</h2>
+                  <h3>{{c.categoria}} - {{c.pagamento}} </h3>
                 </ion-col>
-                <ion-col col-4>
-                  <h1 class="dia">R${{c.payload}}</h1>
+                <ion-col col-3>
+                  <ion-row justify-content-center>
+                    <p class="dia">€{{c.payload}}</p>
+                  </ion-row>
+                  <ion-row justify-content-center>
+                    <h2 class ="dia2">{{dia(c.data)}}/{{c.mes}} </h2>
+                  </ion-row>
+                  
                 </ion-col>
               </ion-row>
             </ion-grid>
@@ -45,8 +57,10 @@
         </ion-item-sliding>
       </div>
       </ion-list-header>
+      </div>
     </ion-list>
 </ion-content>
+
 
 
 
