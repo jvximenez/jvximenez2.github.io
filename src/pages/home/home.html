@@ -47,9 +47,13 @@
         </ion-item>
     </ion-row>
 
+    <ion-item>
+      <ion-label (click)="Mostra()">Date</ion-label>
+      <ion-datetime  (click)="Mostra()" displayFormat="DD/MM/YYYY" [(ngModel)]="DataO"></ion-datetime>
+    </ion-item>
+
     <ion-row>
       <ion-item no-lines>
-
       </ion-item>
     </ion-row>
 

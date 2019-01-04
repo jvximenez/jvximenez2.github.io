@@ -35,6 +35,9 @@ export class HomePage {
 
   };
 
+  public DataO;
+
+
   Arredonda(item){
     return Math.round(item)
     
@@ -65,6 +68,8 @@ export class HomePage {
      public dbService: FirebaseServiceProvider,
      private statusBar: StatusBar) {
 
+    this.DataO = new Date().toISOString();
+
     this.Criacao(0)
     this.statusBar.backgroundColorByHexString('#ffffff');
     this.categorias = this.dbService.getArray('categoria')
@@ -74,7 +79,7 @@ export class HomePage {
     this.compras.mes = String(this.AchaMes());
     this.compras.ano = String(this.achaAno());
     this.compras.data = this.Criacao(0);
-    this.compras.total = String(this.Total(0))
+    
 
     this.mes = this.AchaMes();
     this.ano = this.achaAno();
@@ -82,6 +87,8 @@ export class HomePage {
     this.previsto = []
     this.Compras = []
     this.ArrayTotal =  [0,0,0,0]
+
+   
 
 
 
@@ -107,7 +114,7 @@ export class HomePage {
   }
 
   save(compras){
-    this.Criacao(0)
+    this.MudandoData(this.DataO)
     this.dbService.save('compras',compras);
     this.previsto = this.dbService.getAll('previsao')
     this.Compras = (this.dbService.getAllQuantidade('compras',50)).map(a => a.reverse());
@@ -119,18 +126,13 @@ export class HomePage {
   }
 
   ontem(compras){
-    this.Criacao(1)
-    this.compras.data = this.Criacao(1);
-    this.compras.total = String(this.Total(1))
-    this.dbService.save('compras',compras);
-    this.previsto = this.dbService.getAll('previsao')
-    this.Compras = (this.dbService.getAllQuantidade('compras',50)).map(a => a.reverse());
-    this.ArrayTotal =  this.CriaArrayGrafico(compras.categoria)
-    this.showGraf = true;
-    setTimeout(()=> {
-      this.teste(this.ArrayTotal)
-    },1000)
-  }
+      var date = new Date
+      date.setDate(date.getDate() - 4)
+      console.log(date)
+      this.DataO = date.toISOString()
+      this.save(this.compras)
+    }
+    
 
   save2(teste){
     this.dbService.save('compras','Janeiro');
@@ -148,21 +150,11 @@ export class HomePage {
     var ano = data.getFullYear();
     var hora = data.getHours();
     var min = data.getMinutes();
+
     return ([[dia, mes, ano].join('/'),[hora,min].join(':')].join(' - '));
   }
 
-  Total(A){
-    var total;
-    var data = new Date();
-    var dia = data.getDate()-A;
-    var mes = data.getMonth();
-    var ano = data.getFullYear();
-    var hora = data.getHours();
-    var min = data.getMinutes();
-    total = Number(ano*10000 + (mes+1)*100 + dia);
-    return total
-  
-  }
+
 
   AchaMes(){
     var data = new Date();
@@ -258,6 +250,33 @@ export class HomePage {
     return (ArrayT)
 
   }
+
+  Hoje(){
+    var data1 = new Date
+    var data = [data1.getFullYear(),Number(data1.getMonth() + 1), data1.getDay()].join('-')
+    return data
+
+  }
+
+  Mostra(){
+    console.log(this.DataO)
+    this.MudandoData(this.DataO)
+  }
+
+  MudandoData(valor){
+    var fields = valor.split('-')
+    var dia = fields[2].split('T')
+    console.log(fields,dia)
+    this.compras.ano =  fields[0]
+    this.compras.mes =  String(Number(fields[1]))
+    this.compras.total =  String(Number(Number(this.compras.ano)*10000 + Number(this.compras.mes)*100 + Number(dia[0])));
+    console.log(this.compras.total)
+    var data = new Date();
+    var hora = data.getHours();
+    var min = data.getMinutes();
+    this.compras.data = ([[Number(dia[0]), Number(this.compras.mes), Number(this.compras.ano)].join('/'),[hora,min].join(':')].join(' - '));
+  }
+  
 
   
 
