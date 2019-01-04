@@ -3,13 +3,14 @@ import { NavController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { EditPage } from '../edit/edit';
 import "rxjs/add/operator/map";
-import { TodasAsComprasPage } from '../todas-as-compras/todas-as-compras';
 
-@Component({
-  selector: 'page-about',
-  templateUrl: 'about.html'
-})
-export class AboutPage {
+
+  @Component({
+    selector: 'page-todas-as-compras',
+    templateUrl: 'todas-as-compras.html',
+  })
+  export class TodasAsComprasPage {
+
   
 
   public compras;
@@ -29,7 +30,7 @@ export class AboutPage {
 
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
     this.categorias = this.dbService.getArray('categoria')
-    this.compras = (this.dbService.getAllQuantidade('compras',50)).map(a => a.reverse());
+    this.compras = (this.dbService.getAllQuantidade('compras',1000)).map(a => a.reverse());
     this.visual = this.dbService.getAll('visual')
     this.varredura = (this.DefinindoArrays());
     console.log("EAE?")
@@ -38,11 +39,6 @@ export class AboutPage {
   
     
 
-  }
-
-  goToTudo(){
-    this.navCtrl.push(TodasAsComprasPage)
-    
   }
 
   swipe(event) {
@@ -148,16 +144,5 @@ export class AboutPage {
 
   };
 
-
-  
-
-
-
-    
-  
-      
-    
-
-  
 
 }

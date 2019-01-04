@@ -24,6 +24,7 @@ import { PrevisãoPage } from '../pages/previs\u00E3o/previs\u00E3o';
 import { AddPrevisãoPage } from '../pages/add-previs\u00E3o/add-previs\u00E3o';
 import { GraficosPage } from '../pages/graficos/graficos';
 import { EditAtalhoPage } from '../pages/edit-atalho/edit-atalho';
+import { TodasAsComprasPage } from '../pages/todas-as-compras/todas-as-compras';
 
 
 
@@ -44,6 +45,7 @@ import { EditAtalhoPage } from '../pages/edit-atalho/edit-atalho';
     AddPrevisãoPage,
     GraficosPage,
     EditAtalhoPage,
+    TodasAsComprasPage,
     
   ],
   imports: [
@@ -79,6 +81,7 @@ import { EditAtalhoPage } from '../pages/edit-atalho/edit-atalho';
     AddPrevisãoPage,
     GraficosPage,
     EditAtalhoPage,
+    TodasAsComprasPage,
   ],
   providers: [
     StatusBar,
