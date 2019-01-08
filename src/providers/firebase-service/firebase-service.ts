@@ -28,6 +28,12 @@ export class FirebaseServiceProvider {
     }));
   }
 
+  getAllO(dado,child){
+    return this.db.list(dado, ref => ref.orderByChild(child)).snapshotChanges().pipe(map(data => {
+      return data.map(d => ({key: d.key, ...d.payload.val()}));
+    }));
+  }
+
   getAll2(dado){
     return this.db.list(dado, ref => ref.orderByChild('total')).snapshotChanges().pipe(map(data => {
       return data.map(d => ({key: d.key, ...d.payload.val()}));
@@ -36,6 +42,12 @@ export class FirebaseServiceProvider {
 
   getAllQuantidade(dado, quantidade){
     return this.db.list(dado, ref => ref.orderByChild('total').limitToLast(quantidade)).snapshotChanges().pipe(map(data => {
+    return data.map(d => ({key: d.key, ...d.payload.val()}));
+    }));
+    }
+
+  getAllQuantidadeO(dado,child, quantidade){
+    return this.db.list(dado, ref => ref.orderByChild(child).limitToLast(quantidade)).snapshotChanges().pipe(map(data => {
     return data.map(d => ({key: d.key, ...d.payload.val()}));
     }));
     }

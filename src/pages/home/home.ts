@@ -1,5 +1,5 @@
-import { Component, TestabilityRegistry } from '@angular/core';
-import { NavController, Toggle } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { ConfiguraçõesPage } from '../configura\u00E7\u00F5es/configura\u00E7\u00F5es';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -46,8 +46,8 @@ export class HomePage {
   public atalhos;
 
  
-  private categorias;
-  private pagamentos;
+  public categorias;
+  public pagamentos;
   public previsto;
 
   public mes;
@@ -64,6 +64,8 @@ export class HomePage {
   a3 = 0
   a4 = 0
 
+  public favorito;
+
   constructor(public navCtrl: NavController,
      public dbService: FirebaseServiceProvider,
      private statusBar: StatusBar) {
@@ -72,8 +74,8 @@ export class HomePage {
 
     this.Criacao(0)
     this.statusBar.backgroundColorByHexString('#ffffff');
-    this.categorias = this.dbService.getArray('categoria')
-    this.pagamentos = this.dbService.getArray('pagamento')
+    this.categorias = this.dbService.getAllO('categoria','numero').map(a=> a.reverse())
+    this.pagamentos = this.dbService.getAllO('pagamento','numero').map(a=> a.reverse())
     this.atalhos = this.dbService.getAll('atalho')
 
     this.compras.mes = String(this.AchaMes());
@@ -87,6 +89,10 @@ export class HomePage {
     this.previsto = []
     this.Compras = []
     this.ArrayTotal =  [0,0,0,0]
+
+    this.favorito = this.dbService.getAllQuantidadeO('categorias','numero',1).map(a=> a.reverse())
+    this.favorito = this.favorito.forEach(itens => {itens.forEach(item=> {return item.title})})
+    console.log(this.favorito,"sadasdas")
 
    
 
@@ -114,11 +120,11 @@ export class HomePage {
   }
 
   Fav(){
-    if (this.compras.pagamento == "N26"){
+    if (this.compras.pagamento == this.favorito){
       this.compras.pagamento = "Dinheiro"
       return
     }
-    this.compras.pagamento = "N26"
+    this.compras.pagamento = this.favorito
   }
 
   Fav2(){

@@ -7,6 +7,11 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Configurações</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="Inicio()">
+        <ion-icon name="sync"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -16,13 +21,13 @@
       Categorias
     </ion-list-header>
     <ion-item *ngFor="let categoria of (categorias|async)" (click)="EditarCategoria(categoria)">
-      <ion-icon item-start name={{categoria.icon}}></ion-icon>{{categoria.numero}}° - {{categoria.title}}
+      <ion-icon (click)="somaCat(categoria)" item-start name={{categoria.icon}}></ion-icon>{{categoria.numero}} - {{categoria.title}}
     </ion-item>
     <ion-list-header>
       Pagamento
     </ion-list-header>
     <ion-item *ngFor="let pagamento of (pagamentos|async)" (click)="EditarPagamento(pagamento)">
-      <ion-icon item-start name={{pagamento.icon}}></ion-icon>{{pagamento.numero}}° - {{pagamento.title}}
+      <ion-icon item-start name={{pagamento.icon}}></ion-icon>{{pagamento.numero}} - {{pagamento.title}}
     </ion-item>
 
   <ion-list-header>

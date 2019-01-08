@@ -20,7 +20,7 @@ import { EditAtalhoPage } from '../edit-atalho/edit-atalho';
 })
 export class ConfiguraçõesPage {
 
-  public compras;
+  
   public categorias;
   public pagamentos;
   public visuals;
@@ -52,6 +52,7 @@ export class ConfiguraçõesPage {
   }
 
   public ComprasArray
+  public compras;
 
 
 
@@ -60,18 +61,19 @@ export class ConfiguraçõesPage {
     public dbService: FirebaseServiceProvider,
     public alertCtrl: AlertController) {
 
-    this.categorias = this.dbService.getAll('categoria');
-    this.pagamentos =  this.dbService.getAll('pagamento');
+    this.categorias = this.dbService.getAllO('categoria',"numero").map(a=> a.reverse());
+    this.pagamentos =  this.dbService.getAllO('pagamento',"numero").map(a=> a.reverse());
     this.visuals = this.dbService.getAll('visual')
     this.atalhos = this.dbService.getAll('atalho')
+
 
     
 
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ConfiguraçõesPage');
-  }
+  
+
+
 
   NovaCategoria(){
     const prompt = this.alertCtrl.create({
@@ -258,6 +260,45 @@ export class ConfiguraçõesPage {
     this.compras.forEach(itens => { itens.forEach( item => {linha = []; linha.push(item.title); linha.push(item.pagamento);linha.push(item.categoria); coluna.push(linha)})})
     return coluna
 
+  }
+
+
+
+
+
+
+
+  arrayCompras(compras){
+    let array = []
+    let linha = []
+    compras.forEach( itens => itens.forEach(item => {linha = [], linha.push(item.payload,[item.ano,item.mes].join(' - '),item.categoria,item.pagamento,item.total), array.push(linha)}))
+    
+    return (array)
+ 
+  }
+
+  Inicio(){ 
+    this.compras = (this.dbService.getAllQuantidade('compras',100))
+    this.ComprasArray = this.arrayCompras(this.compras);
+    this.categorias.forEach( itens => itens.forEach(item => {this.somaCat(item)}))
+    this.pagamentos.forEach( itens => itens.forEach(item => {this.somaPag(item)}))
+  }
+
+  somaCat(categoria){
+    var valorCat = 0 
+    this.ComprasArray.forEach(item => {if (String(item[2]) == String(categoria.title)) {console.log('foi'), valorCat = valorCat + 1 }}
+    );
+    categoria.numero = Math.round(valorCat)
+    this.dbService.update("categoria",categoria )
+    return(Math.round(valorCat))
+}
+  somaPag(pagamento){
+    var valorCat = 0 
+    this.ComprasArray.forEach(item => {if (String(item[3]) == String(pagamento.title)) {console.log('foi'), valorCat = valorCat + 1 }}
+    );
+    pagamento.numero = Math.round(valorCat)
+    this.dbService.update("pagamento",pagamento )
+    return(Math.round(valorCat))
   }
 
   

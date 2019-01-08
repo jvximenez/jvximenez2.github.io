@@ -18,14 +18,14 @@
     <ion-row> 
         <ion-item>
             <ion-label fixed>Local: </ion-label>
-            <ion-input text-right clearInput="true" autocomplete="on" (keyup.enter)="moveFocus(b)" value="" [(ngModel)]="compras.title"></ion-input>
+            <ion-input text-right clearInput="true" autocomplete="on" (keyup.enter)="moveFocus(b)"  value="" [(ngModel)]="compras.title"></ion-input>
           </ion-item>
     </ion-row>
 
     <ion-row>
       <ion-item>
           <ion-label fixed>Valor:</ion-label>
-          <ion-input  text-right type="number" clearInput="true" value="" #b  (keyup.enter)="Fav()" (keyup.space)="Fav2()" [(ngModel)]="compras.payload"></ion-input>
+          <ion-input  text-right type="number" clearInput="true" value="" #b  (keyup.enter)="Fav()"  (keydown.0)="Fav2()" [(ngModel)]="compras.payload"></ion-input>
         </ion-item>
     </ion-row>
     
@@ -33,7 +33,7 @@
       <ion-item (press)="Favorito()"> 
         <ion-label #c>Pagamento</ion-label >
         <ion-select  [(ngModel)]="compras.pagamento" interface="popover">
-          <ion-option *ngFor="let pagamento of pagamentos">{{pagamento.title}}</ion-option>
+          <ion-option *ngFor="let pagamento of (pagamentos | async)">{{pagamento.title}}</ion-option>
         </ion-select>
       </ion-item>
     </ion-row>
@@ -42,7 +42,7 @@
       <ion-item> 
           <ion-label>Categoria</ion-label >
           <ion-select [(ngModel)]="compras.categoria" interface="popover" >
-            <ion-option *ngFor="let categoria of categorias" value="{{categoria.title}}">{{categoria.title}}</ion-option>
+            <ion-option *ngFor="let categoria of (categorias | async)" value="{{categoria.title}}">{{categoria.title}}</ion-option>
           </ion-select>
         </ion-item>
     </ion-row>
