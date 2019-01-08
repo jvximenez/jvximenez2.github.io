@@ -26,6 +26,7 @@ export class EditPage {
   };
   
   public DataO;
+  public MudaData = false;
 
   public categorias;
   public pagamentos;
@@ -57,19 +58,22 @@ export class EditPage {
   Mostra(){
     console.log(this.DataO)
     this.MudandoData(this.DataO)
+    this.MudaData = true
   }
 
   MudandoData(valor){
-    var fields = valor.split('-')
-    var dia = fields[2].split('T')
-    console.log(fields,dia)
-    this.compras['ano'] =  fields[0]
-    this.compras['mes'] =  String(Number(fields[1]))
-    this.compras['total'] =  String(Number(Number(this.compras['ano'])*10000 + Number(this.compras['mes'])*100 + Number(dia[0])));
-    console.log(this.compras['total'])
-    var data = new Date();
-    var hora = data.getHours();
-    var min = data.getMinutes();
-    this.compras.data = ([[Number(dia[0]), Number(this.compras['mes']), Number(this.compras['ano'])].join('/'),[hora,min].join(':')].join(' - '));
-  }
+    if (this.MudaData == true) {
+      var fields = valor.split('-')
+      var dia = fields[2].split('T')
+      console.log(fields,dia)
+      this.compras['ano'] =  fields[0]
+      this.compras['mes'] =  String(Number(fields[1]))
+      this.compras['total'] =  String(Number(Number(this.compras['ano'])*10000 + Number(this.compras['mes'])*100 + Number(dia[0])));
+      console.log(this.compras['total'])
+      var data = new Date();
+      var hora = data.getHours();
+      var min = data.getMinutes();
+      this.compras.data = ([[Number(dia[0]), Number(this.compras['mes']), Number(this.compras['ano'])].join('/'),[hora,min].join(':')].join(' - '));
+    }
+    }
 }

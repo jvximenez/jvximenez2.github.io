@@ -113,6 +113,22 @@ export class HomePage {
     nextElement.setFocus();
   }
 
+  Fav(){
+    if (this.compras.pagamento == "N26"){
+      this.compras.pagamento = "Dinheiro"
+      return
+    }
+    this.compras.pagamento = "N26"
+  }
+
+  Fav2(){
+    if (this.compras.categoria == "Mercado"){
+      this.compras.categoria = "Comida"
+      return
+    }
+    this.compras.categoria = "Mercado"
+  }
+
   save(compras){
     this.MudandoData(this.DataO)
     this.dbService.save('compras',compras);

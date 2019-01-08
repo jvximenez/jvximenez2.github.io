@@ -51,6 +51,8 @@ export class ConfiguraçõesPage {
     'pagamento':'',
   }
 
+  public ComprasArray
+
 
 
   constructor(public navCtrl: NavController,
@@ -62,6 +64,8 @@ export class ConfiguraçõesPage {
     this.pagamentos =  this.dbService.getAll('pagamento');
     this.visuals = this.dbService.getAll('visual')
     this.atalhos = this.dbService.getAll('atalho')
+
+    
 
   }
 
@@ -226,5 +230,36 @@ export class ConfiguraçõesPage {
     this.navCtrl.push(EditAtalhoPage, {
       'atalho' : item })
   }
+
+
+  AtualizaPag(){
+    var contagem = 0 
+    this.compras = (this.dbService.getAllQuantidade('compras',30)).map(a => a.reverse());
+    this.ComprasArray = this.ArrayTotal()
+    console.log(this.ComprasArray,"aqui")
+    this.pagamentos.forEach(elements => {elements.forEach(element => {contagem = 0, contagem = Number(this.Conta(element.title)), element.numero= String(contagem),  this.dbService.update('pagamento', element)})})
+  }
+  
+
+  Conta(nome){
+    console.log(nome,"dfsd")
+    var a = 0
+    this.compras.forEach(todo => {console.log(todo,"oi", todo[1]); if(todo[1] == nome) {a+=1}})
+    console.log(a)
+    return a
+
+
+  }
+
+
+  ArrayTotal(){
+    var linha = [];
+    var coluna = []
+    this.compras.forEach(itens => { itens.forEach( item => {linha = []; linha.push(item.title); linha.push(item.pagamento);linha.push(item.categoria); coluna.push(linha)})})
+    return coluna
+
+  }
+
+  
 }
 
