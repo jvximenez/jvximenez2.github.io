@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { ConfiguraçõesPage } from '../configura\u00E7\u00F5es/configura\u00E7\u00F5es';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -68,7 +68,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
      public dbService: FirebaseServiceProvider,
-     private statusBar: StatusBar) {
+     private statusBar: StatusBar,
+     public alertCtrl: AlertController) {
 
     this.DataO = new Date().toISOString();
 
@@ -215,11 +216,48 @@ export class HomePage {
   }
 
   saveAtalho(compras, atalho){
+    if (atalho.gasto != 0){
+    this.MudandoData(this.DataO)
     compras.title = atalho.title;
     compras.categoria = atalho.categoria;
     compras.payload = atalho.gasto;
     compras.pagamento = atalho.pagamento;
-    this.dbService.save('compras',compras);
+    this.dbService.save('compras',compras)}
+    if (atalho.gasto == 0){
+    this.MudandoData(this.DataO)
+    compras.title = atalho.title;
+    compras.categoria = atalho.categoria;
+    compras.pagamento = atalho.pagamento;
+    {
+      const prompt = this.alertCtrl.create({
+        title: 'Valor',
+        
+        inputs: [
+          {
+            name: 'valor',
+            placeholder: 'Valor'
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancelar',
+            handler: data => {
+              console.log('Cancel clicked')
+            }
+          },
+          {
+            text: 'Salvar',
+            handler: data => {compras.payload = data.valor;
+              this.dbService.save('compras',compras);
+              console.log('Saved clicked');
+              
+            }
+          }
+        ]
+      });
+      prompt.present();
+    }
+  }  
   }
 
   atalhoPush(atalho){

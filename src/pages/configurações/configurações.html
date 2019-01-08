@@ -33,7 +33,7 @@
   <ion-list-header>
       Atalhos
     </ion-list-header>
-    <ion-item *ngFor="let atalho of (atalhos|async)" (click)="EditarAtalho(atalho)">{{atalho.title}}</ion-item>
+    <ion-item *ngFor="let atalho of (atalhos|async)" (click)="EditarAtalho(atalho)">${{atalho.gasto}} - {{atalho.title}}</ion-item>
   
 
   <ion-list-header>
@@ -51,8 +51,6 @@
         <button ion-fab><ion-icon name="list-box" (click)="NovoAtalho()"></ion-icon></button>
       </ion-fab-list>
     </ion-fab>
-
-    <button ion-button (click)="AtualizaPag()">cdadafad</button>
 
 
 
