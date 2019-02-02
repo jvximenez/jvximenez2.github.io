@@ -151,7 +151,6 @@ export class HomePage {
   ontem(compras){
       var date = new Date
       date.setDate(date.getDate() - 1)
-      console.log(date)
       this.DataO = date.toISOString()
       this.save(this.compras)
     }
