@@ -47,6 +47,15 @@
         </ion-item>
     </ion-row>
 
+    <ion-row *ngIf="compras.categoria.includes('Divida')">
+      <ion-item> 
+          <ion-label>Divida</ion-label >
+          <ion-select [(ngModel)]="divida" interface="popover" >
+            <ion-option *ngFor="let pessoa of (Pessoas | async)" value="{{pessoa.title}}">{{pessoa.title}}</ion-option>
+          </ion-select>
+        </ion-item>
+    </ion-row>
+
     <ion-item>
       <ion-label (click)="Mostra()">Data</ion-label>
       <ion-datetime  (click)="Mostra()" displayFormat="DD/MM/YYYY" [(ngModel)]="DataO"></ion-datetime>

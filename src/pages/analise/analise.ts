@@ -37,6 +37,7 @@ export class AnalisePage {
   public categoriasChart;
   public valoresChart;
   public valoresPrevistos;
+  public ShowTarefas;
   ///////////////////////////////////////
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: FirebaseServiceProvider) {
@@ -45,6 +46,9 @@ export class AnalisePage {
     this.pagamentos = this.dbService.getArray('pagamento')
     this.compras = this.dbService.getAll('compras')
     this.ComprasArray = this.arrayCompras(this.compras);
+
+    this.ShowTarefas = this.dbService.getAll('configuracoes/shows2')
+
 
     //chart//
     this.categoriasChart = (this.getChartCat(this.categorias));
@@ -264,6 +268,20 @@ swipe(event) {
     });
     return (array)
     
+  }
+
+  CorIfTrue(dado){
+    if (dado ==  true){
+      return "primary"
+    }
+    if (dado !=  true){
+      return ""
+    }
+  }
+
+  ChangeCheckTarefas(tarefa){
+    tarefa.check = !tarefa.check
+    this.dbService.update('configuracoes/shows2',tarefa)
   }
 
 

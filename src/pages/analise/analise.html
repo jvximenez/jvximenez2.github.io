@@ -8,7 +8,10 @@
 
   <ion-navbar>
     <ion-title>Análise </ion-title>
-    <ion-buttons end>
+    <ion-buttons end  *ngFor="let f of (ShowTarefas | async) " >
+        <button *ngIf="f.title == 'Dividas'" ion-button icon-only color="{{CorIfTrue(f.check)}}" (click)="ChangeCheckTarefas(f)">
+          <ion-icon name="list-box"></ion-icon>
+        </button>
       <button ion-button icon-only (click)="atualiza()">
         <ion-icon name="sync"></ion-icon>
       </button>

@@ -35,7 +35,10 @@ export class HomePage {
 
   };
 
+  public divida
+
   public DataO;
+  public Pessoas;
 
 
   Arredonda(item){
@@ -95,6 +98,9 @@ export class HomePage {
     this.favorito = this.favorito.forEach(itens => {itens.forEach(item=> {return item.title})})
     console.log(this.favorito,"sadasdas")
 
+
+    this.Pessoas = this.dbService.getAll2('configuracoes/pessoas')
+    console.log(this.Pessoas)
    
 
 
@@ -138,6 +144,11 @@ export class HomePage {
 
   save(compras){
     this.MudandoData(this.DataO)
+    if (this.compras.categoria == "Divida"){
+      console.log(this.divida, "div aqui")
+      this.compras.categoria = "Divida - " + this.divida
+      console.log(this.compras.categoria,"cat completa aqui")
+    }
     this.dbService.save('compras',compras);
     this.previsto = this.dbService.getAll('previsao')
     this.Compras = (this.dbService.getAllQuantidade('compras',50)).map(a => a.reverse());
@@ -335,7 +346,6 @@ export class HomePage {
     var min = data.getMinutes();
     this.compras.data = ([[Number(dia[0]), Number(this.compras.mes), Number(this.compras.ano)].join('/'),[hora,min].join(':')].join(' - '));
   }
-  
 
   
 
