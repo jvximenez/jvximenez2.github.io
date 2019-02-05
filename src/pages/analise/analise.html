@@ -25,6 +25,35 @@
 
 
 <ion-content padding>
+  <div *ngFor="let f of (ShowTarefas | async) ">
+      <ion-card no-padding *ngIf="f.check == true">
+        <ion-card-header> Dividas </ion-card-header>
+        <ion-grid>
+            <ion-row>
+              <ion-col>
+                Categoria
+              </ion-col>
+              <ion-col>
+                Gasto
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col *ngFor="let divs of ArrayDividas">
+                    {{divs}}
+                  </ion-col>
+                  <ion-col>
+                    {{somaCatDiv(divs)}}
+                  </ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-card>
+  </div>
+
+
+
+
+
+  
   <div class="main-content" (swipe)="swipe($event)">
     <ion-card *ngFor = "let prev of (previsto | async)">
       <ion-row>

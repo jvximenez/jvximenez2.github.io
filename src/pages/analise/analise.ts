@@ -38,6 +38,8 @@ export class AnalisePage {
   public valoresChart;
   public valoresPrevistos;
   public ShowTarefas;
+
+  public ArrayDividas;
   ///////////////////////////////////////
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: FirebaseServiceProvider) {
@@ -52,6 +54,7 @@ export class AnalisePage {
 
     //chart//
     this.categoriasChart = (this.getChartCat(this.categorias));
+    this.ArrayDividas = this.SeriesA()
 
    
 
@@ -146,6 +149,7 @@ export class AnalisePage {
 
 
   somaCat(categoria,data){
+    console.log(categoria,"cattssssaaaass")
     var valorCat = 0 
     this.ComprasArray.forEach(item => {if (String(item[2]) == String(categoria) && 
       String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0])}}
@@ -154,65 +158,73 @@ export class AnalisePage {
     return(Math.round(valorCat))
 }
 
-
-somaCat2(categoria,data){
-  console.log(categoria,data)
-  let valorCat = 0 
-  this.ComprasArray.forEach(item => {if (String(item[2]) == String(categoria) && 
-    String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0]), console.log(item[0],data, "5555555555")}}
-  );
-  console.log(valorCat,"aaaa")
-  return(Math.round(valorCat))
-}
-
-somaPagamento(pagamento,data){
-  var valorPag = 0 
-  this.ComprasArray.forEach(item => {if (String(item[3]) == String(pagamento) && 
-    String(item[1]) == String(data)) { valorPag = valorPag + Number(item[0])}}
-  );
-
-  return(Math.round(valorPag))
-}
-
-somaSemana(semana,data){
-  var SemanPag = 0
-  if (semana == 1){
-    var a = 1
-    var b = 7
-  }
-  if (semana == 2){
-    var a = 8
-    var b = 14
-  }
-  if (semana == 3){
-    var a = 15
-    var b = 21
-  }
-  if (semana == 4){
-    var a = 22
-    var b = 31
+  somaCatDiv(categoria){
+    console.log(categoria,"cattss")
+    var valorCat = 0 
+    this.ComprasArray.forEach(item => {if (String(item[2]) == String(categoria)) { valorCat = valorCat + Number(item[0])}}
+    );
+    return(Math.round(valorCat))
   }
 
-  this.ComprasArray.forEach(item => {if ((Number(item[4].substr(-2, 2))) >= a && (Number(item[4].substr(-2, 2)))  <= b && String(item[1]) == String(data)) { SemanPag = SemanPag + Number(item[0])}}
-  );
 
-  return(Math.round(SemanPag))
-}
-
-
-somaTotal(data){
-  var valorTotal = 0
-  this.ComprasArray.forEach(item => {if (String(item[2]) != "Pais" && String(item[1]) == String(data)) { valorTotal = valorTotal + Number(item[0])}}
-  );
-
-  return(Math.round(valorTotal))
-}
-
-swipe(event) {
-  if(event.direction === 4) {
-    this.navCtrl.parent.select(1);
+  somaCat2(categoria,data){
+    console.log(categoria,data)
+    let valorCat = 0 
+    this.ComprasArray.forEach(item => {if (String(item[2]) == String(categoria) && 
+      String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0]), console.log(item[0],data, "5555555555")}}
+    );
+    console.log(valorCat,"aaaa")
+    return(Math.round(valorCat))
   }
-}
+
+  somaPagamento(pagamento,data){
+    var valorPag = 0 
+    this.ComprasArray.forEach(item => {if (String(item[3]) == String(pagamento) && 
+      String(item[1]) == String(data)) { valorPag = valorPag + Number(item[0])}}
+    );
+
+    return(Math.round(valorPag))
+  }
+
+  somaSemana(semana,data){
+    var SemanPag = 0
+    if (semana == 1){
+      var a = 1
+      var b = 7
+    }
+    if (semana == 2){
+      var a = 8
+      var b = 14
+    }
+    if (semana == 3){
+      var a = 15
+      var b = 21
+    }
+    if (semana == 4){
+      var a = 22
+      var b = 31
+    }
+
+    this.ComprasArray.forEach(item => {if ((Number(item[4].substr(-2, 2))) >= a && (Number(item[4].substr(-2, 2)))  <= b && String(item[1]) == String(data)) { SemanPag = SemanPag + Number(item[0])}}
+    );
+
+    return(Math.round(SemanPag))
+  }
+
+
+  somaTotal(data){
+    var valorTotal = 0
+    this.ComprasArray.forEach(item => {if (String(item[2]) != "Pais" && String(item[1]) == String(data)) { valorTotal = valorTotal + Number(item[0])}}
+    );
+
+    return(Math.round(valorTotal))
+  }
+
+  swipe(event) {
+    if(event.direction === 4) {
+      this.navCtrl.parent.select(1);
+    }
+  }
 
   atualiza(){
     this.navCtrl.setRoot(this.navCtrl.getActive().component);
@@ -283,6 +295,19 @@ swipe(event) {
     tarefa.check = !tarefa.check
     this.dbService.update('configuracoes/shows2',tarefa)
   }
+
+
+  SeriesA(){
+    var array = []
+    var B = false
+    this.compras.forEach(element => {element.forEach( elem => {if(elem.categoria.includes("Divida")){B = false; array.forEach(A => {if (A == elem.categoria) { B = true}}); if (B == false) {array.push(elem.categoria)}}})
+    
+  })
+  console.log(array,"OIEEE")
+  return (array)
+  
+  }
+
 
 
  
