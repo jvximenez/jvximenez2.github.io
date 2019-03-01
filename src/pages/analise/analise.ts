@@ -166,6 +166,14 @@ export class AnalisePage {
     return(Math.round(valorCat))
   }
 
+  somaPagDiv(pagamento){
+    console.log(pagamento,"cattss")
+    var valorCat = 0 
+    this.ComprasArray.forEach(item => {if (String(item[3]) == String(pagamento)) { valorCat = valorCat + Number(item[0])}}
+    );
+    return(Math.round(valorCat))
+  }
+
 
   somaCat2(categoria,data){
     console.log(categoria,data)

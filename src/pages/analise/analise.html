@@ -27,14 +27,44 @@
 <ion-content padding>
   <div *ngFor="let f of (ShowTarefas | async) ">
       <ion-card no-padding *ngIf="f.check == true">
+        <ion-card-header> Faturas </ion-card-header>
+        <ion-grid>
+            <ion-row>
+              <ion-col col-5>
+                Local:
+              </ion-col>
+              <ion-col col-5>
+                Valor:
+              </ion-col>
+              <ion-col col-2>
+                
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row *ngFor="let pagamento of pagamentos" >
+                <ion-col>
+                    {{pagamento.title}}
+                  </ion-col>
+                  <ion-col>
+                    {{somaPagDiv(pagamento.title)}}
+                  </ion-col>
+            </ion-row>
+
+
+          </ion-grid>
+
+
+
+
         <ion-card-header> Dividas </ion-card-header>
         <ion-grid>
             <ion-row>
               <ion-col>
-                Categoria
+                Pessoa:
               </ion-col>
               <ion-col>
-                Gasto
+                Gasto:
               </ion-col>
             </ion-row>
             <ion-row *ngFor="let divs of ArrayDividas">
