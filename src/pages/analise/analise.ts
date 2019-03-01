@@ -151,7 +151,7 @@ export class AnalisePage {
   somaCat(categoria,data){
     console.log(categoria,"cattssssaaaass")
     var valorCat = 0 
-    this.ComprasArray.forEach(item => {if (String(item[2]) == String(categoria) && 
+    this.ComprasArray.forEach(item => {if (String(item[2]).includes(String(categoria)) && 
       String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0])}}
     );
 
@@ -180,7 +180,7 @@ export class AnalisePage {
   somaPagamento(pagamento,data){
     var valorPag = 0 
     this.ComprasArray.forEach(item => {if (String(item[3]) == String(pagamento) && 
-      String(item[1]) == String(data)) { valorPag = valorPag + Number(item[0])}}
+      String(item[1]) == String(data) && (String(item[2]) != ("Ignorar")))  { valorPag = valorPag + Number(item[0])}}
     );
 
     return(Math.round(valorPag))
@@ -214,7 +214,7 @@ export class AnalisePage {
 
   somaTotal(data){
     var valorTotal = 0
-    this.ComprasArray.forEach(item => {if (String(item[2]) != "Pais" && String(item[1]) == String(data)) { valorTotal = valorTotal + Number(item[0])}}
+    this.ComprasArray.forEach(item => {if (String(item[2]) != ("Pais") && (String(item[2]) != ("Ignorar") && String(item[1])) == String(data)) { valorTotal = valorTotal + Number(item[0])}}
     );
 
     return(Math.round(valorTotal))

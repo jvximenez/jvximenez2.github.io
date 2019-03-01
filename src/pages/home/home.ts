@@ -26,8 +26,8 @@ export class HomePage {
   compras = {
     'title': '',
     'payload': '',
-    'categoria':'',
-    'pagamento': '',
+    'categoria':'Comida',
+    'pagamento': 'Nubank',
     'data': '',
     'ano':'',
     'mes':'',

@@ -18,14 +18,14 @@
     <ion-row> 
         <ion-item>
             <ion-label fixed>Local: </ion-label>
-            <ion-input text-right clearInput="true" autocomplete="on" (keyup.enter)="moveFocus(b)"  value="" [(ngModel)]="compras.title"></ion-input>
+            <ion-input text-right clearInput="true" autocomplete="on"  value="" [(ngModel)]="compras.title"></ion-input>
           </ion-item>
     </ion-row>
 
     <ion-row>
       <ion-item>
           <ion-label fixed>Valor:</ion-label>
-          <ion-input  text-right type="number" clearInput="true" value="" #b  (keyup.enter)="Fav()"  (keydown.0)="Fav2()" [(ngModel)]="compras.payload"></ion-input>
+          <ion-input  text-right type="number" clearInput="true" value="" #b  [(ngModel)]="compras.payload"></ion-input>
         </ion-item>
     </ion-row>
     
