@@ -148,6 +148,13 @@ export class AboutPage {
 
   };
 
+  cor(categoria){
+    if (categoria == "Ignorar"){
+      return("danger")
+    }
+    else{return("black")}
+  }
+
 
   
 

@@ -171,7 +171,14 @@ export class AnalisePage {
     var valorCat = 0 
     this.ComprasArray.forEach(item => {if (String(item[3]) == String(pagamento)) { valorCat = valorCat + Number(item[0])}}
     );
-    return(Math.round(valorCat))
+    return(Math.round(-valorCat))
+  }
+
+  cor(categoria){
+    if (categoria == "Ignorar"){
+      return("danger")
+    }
+    else{return("black")}
   }
 
 
