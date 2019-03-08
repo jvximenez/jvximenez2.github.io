@@ -158,8 +158,9 @@ export class HomePage {
       this.dbService.save('compras',compras);
       this.compras.categoria = this.categoriaDiv.title
     }
-    if ( this.categoriaDiv.title != '' && Number(this.compras.payload) < 0 && this.compras.pagamento == "Ignorar"){
+    if ( this.categoriaDiv.title != ''  && this.compras.pagamento == "Ignorar"){
       this.Dividindo();
+      this.compras.payload = String(Number(this.compras.payload) * (-1))
       this.dbService.save('compras',compras);
       this.compras.categoria = this.categoriaDiv.title
       this.compras.payload = String(Number(this.compras.payload) * (-1))
