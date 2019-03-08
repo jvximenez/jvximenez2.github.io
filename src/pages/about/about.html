@@ -47,9 +47,19 @@
               <ion-icon name="create" ></ion-icon>
               Edit
             </button>
+            <button ion-button color="green" (click)="copiar(c)" >
+                <ion-icon name="copy" ></ion-icon>
+                Copy
+              </button>
             <button ion-button color="danger"(click)="remover(c)">
               <ion-icon name="trash"></ion-icon>
               Del
+            </button>
+          </ion-item-options>
+          <ion-item-options side="left">
+            <button ion-button color="primary" (click)="copiarDiv(c)" >
+              <ion-icon name="create" ></ion-icon>
+              Categorizar Divida
             </button>
           </ion-item-options>
         </ion-item-sliding>

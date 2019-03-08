@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { EditPage } from '../edit/edit';
 import "rxjs/add/operator/map";
@@ -25,9 +25,21 @@ export class AboutPage {
   public total;
   public produtos = [];
 
+  comprass = {
+    'title': '',
+    'payload': '',
+    'categoria':'Comida',
+    'pagamento': 'Nubank',
+    'data': '',
+    'ano':'',
+    'mes':'',
+    'total':'',
+
+  };
+
   
 
-  constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider) {
+  constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider, public alertCtrl: AlertController) {
     this.categorias = this.dbService.getArray('categoria')
     this.compras = (this.dbService.getAllQuantidade('compras',50)).map(a => a.reverse());
     this.visual = this.dbService.getAll('visual')
@@ -55,6 +67,7 @@ export class AboutPage {
   }
 
   remover(key){
+    console.log("remover")
     this.dbService.revome('compras',key).then( d => {console.log("removido")});
   }
     
@@ -154,6 +167,74 @@ export class AboutPage {
     }
     else{return("black")}
   }
+
+  copiar(item){
+    this.comprass=item;
+    delete this.comprass['key']
+    this.dbService.save('compras',this.comprass);
+
+
+  }
+
+  copiarDiv(item){
+    this.comprass = item;
+    delete this.comprass['key']
+    this.comprass.pagamento = 'Ignorar'
+    this.comprass.payload = String((-1)*Number(this.comprass.payload))
+    const prompt = this.alertCtrl.create({
+      title: 'Categoria',
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Title'
+        },
+      ],  
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Comida',
+          handler: data => {
+            this.comprass.categoria = "Comida"; 
+            this.dbService.save('compras',this.comprass)
+            console.log('Saved clicked');
+          }
+        },
+        {
+          text: 'Viagem',
+          handler: data => {
+            this.comprass.categoria = "Viagem"; 
+            this.dbService.save('compras',this.comprass)
+            console.log('Saved clicked');
+          }
+        },
+        {
+          text: 'Date',
+          handler: data => {
+            this.comprass.categoria = "Date"; 
+            this.dbService.save('compras',this.comprass)
+            console.log('Saved clicked');
+          }
+        },
+        
+        {
+          text: 'Save',
+          handler: data => {
+            this.comprass.categoria = data.title; 
+            this.dbService.save('compras',this.comprass)
+            console.log('Saved clicked');
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+
 
 
   
