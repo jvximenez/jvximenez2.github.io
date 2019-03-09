@@ -155,15 +155,19 @@ export class HomePage {
     }
     if ( this.categoriaDiv.title != '' && Number(this.compras.payload) > 0){
       this.Dividindo();
+      this.compras.title += " -Divido"
       this.dbService.save('compras',compras);
       this.compras.categoria = this.categoriaDiv.title
+      this.categoriaDiv.title = ''
     }
     if ( this.categoriaDiv.title != ''  && this.compras.pagamento == "Ignorar"){
       this.Dividindo();
+      this.compras.title += " -Divido"
       this.compras.payload = String(Number(this.compras.payload) * (-1))
       this.dbService.save('compras',compras);
       this.compras.categoria = this.categoriaDiv.title
       this.compras.payload = String(Number(this.compras.payload) * (-1))
+      this.categoriaDiv.title = ''
     }
 
 
@@ -331,9 +335,9 @@ export class HomePage {
 
   CriaArrayGrafico(Categoria){
     var ArrayT = [0,0,0,0]
-    this.Compras.forEach(itens => itens.forEach (item => {if(item.categoria == Categoria && item.ano == this.ano && Number(item.mes) == Number(this.mes)){ArrayT[0] += Number(item.payload)}}))
+    this.Compras.forEach(itens => itens.forEach (item => {if(item.categoria == Categoria && item.categoria != "Ignorar" && item.ano == this.ano && Number(item.mes) == Number(this.mes)){ArrayT[0] += Number(item.payload)}}))
     this.previsto.forEach(itens => itens.forEach (item => {if(item.ano == this.ano && item.mes == this.mes){ArrayT[1] += Number(item[Categoria])}}))
-    this.Compras.forEach(itens => itens.forEach (item => {if(item.ano == this.ano && item.mes == this.mes){ArrayT[2] += Number(item.payload)}}))
+    this.Compras.forEach(itens => itens.forEach (item => {if(item.ano == this.ano && item.mes == this.mes && item.categoria !="Ignorar"){ArrayT[2] += Number(item.payload)}}))
     this.previsto.forEach(itens => itens.forEach (item => {if(item.ano == this.ano && item.mes == this.mes){ArrayT[3] += Number(this.retornaArray(item))}}))
     return (ArrayT)
 
