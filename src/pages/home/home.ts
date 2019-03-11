@@ -35,6 +35,10 @@ export class HomePage {
 
   };
 
+  categoriaDiv ={
+    'title': '',
+  }
+
   public divida
 
   public DataO;
@@ -149,6 +153,20 @@ export class HomePage {
       this.compras.categoria = "Divida - " + this.divida
       console.log(this.compras.categoria,"cat completa aqui")
     }
+    if ( this.categoriaDiv.title != '' && Number(this.compras.payload) > 0){
+      this.Dividindo();
+      this.dbService.save('compras',compras);
+      this.compras.categoria = this.categoriaDiv.title
+    }
+    if ( this.categoriaDiv.title != ''  && this.compras.pagamento == "Ignorar"){
+      this.Dividindo();
+      this.compras.payload = String(Number(this.compras.payload) * (-1))
+      this.dbService.save('compras',compras);
+      this.compras.categoria = this.categoriaDiv.title
+      this.compras.payload = String(Number(this.compras.payload) * (-1))
+    }
+
+
     this.dbService.save('compras',compras);
     this.previsto = this.dbService.getAll('previsao')
     this.Compras = (this.dbService.getAllQuantidade('compras',50)).map(a => a.reverse());
@@ -345,6 +363,10 @@ export class HomePage {
     var hora = data.getHours();
     var min = data.getMinutes();
     this.compras.data = ([[Number(dia[0]), Number(this.compras.mes), Number(this.compras.ano)].join('/'),[hora,min].join(':')].join(' - '));
+  }
+
+  Dividindo(){
+    this.compras.payload = String(Number(this.compras.payload) / 2)
   }
 
   
