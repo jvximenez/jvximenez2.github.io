@@ -95,31 +95,31 @@
   <div *ngIf="showGraf == true">
     <p class="paragrafo">Gasto Total/Previsto -- {{compras.categoria}} -- {{Arredonda(ArrayTotal[0])}}/{{Arredonda(ArrayTotal[1])}}</p>
     <ion-row>
-      <ion-col col-1 justify-content-center>
+      <ion-col col-2 justify-content-center>
         <p>{{Arredonda(ArrayTotal[2])}}</p>
       </ion-col>
-      <ion-col col-10 justify-content-center>
+      <ion-col col-8 justify-content-center>
         <div class="progress"  (click)=teste(totalM)>
           <div class="determinate1" style="width: 0%" id="teste1" ></div>
           <div class="determinate2" style="width: 0%" id="teste2" ></div>
         </div>
       </ion-col>
-      <ion-col col-1>
+      <ion-col col-2>
         <p>{{Arredonda(ArrayTotal[3])}}</p>
       </ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col col-1 justify-content-center>
+      <ion-col col-2 justify-content-center>
         <p justify-content-center>{{Arredonda(ArrayTotal[0])}}</p>
       </ion-col>
-      <ion-col col-10 justify-content-center>
+      <ion-col col-8 justify-content-center>
         <div class="progress"  (click)=teste(totalM)>
           <div class="determinate1" style="width: 0%" id="teste3" ></div>
           <div class="determinate2" style="width: 0%" id="teste4" ></div>
         </div>
       </ion-col>
-      <ion-col col-1 justify-content-center>
+      <ion-col col-2 justify-content-center>
         <p>{{Arredonda(ArrayTotal[1])}}</p>
       </ion-col>
     </ion-row>

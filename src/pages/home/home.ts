@@ -153,7 +153,7 @@ export class HomePage {
       this.compras.categoria = "Divida - " + this.divida
       console.log(this.compras.categoria,"cat completa aqui")
     }
-    if ( this.categoriaDiv.title != '' && Number(this.compras.payload) > 0){
+    if ( this.categoriaDiv.title != '' && Number(this.compras.payload) > 0 && this.compras.pagamento != "Ignorar"){
       this.Dividindo();
       this.dbService.save('compras',compras);
       this.compras.categoria = this.categoriaDiv.title
@@ -330,10 +330,10 @@ export class HomePage {
 
 
   CriaArrayGrafico(Categoria){
-    var ArrayT = [0,0,0,0]
-    this.Compras.forEach(itens => itens.forEach (item => {if(item.categoria == Categoria && item.ano == this.ano && Number(item.mes) == Number(this.mes)){ArrayT[0] += Number(item.payload)}}))
+    var ArrayT = [0,0,0,0] 
+    this.Compras.forEach(itens => itens.forEach (item => {if(item.categoria == Categoria && item.pagamento != 'Ignorar' && item.categoria != 'Ignorar' && item.categoria.includes('Divida') == false && item.ano == this.ano && Number(item.mes) == Number(this.mes)){console.log('ESSE', item.title,item.payload,item.pagamento,item.categoria) , ArrayT[0] += Number(item.payload)}}))
     this.previsto.forEach(itens => itens.forEach (item => {if(item.ano == this.ano && item.mes == this.mes){ArrayT[1] += Number(item[Categoria])}}))
-    this.Compras.forEach(itens => itens.forEach (item => {if(item.ano == this.ano && item.mes == this.mes){ArrayT[2] += Number(item.payload)}}))
+    this.Compras.forEach(itens => itens.forEach (item => {if(item.ano == this.ano && item.mes == this.mes && item.pagamento != 'Ignorar' && item.categoria != 'Ignorar' && item.categoria.includes('Divida') == false){console.log('ESSE', item.title,item.payload,item.pagamento,item.categoria), ArrayT[2] += Number(item.payload)}}))
     this.previsto.forEach(itens => itens.forEach (item => {if(item.ano == this.ano && item.mes == this.mes){ArrayT[3] += Number(this.retornaArray(item))}}))
     return (ArrayT)
 
