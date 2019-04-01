@@ -28,6 +28,19 @@ page-home {
 
   }
 
+
+  .baseG{
+    width: 100%;
+    font-family: "Open Sans";
+    font-size : 12px;
+    justify-content: center !important;
+    justify-self: center;
+    justify-items: center;
+    text-align: center;
+    padding-top: 1px;
+
+  }
+
   .input{
       text-align: right;
       justify-content: right;
@@ -53,14 +66,17 @@ page-home {
 
   .progress {
     position: relative;
-    height: 9px;
+    height: 10px;
     display: block;
     width: 100%;
     background-color: grey;
-    border-radius: 3px;
+    border-radius: 2px;
     background-clip: padding-box;
-    padding: 0.7rem 0.1em 0.1rem 0.0rem;
-    margin: 1.7rem 0.1rem 0.1rem 0.1rem;
+    padding: 0.7rem 0.3em 0.3rem 0rem;
+    margin: 1rem 0.3em 0.3rem 0.3rem;
+    overflow: hidden; 
+    
+
     overflow: hidden; }
     .progress .determinate1 {
       position: absolute;
@@ -69,6 +85,7 @@ page-home {
       bottom: 0;
       background-color: #2f6acf;
       transition: width .7s linear; }
+      
     .progress .determinate2 {
     position: absolute;
     background-color: inherit;
@@ -76,18 +93,19 @@ page-home {
     bottom: 0;
     background-color: #23509c;
     transition: width .8s linear; }
+    }
                 
 .progress2 {
   position: relative;
-  height: 9px;
+  height: 10px;
   display: block;
   width: 100%;
   background-color: grey;
   border-radius: 2px;
   background-clip: padding-box;
-  padding: 0.5rem 0.3em 0.3rem 0rem;
-  margin: 1.25rem 0.3em 0.3rem 0.3rem;
-  overflow: hidden; }
+  padding: 0.7rem 0.3em 0.3rem 0rem;
+  margin: 1rem 0.3em 0.3rem 0.3rem;
+  overflow: hidden; 
   .progress2 .determinate1 {
     position: absolute;
     background-color: inherit;
@@ -102,6 +120,7 @@ page-home {
   bottom: 0;
   background-color: #23509c;
   transition: width .8s linear; }
-       
+  
           
-}
+  }
+

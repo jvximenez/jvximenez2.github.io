@@ -155,16 +155,18 @@ export class HomePage {
     }
     if ( this.categoriaDiv.title != '' && Number(this.compras.payload) > 0){
       this.Dividindo();
-      this.compras.title += " -Divido"
+      this.compras.title += " -Divido Paguei"
       this.dbService.save('compras',compras);
       this.compras.categoria = this.categoriaDiv.title
       this.categoriaDiv.title = ''
     }
-    if ( this.categoriaDiv.title != ''  && this.compras.pagamento == "Ignorar"){
+    if ( this.categoriaDiv.title != ''  && this.compras.pagamento == "Divida"){
       this.Dividindo();
-      this.compras.title += " -Divido"
-      this.compras.payload = String(Number(this.compras.payload) * (-1))
+      this.compras.title += " -Divido Pagou"
+      this.compras.pagamento = "Ignorar"
+      this.compras.payload = String(Number(this.compras.payload))
       this.dbService.save('compras',compras);
+      this.compras.pagamento = "Divida"
       this.compras.categoria = this.categoriaDiv.title
       this.compras.payload = String(Number(this.compras.payload) * (-1))
       this.categoriaDiv.title = ''

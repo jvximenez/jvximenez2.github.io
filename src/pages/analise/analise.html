@@ -46,11 +46,11 @@
 
 
             <ion-row *ngFor="let pagamento of pagamentos" >
-              <ion-col col-6 *ngIf='pagamento.title != "Ignorar"'>
+              <ion-col col-6 *ngIf='pagamento.title != "Ignorar" && pagamento.title != "Divida"'>
                 {{pagamento.title}}
               </ion-col>
-              <ion-col col-6 *ngIf='pagamento.title != "Ignorar"'>
-                {{somaPagDiv(pagamento.title)}}
+              <ion-col col-6 *ngIf='pagamento.title != "Ignorar" && pagamento.title != "Divida"'>
+                  {{somaPagDiv(pagamento.title)}}
               </ion-col> 
             </ion-row>
 
