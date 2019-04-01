@@ -26,15 +26,10 @@ export class AddPrevisãoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: FirebaseServiceProvider) {
     this.categorias = this.dbService.getArray('categoria');
-    console.log(this.categorias, " cat", this.previsao);
     this.previsao = this.criaObjeto("testes");
     this.previsao['testes'] = "12"
-    console.log(this.previsao, " cat22");
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddPrevisãoPage');
-  }
 
   criaObjeto(prop){
     Object.defineProperty(this.previsao, prop, {

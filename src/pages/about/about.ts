@@ -44,8 +44,6 @@ export class AboutPage {
     this.compras = (this.dbService.getAllQuantidade('compras',50)).map(a => a.reverse());
     this.visual = this.dbService.getAll('visual')
     this.varredura = (this.DefinindoArrays());
-    console.log("EAE?")
-    console.log(this.visual)
   
   
     
@@ -91,12 +89,6 @@ export class AboutPage {
         
   };
 
-  DefinindoArrays2(){
-  var compras = this.dbService.getAll('compras')
-  console.log(compras, "esse é o primeiro, o observable, mas pode ser defino com o | async no ngFor = let a of itens| async")
-  compras.forEach(itens => {console.log(itens, "esse é o array com todas as iterações"),
-  itens.forEach(item => {console.log(item), "esse é o item especifico, vai ter varios"})})
-  };
 
   DefinindoArrays(){
     var array = [];
@@ -107,7 +99,7 @@ export class AboutPage {
     })});
     compras.forEach(itens => {array.push(this.ListaDeListasComKey(varredura,itens))})
     array.push(varredura);
-    console.log(array, "olha essa porra aqui")
+
     return (varredura)
   };
     
@@ -133,7 +125,6 @@ export class AboutPage {
       cont += 1
       };
       itens.forEach(item => { adicao = (this.verificoSeigual(item['ano'],item['mes'],lista)); arrayPr = this.PUSH(arrayPr,item,adicao);});
-      console.log("esse array P completo ", arrayPr);
       return (arrayPr);
 
   }

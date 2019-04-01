@@ -35,7 +35,7 @@ export class EditPage {
     this.compras = this.navParams.get('compras');
     this.categorias = this.firebaseService.getArray('categoria')
     this.pagamentos = this.firebaseService.getArray('pagamento')
-    console.log(this.compras)
+
 
     this.DataO = new Date().toISOString();
   }

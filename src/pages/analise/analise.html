@@ -4,6 +4,8 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+
+<!------------------------------------------------------HEADER-------------------------------------------------------->
 <ion-header>
 
   <ion-navbar>
@@ -20,10 +22,11 @@
         </button>
     </ion-buttons>
   </ion-navbar>
-
 </ion-header>
+<!------------------------------------------------------/HEADER-------------------------------------------------------->
 
 
+<!------------------------------------------------------Pagamentos-------------------------------------------------------->
 <ion-content padding>
   <div *ngFor="let f of (ShowTarefas | async) ">
       <ion-card no-padding *ngIf="f.check == true">
@@ -43,12 +46,12 @@
 
 
             <ion-row *ngFor="let pagamento of pagamentos" >
-                <ion-col>
-                    {{pagamento.title}}
-                  </ion-col>
-                  <ion-col>
-                    {{somaPagDiv(pagamento.title)}}
-                  </ion-col>
+              <ion-col col-6 *ngIf='pagamento.title != "Ignorar"'>
+                {{pagamento.title}}
+              </ion-col>
+              <ion-col col-6 *ngIf='pagamento.title != "Ignorar"'>
+                {{somaPagDiv(pagamento.title)}}
+              </ion-col> 
             </ion-row>
 
 
@@ -56,7 +59,7 @@
 
 
 
-
+<!------------------------------------------------------/DIVIDAS-------------------------------------------------------->
         <ion-card-header> Dividas </ion-card-header>
         <ion-grid>
             <ion-row>
@@ -83,7 +86,7 @@
 
 
 
-  
+<!------------------------------------------------------/CARDS DE PREVISÃO-------------------------------------------------------->
   <div class="main-content" (swipe)="swipe($event)">
     <ion-card *ngFor = "let prev of (previsto | async)">
       <ion-row>
@@ -148,6 +151,7 @@
             </ion-col>
         </ion-row>
       </ion-grid>
+      <!------------------------------------------------------/SOMAS DA SEMANA-------------------------------------------------------->
       <ion-grid>
         <ion-row>
           <ion-col col-3 justify-content-center>

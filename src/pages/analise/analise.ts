@@ -128,10 +128,9 @@ export class AnalisePage {
 
 
   getGastoChart(data, categorias, compras){
-    console.log("entrou", categorias, compras);
+
     let linha = []
     categorias.forEach(itens => {itens.forEach(item => {linha.push(this.somaCat2(item.title,data))})})
-    console.log(linha, "testeeee")
     return (linha)
   }
 
@@ -149,7 +148,6 @@ export class AnalisePage {
 
 
   somaCat(categoria,data){
-    console.log(categoria,"cattssssaaaass")
     var valorCat = 0 
     this.ComprasArray.forEach(item => {if (String(item[2]).includes(String(categoria)) && 
       String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0])}}
@@ -159,7 +157,6 @@ export class AnalisePage {
 }
 
   somaCatDiv(categoria){
-    console.log(categoria,"cattss")
     var valorCat = 0 
     this.ComprasArray.forEach(item => {if (String(item[2]) == String(categoria)) { valorCat = valorCat + Number(item[0])}}
     );
@@ -167,7 +164,6 @@ export class AnalisePage {
   }
 
   somaPagDiv(pagamento){
-    console.log(pagamento,"cattss")
     var valorCat = 0 
     this.ComprasArray.forEach(item => {if (String(item[3]) == String(pagamento)) { valorCat = valorCat + Number(item[0])}}
     );
@@ -183,12 +179,10 @@ export class AnalisePage {
 
 
   somaCat2(categoria,data){
-    console.log(categoria,data)
     let valorCat = 0 
     this.ComprasArray.forEach(item => {if (String(item[2]) == String(categoria) && 
-      String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0]), console.log(item[0],data, "5555555555")}}
+      String(item[1]) == String(data)) { valorCat = valorCat + Number(item[0])}}
     );
-    console.log(valorCat,"aaaa")
     return(Math.round(valorCat))
   }
 
@@ -220,7 +214,7 @@ export class AnalisePage {
       var b = 31
     }
 
-    this.ComprasArray.forEach(item => {if ((Number(item[4].substr(-2, 2))) >= a && (Number(item[4].substr(-2, 2)))  <= b && String(item[1]) == String(data)) { SemanPag = SemanPag + Number(item[0])}}
+    this.ComprasArray.forEach(item => {if ((Number(item[4].substr(-2, 2))) >= a && (Number(item[4].substr(-2, 2)))  <= b && String(item[1]) == String(data)) { if(item[2] != 'Ignorar') {SemanPag = SemanPag + Number(item[0])}}}
     );
 
     return(Math.round(SemanPag))
@@ -277,11 +271,11 @@ export class AnalisePage {
   }
 
   retornaArray(prevv){
-    console.log(prevv)
+   
     let cat = this.getCategorias(prevv)
     let a = 0 ;
     cat.forEach (element => a += (Number(prevv[element])))
-    console.log(a, " valor de A")
+  
     return a
 
 
@@ -289,7 +283,6 @@ export class AnalisePage {
 
   getCategorias(previsao){
     let a = Object.keys(previsao)
-    console.log(previsao,"aqui", a)
     let array = []
     a.forEach(element => { if(element != 'key' && element != 'total' && element != 'mes' && element != 'ano') {array.push(element)} 
     });
@@ -318,7 +311,6 @@ export class AnalisePage {
     this.compras.forEach(element => {element.forEach( elem => {if(elem.categoria.includes("Divida")){B = false; array.forEach(A => {if (A == elem.categoria) { B = true}}); if (B == false) {array.push(elem.categoria)}}})
     
   })
-  console.log(array,"OIEEE")
   return (array)
   
   }

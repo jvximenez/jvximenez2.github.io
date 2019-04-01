@@ -29,7 +29,6 @@ export class AnaliseCategoriaPage {
     this.dataEnviada = this.navParams.get('data')
     this.categoriaEnviada = this.navParams.get('categoria')
     this.categorias = this.dbService.getArray('categoria')
-    console.log('ola,', this.dataEnviada, this.compras, this.categoriaEnviada)
   }
 
   ionViewDidLoad() {
