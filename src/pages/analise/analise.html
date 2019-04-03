@@ -49,7 +49,7 @@
               <ion-col col-6 *ngIf='pagamento.title != "Ignorar" && pagamento.title != "Divida"'>
                 {{pagamento.title}}
               </ion-col>
-              <ion-col col-6 *ngIf='pagamento.title != "Ignorar" && pagamento.title != "Divida"'>
+              <ion-col col-6 *ngIf='pagamento.title != "Ignorar" && pagamento.title != "Divida"'  (press)="AlteraValor(somaPagDiv(pagamento.title),pagamento.title)">
                   {{somaPagDiv(pagamento.title)}}
               </ion-col> 
             </ion-row>

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import chartJs from 'chart.js';
 import { AnaliseCategoriaPage } from '../analise-categoria/analise-categoria';
@@ -22,6 +22,19 @@ import { GraficosPage } from '../graficos/graficos';
 })
 export class AnalisePage {
 
+  comprasO = {
+    'title': '',
+    'payload': '',
+    'categoria':'',
+    'pagamento': '',
+    'data': '',
+    'ano':'',
+    'mes':'',
+    'total':'',
+
+  };
+
+
 
   
 
@@ -39,10 +52,11 @@ export class AnalisePage {
   public valoresPrevistos;
   public ShowTarefas;
 
-  public ArrayDividas;
+  public ArrayDividas;DataO
   ///////////////////////////////////////
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: FirebaseServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public dbService: FirebaseServiceProvider, public alertCtrl: AlertController) {
     this.categorias = this.dbService.getAll('categoria')
     this.previsto = this.dbService.getAll2('previsao').map(a => a.reverse())
     this.pagamentos = this.dbService.getArray('pagamento')
@@ -50,6 +64,13 @@ export class AnalisePage {
     this.ComprasArray = this.arrayCompras(this.compras);
 
     this.ShowTarefas = this.dbService.getAll('configuracoes/shows2')
+
+
+    this.comprasO.mes = String(this.AchaMes());
+    this.comprasO.ano = String(this.achaAno());
+    this.comprasO.data = this.Criacao(0);
+    this.DataO = new Date().toISOString();
+    this.comprasO.total = String(Number(Number(this.comprasO.ano)*10000 + Number(this.comprasO.mes)*100 + Number(this.AchaDia())));
 
 
     //chart//
@@ -135,6 +156,75 @@ export class AnalisePage {
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////
+
+
+  AlteraValor(valor,valor2){
+    const prompt = this.alertCtrl.create({
+      title: 'Valor atual',
+      message: "Entre com valor atual",
+      inputs: [
+        {
+          name: 'val',
+          placeholder: 'Valor',
+          type:'number',
+        
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Guardar',
+          handler: data => {
+            var a = Number(valor) - Number(data.val)
+            a =  Math.round(a*100)/100
+            console.log(a,"olha a aqui")
+            this.comprasO.title = "Ajustando"
+            this.comprasO.categoria = "Ignorar"
+            this.comprasO.pagamento = valor2
+            this.comprasO.payload = String(a)
+
+            this.dbService.save('compras',this.comprasO);
+          }
+        }
+      ]
+    });
+    prompt.present();
+
+
+  }
+
+  Criacao(A){
+    var data = new Date();
+    var dia = data.getDate()-A;
+    var mes = data.getMonth() + 1;
+    var ano = data.getFullYear();
+    var hora = data.getHours();
+    var min = data.getMinutes();
+
+    return ([[dia, mes, ano].join('/'),[hora,min].join(':')].join(' - '));
+  }
+
+  AchaMes(){
+    var data = new Date();
+    var mes = data.getMonth() +1;
+    return(mes) 
+   }
+   AchaDia(){
+     var data = new Date();
+     var dia = data.getDate();
+     return dia
+   }
+
+   achaAno(){
+     var data = new Date();
+     var ano = data.getFullYear();
+    return((ano));
+   }
 
 
   arrayCompras(compras){
