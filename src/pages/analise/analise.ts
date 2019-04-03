@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import chartJs from 'chart.js';
 import { AnaliseCategoriaPage } from '../analise-categoria/analise-categoria';
@@ -22,6 +22,19 @@ import { GraficosPage } from '../graficos/graficos';
 })
 export class AnalisePage {
 
+  
+  comprasO = {
+    'title': '',
+    'payload': '',
+    'categoria':'Comida',
+    'pagamento': 'Nubank',
+    'data': '',
+    'ano':'',
+    'mes':'',
+    'total':'',
+
+  };
+
 
   
 
@@ -42,7 +55,8 @@ export class AnalisePage {
   public ArrayDividas;
   ///////////////////////////////////////
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: FirebaseServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public dbService: FirebaseServiceProvider, public alertCtrl: AlertController) {
     this.categorias = this.dbService.getAll('categoria')
     this.previsto = this.dbService.getAll2('previsao').map(a => a.reverse())
     this.pagamentos = this.dbService.getArray('pagamento')
@@ -55,6 +69,7 @@ export class AnalisePage {
     //chart//
     this.categoriasChart = (this.getChartCat(this.categorias));
     this.ArrayDividas = this.SeriesA()
+
 
    
 
@@ -137,6 +152,41 @@ export class AnalisePage {
 
   ///////////////////////////////////////////////////////////////////////////////////////////
 
+  AlteraValor(valor,valor2){
+    const prompt = this.alertCtrl.create({
+      title: 'Valor atual',
+      message: "Entre com valor atual",
+      inputs: [
+        {
+          name: 'val',
+          placeholder: 'Valor'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Guardar',
+          handler: data => {
+            var a = Number(data.val) - Number(valor)
+            this.comprasO.title = "Ajustando"
+            this.comprasO.categoria = "Ignorar"
+            this.comprasO.pagamento = valor2
+            this.comprasO.
+
+            this.dbService.save('compras',this.comprasO);
+          }
+        }
+      ]
+    });
+    prompt.present();
+  
+
+  }
 
   arrayCompras(compras){
     let array = []

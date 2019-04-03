@@ -46,7 +46,7 @@
                 <ion-col>
                     {{pagamento.title}}
                   </ion-col>
-                  <ion-col>
+                  <ion-col (press)="AlteraValor(somaPagDiv(pagamento.title)" >
                     {{somaPagDiv(pagamento.title)}}
                   </ion-col>
             </ion-row>
