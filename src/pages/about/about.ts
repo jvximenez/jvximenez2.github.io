@@ -4,11 +4,14 @@ import { FirebaseServiceProvider } from '../../providers/firebase-service/fireba
 import { EditPage } from '../edit/edit';
 import "rxjs/add/operator/map";
 import { TodasAsComprasPage } from '../todas-as-compras/todas-as-compras';
+import firebase from 'firebase';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { constructDependencies } from '@angular/core/src/di/reflective_provider';
 
 @Component({
   selector: 'page-about',
   templateUrl: 'about.html'
-})
+})  
 export class AboutPage {
   
 
@@ -24,6 +27,10 @@ export class AboutPage {
   public varredura;
   public total;
   public produtos = [];
+
+  public countryList:Array<any>;
+  public loadedCountryList:Array<any>;
+  public countryRef
 
   comprass = {
     'title': '',
@@ -41,14 +48,77 @@ export class AboutPage {
 
   constructor(public navCtrl: NavController, public dbService: FirebaseServiceProvider, public alertCtrl: AlertController) {
     this.categorias = this.dbService.getArray('categoria')
-    this.compras = (this.dbService.getAllQuantidade('compras',50)).map(a => a.reverse());
     this.visual = this.dbService.getAll('visual')
     this.varredura = (this.DefinindoArrays());
-  
+    this.countryRef = firebase.database().ref('/compras').limitToLast(100).orderByChild('total')
+
+    
+    this.countryRef.on('value', countryList => {
+      let countries = [];
+      countryList.forEach( country => {
+        countries.push(country.val());
+        countries.reverse()
+        return false;
+      });
+    
+      this.countryList = countries;
+      this.loadedCountryList = countries;
+    });
+    
   
     
 
   }
+
+  todos(){
+    this.countryRef = firebase.database().ref('/compras').limitToLast(1000).orderByChild('total')
+      
+    this.countryRef.on('value', countryList => {
+      let countries = [];
+      countryList.forEach( country => {
+        countries.push(country.val());
+        countries.reverse()
+        return false;
+      });
+    
+      this.countryList = countries;
+      this.loadedCountryList = countries;
+    });
+  }
+
+  getItems(searchbar) {
+    // Reset items back to all of the items
+    this.initializeItems();
+  
+    // set q to the value of the searchbar
+    var q = searchbar.srcElement.value;
+  
+  
+    // if the value is an empty string don't filter the items
+    if (!q) {
+      return;
+    }
+  
+    this.countryList = this.countryList.filter((v) => {
+      if(v.title && q || v.categoria ) {
+        if (v.title.toLowerCase().indexOf(q.toLowerCase()) > -1 ||
+        v.categoria.toLowerCase().indexOf(q.toLowerCase()) > -1 ||
+        v.total.toLowerCase().indexOf(q.toLowerCase()) > -1 ||
+        v.pagamento.toLowerCase().indexOf(q.toLowerCase()) > -1  ) {
+          return true;
+        }
+        return false;
+      }
+    });
+  
+    console.log(q, this.countryList.length);
+  
+  }
+
+  initializeItems(): void {
+    this.countryList = this.loadedCountryList;
+  }
+  
 
   goToTudo(){
     this.navCtrl.push(TodasAsComprasPage)
@@ -223,17 +293,12 @@ export class AboutPage {
       ]
     });
     prompt.present();
+
+
+
+
   }
 
-
-
-
-  
-
-
-
-    
-  
       
     
 

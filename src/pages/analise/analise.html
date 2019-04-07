@@ -63,18 +63,18 @@
         <ion-card-header> Dividas </ion-card-header>
         <ion-grid>
             <ion-row>
-              <ion-col>
+              <ion-col col-6>
                 Pessoa:
               </ion-col>
-              <ion-col>
+              <ion-col col-3>
                 Gasto:
               </ion-col>
             </ion-row>
             <ion-row *ngFor="let divs of ArrayDividas">
-                <ion-col >
+                <ion-col col-6>
                     {{divs}}
                   </ion-col>
-                  <ion-col>
+                  <ion-col col-3>
                     {{somaCatDiv(divs)}}
                   </ion-col>
             </ion-row>
@@ -103,43 +103,45 @@
       
       <ion-grid>
         <ion-row>
-          <ion-col>
+          <ion-col col-6>
             Categoria
           </ion-col>
-          <ion-col>
+          <ion-col col-3>
             Previsto
           </ion-col>
-          <ion-col>
+          <ion-col col-3>
             Gasto
           </ion-col>
         </ion-row>
 
         <div *ngFor = "let keyy of retornaKeys(prev)">
           <ion-row *ngIf="keyy != 'key' && keyy != 'total' && keyy != 'ano' && keyy != 'mes'"  (click)="goToAnalise(prev.total,keyy)">
-            <ion-col>
+            <ion-col col-6>
                 {{keyy}}
             </ion-col>
-            <ion-col>
+            <ion-col col-3>
                 {{prev[keyy]}}
             </ion-col>
-            <ion-col>
+            <ion-col col-3>
                 {{somaCat(keyy,prev.total)}}
             </ion-col>  
           </ion-row>
         </div>
 
         <ion-row>
-            <ion-col>
+            <ion-col col-6>
               Total
             </ion-col>
-            <ion-col>
+            <ion-col col-3>
               {{retornaArray(prev)}}
             </ion-col>
-            <ion-col>
+            <ion-col col-3>
               {{somaTotal(prev.total)}}
             </ion-col>
         </ion-row>
 
+        <button ion-button clear col-3 padding small (click)="VerMais()">Ver Mais</button>
+        <div *ngIf="showM == true">
         <ion-row *ngFor="let pagamento of pagamentos" (click)="goToAnalisePag(prev.total,pagamento.title)">
             <ion-col>
               {{pagamento.title}}
@@ -150,7 +152,9 @@
             <ion-col>
             </ion-col>
         </ion-row>
+        </div>
       </ion-grid>
+    
       <!------------------------------------------------------/SOMAS DA SEMANA-------------------------------------------------------->
       <ion-grid>
         <ion-row>

@@ -34,6 +34,8 @@ export class AnalisePage {
 
   };
 
+  public showM = false
+
 
 
   
@@ -99,6 +101,10 @@ export class AnalisePage {
     categorias.forEach(element => { element.forEach( item => {arrayC.push(item['title'])})});
     
     return (arrayC)
+  }
+
+  VerMais(){
+    this.showM = !this.showM
   }
  
 
