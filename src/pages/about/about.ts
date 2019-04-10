@@ -15,7 +15,7 @@ import { constructDependencies } from '@angular/core/src/di/reflective_provider'
 export class AboutPage {
   
 
-  public compras;
+  public compras; comprasA ; comprasRef
   
   public comidas;
   public soma;
@@ -52,6 +52,11 @@ export class AboutPage {
     this.varredura = (this.DefinindoArrays());
     this.countryRef = firebase.database().ref('/compras').limitToLast(100).orderByChild('total')
 
+    this.compras = this.dbService.getAllQuantidadeO('compras','total',100).map(a => a.reverse())
+    this.comprasA = this.criaArray()
+    this.comprasRef = this.comprasA
+
+
     
     this.countryRef.on('value', countryList => {
       let countries = [];
@@ -68,6 +73,12 @@ export class AboutPage {
   
     
 
+  }
+
+  criaArray(){
+    var array = []
+    this.compras.forEach(itens => {itens.forEach(item => {array.push(item)})})
+    return array
   }
 
   todos(){
@@ -99,7 +110,7 @@ export class AboutPage {
       return;
     }
   
-    this.countryList = this.countryList.filter((v) => {
+    this.comprasA = this.comprasRef.filter((v) => {
       if(v.title && q || v.categoria ) {
         if (v.title.toLowerCase().indexOf(q.toLowerCase()) > -1 ||
         v.categoria.toLowerCase().indexOf(q.toLowerCase()) > -1 ||
@@ -146,6 +157,7 @@ export class AboutPage {
   }
 
   goToSingle(compras) {
+    console.log(compras.key,compras)
     this.navCtrl.push(EditPage, 
     {'compras' : compras});
   }
