@@ -18,7 +18,7 @@
     <ion-list>
       <div >
       <ion-list-header *ngFor="let a of varredura">{{a}}
-        <div *ngFor="let c of (comprasA)"> 
+        <div *ngFor="let c of (countryList)"> 
         <ion-item-sliding *ngIf = "([c.ano,c.mes].join(' - ')) == a">
           <ion-item class="altura">
             <ion-icon *ngIf="(c.categoria.includes('Divida'))" item-start name="contacts" color="grey"></ion-icon>

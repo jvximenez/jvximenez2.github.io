@@ -5,8 +5,6 @@ import { EditPage } from '../edit/edit';
 import "rxjs/add/operator/map";
 import { TodasAsComprasPage } from '../todas-as-compras/todas-as-compras';
 import firebase from 'firebase';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { constructDependencies } from '@angular/core/src/di/reflective_provider';
 
 @Component({
   selector: 'page-about',
@@ -53,21 +51,26 @@ export class AboutPage {
     this.countryRef = firebase.database().ref('/compras').limitToLast(100).orderByChild('total')
 
     this.compras = this.dbService.getAllQuantidadeO('compras','total',100).map(a => a.reverse())
-    this.comprasA = this.criaArray()
-    this.comprasRef = this.comprasA
+    this.criaArray()
+    
 
 
     
     this.countryRef.on('value', countryList => {
+      
       let countries = [];
-      countryList.forEach( country => {
-        countries.push(country.val());
+      countryList.forEach( country => { 
+        var obj
+        obj = country.val()
+        obj.key = country.key
+        countries.push(obj);
         countries.reverse()
         return false;
       });
     
       this.countryList = countries;
       this.loadedCountryList = countries;
+      
     });
     
   
@@ -78,6 +81,8 @@ export class AboutPage {
   criaArray(){
     var array = []
     this.compras.forEach(itens => {itens.forEach(item => {array.push(item)})})
+    this.comprasA = array
+    this.comprasRef = array
     return array
   }
 
@@ -110,7 +115,7 @@ export class AboutPage {
       return;
     }
   
-    this.comprasA = this.comprasRef.filter((v) => {
+    this.countryList = this.countryList.filter((v) => {
       if(v.title && q || v.categoria ) {
         if (v.title.toLowerCase().indexOf(q.toLowerCase()) > -1 ||
         v.categoria.toLowerCase().indexOf(q.toLowerCase()) > -1 ||
@@ -122,7 +127,6 @@ export class AboutPage {
       }
     });
   
-    console.log(q, this.countryList.length);
   
   }
 
@@ -146,7 +150,6 @@ export class AboutPage {
   }
 
   remover(key){
-    console.log("remover")
     this.dbService.revome('compras',key).then( d => {console.log("removido")});
   }
     
@@ -157,7 +160,6 @@ export class AboutPage {
   }
 
   goToSingle(compras) {
-    console.log(compras.key,compras)
     this.navCtrl.push(EditPage, 
     {'compras' : compras});
   }
@@ -266,7 +268,6 @@ export class AboutPage {
         {
           text: 'Cancel',
           handler: data => {
-            console.log('Cancel clicked');
           }
         },
         {
@@ -274,7 +275,6 @@ export class AboutPage {
           handler: data => {
             this.comprass.categoria = "Comida"; 
             this.dbService.save('compras',this.comprass)
-            console.log('Saved clicked');
           }
         },
         {
