@@ -83,7 +83,8 @@ export class FirebaseServiceProvider {
   revome(dado,compras){
     return this.db.list(dado)
       .remove(compras.key)
-      .then(r => console.log('removido',dado,compras))
+      .then(r => console.log('removido',dado,compras
+      ))
   }
 
   getArray(dado){
