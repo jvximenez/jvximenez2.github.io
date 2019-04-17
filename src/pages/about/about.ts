@@ -48,7 +48,7 @@ export class AboutPage {
     this.categorias = this.dbService.getArray('categoria')
     this.visual = this.dbService.getAll('visual')
     this.varredura = (this.DefinindoArrays());
-    this.countryRef = firebase.database().ref('/compras').limitToLast(100).orderByChild('total')
+    this.countryRef = firebase.database().ref('/compras').limitToLast(100).orderByChild("total")
 
     this.compras = this.dbService.getAllQuantidadeO('compras','total',100).map(a => a.reverse())
     this.criaArray()
@@ -64,10 +64,10 @@ export class AboutPage {
         obj = country.val()
         obj.key = country.key
         countries.push(obj);
-        countries.reverse()
+        
         return false;
       });
-    
+      countries.reverse()
       this.countryList = countries;
       this.loadedCountryList = countries;
       
