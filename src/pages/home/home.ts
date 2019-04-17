@@ -119,14 +119,14 @@ export class HomePage {
     var a2 = (String((array[1]*100)/array[3])+'%')
     var a3 = (String((array[2]*100/array[3]))+'%')
     var a4 = (String("100%"))
-    var a5 =  String((Number(data.getDate)/31)*100)+'%'
+    var a5 =  (String((Number(data.getDate())/31)*100)+'%')
  
   
     document.getElementById("teste4").style.width = a1
     document.getElementById("teste3").style.width = a2
     document.getElementById("teste2").style.width = a3
     document.getElementById("teste1").style.width = a4
-    document.getElementById("testeDia").style.width = '30%'
+    document.getElementById("testeDia").style.width = a5
     document.getElementById("testeMes").style.width = a4
 
   }
