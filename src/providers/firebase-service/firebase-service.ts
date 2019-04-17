@@ -13,7 +13,6 @@ import "rxjs/add/operator/map";
 */
 @Injectable()
 export class FirebaseServiceProvider {
-  private dbRef;
   
   
 
@@ -97,8 +96,7 @@ export class FirebaseServiceProvider {
 
   getArray2(dado){
     var teste =  this.getAll(dado)
-    var array = {}
-    array = teste.forEach(dado => dado.forEach(dado2 =>{}));
+    
     return (teste)
     
   }
