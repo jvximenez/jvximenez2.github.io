@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ToastController, Toast } from 'ionic-angular';
+import { ToastController,  } from 'ionic-angular';
 
 /*
   Generated class for the ToastServiceProvider provider.
@@ -10,17 +10,8 @@ import { ToastController, Toast } from 'ionic-angular';
 @Injectable()
 export class ToastServiceProvider {
 
-  constructor(private toastCtrl: ToastController) {
-    console.log('Hello ToastServiceProvider Provider');
-  }
 
-  show(msg, duration ) {
-    const toast = this.toastCtrl.create({
-      message: msg,
-      duration: duration
-    });
 
-    return Toast
-  }
+  
   
 }
