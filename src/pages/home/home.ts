@@ -126,7 +126,7 @@ export class HomePage {
     document.getElementById("teste3").style.width = a2
     document.getElementById("teste2").style.width = a3
     document.getElementById("teste1").style.width = a4
-    document.getElementById("testeDia").style.width = a5
+    document.getElementById("testeDia").style.width = '30%'
     document.getElementById("testeMes").style.width = a4
 
   }

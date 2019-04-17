@@ -126,19 +126,28 @@
       <ion-col col-1 justify-content-center no-padding>
         <p class="baseG">{{Arredonda(ArrayTotal[1])}}</p>
       </ion-col>
-
-
     </ion-row>
-    <ion-col col-10 justify-content-center>
-      <div class="progress3"  (click)=teste(totalM)>
-        <div class="determinate1" style="width: 0%" id="testeDia" ></div>
-        <div class="determinate2" style="width: 0%" id="testeMes" ></div>
-      
-      </div>
-  </ion-col>
-    <ion-row>
 
-    </ion-row>
+      <ion-row>
+          <ion-col col-1 justify-content-center no-padding>
+            <p class="baseG">Mes</p>
+          </ion-col>
+          <ion-col col-10 justify-content-center>
+            <div class="progress3"  (click)=teste(totalM)>
+              <div class="determinate1" style="width: 0%" id="testeMes" ></div>
+              <div class="determinate2" style="width: 0%" id="testeDia" ></div>
+            </div>
+          </ion-col>
+          <ion-col col-1 no-padding>
+            <p class="baseG">31</p>
+          </ion-col>
+      </ion-row>
+        
+
+
+    
+   
+
   </div>
 </div>
 </ion-content>
