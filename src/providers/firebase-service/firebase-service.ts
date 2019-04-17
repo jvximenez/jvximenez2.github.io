@@ -111,4 +111,10 @@ export class FirebaseServiceProvider {
 
   }
 
+  Arredonda(val,casas){
+    var b;
+    b = (Math.round(val*10**casas)/(10**casas))
+    return b
+  }
+
 }

@@ -119,7 +119,34 @@ page-home {
   top: 0;
   bottom: 0;
   background-color: #23509c;
-  transition: width .8s linear; }
+  transition: width .8s linear; }}
+
+
+  .progress3 {
+    position: relative;
+    height: 10px;
+    display: block;
+    width: 100%;
+    background-color: grey;
+    border-radius: 2px;
+    background-clip: padding-box;
+    padding: 0.7rem 0.3em 0.3rem 0rem;
+    margin: 1rem 0.3em 0.3rem 0.3rem;
+    overflow: hidden; 
+    .progress3 .determinate1 {
+      position: absolute;
+      background-color: inherit;
+      top: 0;
+      bottom: 0;
+      background-color: #822fcf;
+      transition: width .7s linear; }
+    .progress3 .determinate2 {
+    position: absolute;
+    background-color: inherit;
+    top: 0;
+    bottom: 0;
+    background-color: #822fcf;
+    transition: width .8s linear; }
   
           
   }
