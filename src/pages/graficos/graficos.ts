@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import chartJs from 'chart.js';
-import {gradient} from 'gradient-color'
 
 /**
  * Generated class for the GraficosPage page.
@@ -59,9 +58,8 @@ export class GraficosPage {
   }
 
   gradienteX(val){
-    let array = []
-    let b =47
-    let c = 106
+    let b = 47
+    var c = 106
     let branc1 =255
     let incremento1 = (b - branc1)/val.lenght
     let incremento2 = (b - branc1)/val.lenght

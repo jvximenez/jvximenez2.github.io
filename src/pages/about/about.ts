@@ -67,7 +67,8 @@ export class AboutPage {
         
         return false;
       });
-      countries.reverse()
+      countries = countries.reverse()
+
       this.countryList = countries;
       this.loadedCountryList = countries;
       
