@@ -103,39 +103,44 @@
       
       <ion-grid>
         <ion-row>
-          <ion-col col-6>
+          <ion-col col-5 class="titulo">
             Categoria
           </ion-col>
-          <ion-col col-3>
+          <ion-col col-3 class='center'>
             Previsto
           </ion-col>
-          <ion-col col-3>
+          <ion-col col-3 class='center'>
             Gasto
           </ion-col>
         </ion-row>
 
         <div *ngFor = "let keyy of retornaKeys(prev)">
-          <ion-row *ngIf="keyy != 'key' && keyy != 'total' && keyy != 'ano' && keyy != 'mes'"  (click)="goToAnalise(prev.total,keyy)">
-            <ion-col col-6>
+          <ion-row  *ngIf="keyy != 'key' && keyy != 'total' && keyy != 'ano' && keyy != 'mes'"  (click)="goToAnalise(prev.total,keyy)">
+            <ion-col col-5>
                 {{keyy}}
             </ion-col>
-            <ion-col col-3>
+            <ion-col col-3 class='center'>
                 {{prev[keyy]}}
             </ion-col>
-            <ion-col col-3>
+            <ion-col col-3 col-3 class='center'>
                 {{somaCat(keyy,prev.total)}}
-            </ion-col>  
+            </ion-col>
+            <ion-col col-1 no-padding >
+              <button no-padding small class='center' ion-button clear color="{{Analisa(prev[keyy],somaCat(keyy,prev.total),'color')}}">
+                <ion-icon name="{{Analisa(prev[keyy],somaCat(keyy,prev.total),'icone')}}"> </ion-icon>
+              </button>
+            </ion-col>
           </ion-row>
         </div>
 
         <ion-row>
-            <ion-col col-6>
+            <ion-col col-5>
               Total
             </ion-col>
-            <ion-col col-3>
+            <ion-col col-3 class='center'>
               {{retornaArray(prev)}}
             </ion-col>
-            <ion-col col-3>
+            <ion-col col-3 class='center'>
               {{somaTotal(prev.total)}}
             </ion-col>
         </ion-row>

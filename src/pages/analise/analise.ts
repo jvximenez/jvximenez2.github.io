@@ -163,6 +163,32 @@ export class AnalisePage {
 
   ///////////////////////////////////////////////////////////////////////////////////////////
 
+  Analisa(A,B,C){
+    if (C =="color"){
+      if (Number(A) > Number(B)){
+        return "primary"
+      }
+      if (Number(A) == Number(B)){
+        return "dark"
+      }
+      if (Number(A) < Number(B)){
+        return "danger"
+      }
+    }
+    else{
+      if (Number(A) > Number(B)){
+        return "arrow-dropup"
+      }
+      if (Number(A) == Number(B)){
+        return "remove"
+      }
+      if (Number(A) < Number(B)){
+        return "arrow-dropdown"
+      }
+
+    }
+  }
+
 
   AlteraValor(valor,valor2){
     const prompt = this.alertCtrl.create({

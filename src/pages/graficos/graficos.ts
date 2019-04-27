@@ -57,6 +57,7 @@ export class GraficosPage {
 
   }
 
+
   gradienteX(val){
     let b = 47
     var c = 106
@@ -86,7 +87,7 @@ export class GraficosPage {
 
   getCategorias(previsao){
     let array = []
-    previsao.forEach(element => { if(element != 'key' && element != 'total' && element != 'mes' && element != 'ano') {array.push(element)} 
+    previsao.forEach(element => { if(element != 'key' && element != 'total' && element != 'mes' && element != 'ano' && element != 'Ignorar') {array.push(element)} 
     });
     return (array)
     
