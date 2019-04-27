@@ -72,6 +72,7 @@ export class HomePage {
   a4 = 0
 
   public favorito;
+  public diaMes;Dataa
 
   constructor(public navCtrl: NavController,
      public dbService: FirebaseServiceProvider,
@@ -79,6 +80,7 @@ export class HomePage {
      public alertCtrl: AlertController) {
 
     this.DataO = new Date().toISOString();
+    this.Dataa = new Date
 
     this.Criacao(0)
     this.statusBar.backgroundColorByHexString('#ffffff');
@@ -105,6 +107,9 @@ export class HomePage {
 
     this.Pessoas = this.dbService.getAll2('configuracoes/pessoas')
     console.log(this.Pessoas)
+    this.diaMes = this.daysInMonth(this.Dataa.getMonth()+1,this.Dataa.getFullYear())
+
+
    
 
 
@@ -119,7 +124,8 @@ export class HomePage {
     var a2 = (String((array[1]*100)/array[3])+'%')
     var a3 = (String((array[2]*100/array[3]))+'%')
     var a4 = (String("100%"))
-    var a5 =  (String((Number(data.getDate())/31)*100)+'%')
+    var diaMes = this.daysInMonth(data.getMonth()+1,data.getFullYear())
+    var a5 =  (String((Number(data.getDate())/diaMes)*100)+'%')
  
   
     document.getElementById("teste4").style.width = a1
@@ -130,6 +136,10 @@ export class HomePage {
     document.getElementById("testeMes").style.width = a4
 
   }
+
+  daysInMonth (month, year) {
+    return new Date(year, month, 0).getDate();
+}
 
   moveFocus(nextElement) {
     nextElement.setFocus();
@@ -180,7 +190,7 @@ export class HomePage {
 
     this.dbService.save('compras',compras);
     this.previsto = this.dbService.getAll('previsao')
-    this.Compras = (this.dbService.getAllQuantidade('compras',50)).map(a => a.reverse());
+    this.Compras = (this.dbService.getAllQuantidade('compras',100)).map(a => a.reverse());
     this.ArrayTotal =  this.CriaArrayGrafico(compras.categoria)
     this.showGraf = true;
     setTimeout(()=> {
@@ -295,8 +305,17 @@ export class HomePage {
         ]
       });
       prompt.present();
+
     }
   }  
+  this.show = false
+  this.previsto = this.dbService.getAll('previsao')
+  this.Compras = (this.dbService.getAllQuantidade('compras',100)).map(a => a.reverse());
+  this.ArrayTotal =  this.CriaArrayGrafico(compras.categoria)
+  this.showGraf = true;
+  setTimeout(()=> {
+    this.teste(this.ArrayTotal)
+  },1000)
   }
 
   atalhoPush(atalho){
@@ -304,6 +323,8 @@ export class HomePage {
       'atalho': atalho
     })
   }
+
+  
 
   Favorito(){
     this.compras.pagamento = "N26"

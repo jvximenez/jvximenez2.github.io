@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Inserir DDDD</ion-title>
+    <ion-title>Inserir</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="NavConfirg()">
         <ion-icon name="settings"></ion-icon>
@@ -86,17 +86,17 @@
     </ion-row>
   </ion-grid>
 
-  <div *ngIf = "show == true">
+  <div *ngIf = "show == true" class="fadeIn"> 
     <ion-grid>
       <ion-row justify-content-center >
         <ion-col col-2 *ngFor="let atalho of (atalhos |  async)">
-          <button class="btn2" ion-button outline (click)="saveAtalho(compras,atalho)" (press)="atalhoPush(atalho)">{{atalho.title}}</button>
+          <button  class="btn2" ion-button outline (click)="saveAtalho(compras,atalho)" (press)="atalhoPush(atalho)">{{atalho.title}}</button>
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
 
-  <div *ngIf="showGraf == true">
+  <div *ngIf="showGraf == true" class="fadeIn">
     <p class="paragrafo">Gasto Total/Previsto -- {{compras.categoria}} -- {{Arredonda(ArrayTotal[0])}}/{{Arredonda(ArrayTotal[1])}}</p>
     <ion-row>
       <ion-col col-1 justify-content-center no-padding>
@@ -139,7 +139,7 @@
             </div>
           </ion-col>
           <ion-col col-1 no-padding>
-            <p class="baseG">31</p>
+            <p class="baseG">{{diaMes}}</p>
           </ion-col>
       </ion-row>
         
