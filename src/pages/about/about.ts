@@ -73,7 +73,7 @@ export class AboutPage {
       this.loadedCountryList = countries;
       
     });
-    
+
   
     
 

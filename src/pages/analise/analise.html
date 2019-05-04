@@ -50,7 +50,7 @@
                 {{pagamento.title}}
               </ion-col>
               <ion-col col-6 *ngIf='pagamento.title != "Ignorar" && pagamento.title != "Divida"'  (press)="AlteraValor(somaPagDiv(pagamento.title),pagamento.title)">
-                  {{somaPagDiv(pagamento.title)}}
+                  {{somaPagDiv2(pagamento.title)}}
               </ion-col> 
             </ion-row>
             <ion-row>
@@ -58,7 +58,7 @@
                 NuConta Total
               </ion-col>
               <ion-col col-6 (press)='AlteraValor(SomaNu("NuConta","Reserva de emergência","Reserva para metas", "Reserva para estudos"),NuConta)'>
-                {{SomaNu("NuConta","Reserva de emergência","Reserva para metas", "Reserva para estudos")}}
+                {{SomaNu2("NuConta","Reserva de emergência","Reserva para metas", "Reserva para estudos")}}
               </ion-col>
             </ion-row>
 
@@ -82,7 +82,7 @@
                     {{divs}}
                   </ion-col>
                   <ion-col col-3>
-                    {{somaCatDiv(divs)}}
+                    {{somaCatDiv2(divs)}}
                   </ion-col>
             </ion-row>
           </ion-grid>
@@ -130,7 +130,7 @@
                 {{prev[keyy]}}
             </ion-col>
             <ion-col col-3 col-3 class='center'>
-                {{somaCat(keyy,prev.total)}}
+                {{somaCat3(keyy,prev.total)}}
             </ion-col>
             <ion-col col-1 no-padding >
               <button no-padding small class='center' ion-button clear color="{{Analisa(prev[keyy],somaCat(keyy,prev.total),'color')}}">

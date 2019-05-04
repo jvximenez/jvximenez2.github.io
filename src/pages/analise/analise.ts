@@ -6,6 +6,8 @@ import { AnaliseCategoriaPage } from '../analise-categoria/analise-categoria';
 import { AnalisePagamentoPage } from '../analise-pagamento/analise-pagamento';
 import { PrevisãoPage } from '../previs\u00E3o/previs\u00E3o';
 import { GraficosPage } from '../graficos/graficos';
+import firebase from 'firebase';
+
 
 
 /**
@@ -55,6 +57,8 @@ export class AnalisePage {
   public ShowTarefas;
 
   public ArrayDividas;DataO;SomaNuConta
+
+  comprasRef;loadedcompraList;compraList
   ///////////////////////////////////////
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
@@ -75,13 +79,38 @@ export class AnalisePage {
     this.comprasO.total = String(Number(Number(this.comprasO.ano)*10000 + Number(this.comprasO.mes)*100 + Number(this.AchaDia())));
     this.SomaNuConta = this.SomaNu("NuConta","Reserva de emergência","Reserva para metas", "Reserva para estudos")
 
+
+
+    this.comprasRef = firebase.database().ref('/compras').orderByChild("total")
+
+
     //chart//
     this.categoriasChart = (this.getChartCat(this.categorias));
     this.ArrayDividas = this.SeriesA()
 
    
 
-  }
+  
+
+  this.comprasRef.on('value', comprasList => {
+      
+    let comprasA = [];
+    comprasList.forEach( compra => { 
+      var obj
+      obj = compra.val()
+      obj.key = compra.key
+      comprasA.push(obj);
+      
+      return false;
+    });
+    comprasA = comprasA.reverse()
+
+    this.compraList = comprasA;
+    this.loadedcompraList = comprasA;
+    
+  });
+
+}
 
   ////////////////////////////////////////////////CHARTS/////////////////////////////////////
 
@@ -280,10 +309,25 @@ export class AnalisePage {
 
     return(Math.round(valorCat))
 }
+  somaCat3(categoria,data){
+    var valorCat = 0 
+    this.compraList.forEach(item => {if (String(item['categoria']).includes(String(categoria)) && 
+      String([String(item['ano']),String(item['mes'])].join(' - ')) == String(data)) { valorCat = valorCat + Number(item['payload'])}}
+    );
+
+    return(Math.round(valorCat))
+  }
 
   somaCatDiv(categoria){
     var valorCat = 0 
     this.ComprasArray.forEach(item => {if (String(item[2]) == String(categoria)) { valorCat = valorCat + Number(item[0])}}
+    );
+    return(Math.round(valorCat))
+  }
+
+  somaCatDiv2(categoria){
+    var valorCat = 0 
+    this.compraList.forEach(item => {if (String(item['categoria']) == String(categoria)) { valorCat = valorCat + Number(item['payload'])}}
     );
     return(Math.round(valorCat))
   }
@@ -295,11 +339,25 @@ export class AnalisePage {
     return(Math.round(-valorCat))
   }
 
+  somaPagDiv2(pagamento){
+    var valorCat = 0 
+    this.compraList.forEach(item => {if (String(item['pagamento']) == String(pagamento)) { valorCat = valorCat + Number(item['payload'])}}
+    );
+    return(Math.round(-valorCat))
+  }
+
   SomaNu(pagamento1,pagamento2,pagamento3,pagamento4){
-    
     var valorCat = 0 
     this.ComprasArray.forEach(item => {if (String(item[3]) == (pagamento1) || String(item[3]) == (pagamento2) || String(item[3]) == (pagamento3) || String(item[3]) == (pagamento4))
        {valorCat = valorCat + Number(item[0])}}
+    );
+    return(Math.round(-valorCat))
+  }
+
+  SomaNu2(pagamento1,pagamento2,pagamento3,pagamento4){
+    var valorCat = 0 
+    this.compraList.forEach(item => {if (String(item['pagamento']) == (pagamento1) || String(item['pagamento']) == (pagamento2) || String(item['pagamento']) == (pagamento3) || String(item['pagamento']) == (pagamento4))
+       {valorCat = valorCat + Number(item['payload'])}}
     );
     return(Math.round(-valorCat))
   }
