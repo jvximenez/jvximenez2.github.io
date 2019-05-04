@@ -163,16 +163,7 @@ export class AnalisePage {
 
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-  SomaNu(pagamento1,pagamento2,pagamento3,pagamento4){
-    var valorCat = 0 
-    this.ComprasArray.forEach(item => {if (String(item[3]) == String(pagamento1) ||
-      String(item[3]) == String(pagamento2) ||
-      String(item[3]) == String(pagamento3) ||
-      String(item[3]) == String(pagamento4) )
-       { valorCat = valorCat + Number(item[0])}}
-    );
-    return(Math.round(-valorCat))
-  }
+ 
 
 
   Analisa(A,B,C){
@@ -300,6 +291,15 @@ export class AnalisePage {
   somaPagDiv(pagamento){
     var valorCat = 0 
     this.ComprasArray.forEach(item => {if (String(item[3]) == String(pagamento)) { valorCat = valorCat + Number(item[0])}}
+    );
+    return(Math.round(-valorCat))
+  }
+
+  SomaNu(pagamento1,pagamento2,pagamento3,pagamento4){
+    
+    var valorCat = 0 
+    this.ComprasArray.forEach(item => {if (String(item[3]) == (pagamento1) || String(item[3]) == (pagamento2) || String(item[3]) == (pagamento3) || String(item[3]) == (pagamento4))
+       {valorCat = valorCat + Number(item[0])}}
     );
     return(Math.round(-valorCat))
   }
