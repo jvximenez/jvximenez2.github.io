@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AddPrevisãoPage } from '../add-previs\u00E3o/add-previs\u00E3o';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { AlertController } from 'ionic-angular';
+import firebase from 'firebase';
+
 /**
  * Generated class for the PrevisãoPage page.
  *
@@ -26,6 +28,7 @@ export class PrevisãoPage {
   public valores;
 
   public ComprasArray;
+  prevRef;loadedprevList;prevList
 
   
 
@@ -36,6 +39,53 @@ export class PrevisãoPage {
 
     this.ComprasArray = this.navParams.get('ComprasArray')
 
+    this.prevRef = firebase.database().ref('/previsao').orderByChild("total")
+
+
+
+
+    this.prevRef.on('value', prevList => {
+      
+      let prevA = [];
+      prevList.forEach( prev => { 
+        var obj
+        obj = prev.val()
+        obj.key = prev.key
+        prevA.push(obj);
+        
+        return false;
+      });
+      prevA = prevA.reverse()
+  
+      this.prevList = prevA;
+      this.loadedprevList = prevA;
+      
+    });
+
+  }
+
+  CalculaMedia(categoria,ano,mes){
+    if(categoria == 'total'){
+      return (' ')
+    }
+    var calc = 0;
+    var cont = 0
+    var total = ano*100+mes 
+    var media
+    this.prevList.forEach(item => {if(Number(item['ano'])*100+Number(item['mes'])> 201902 && Number(item['ano'])*100+Number(item['mes']) < Number(total)) {
+      if (Number(item[categoria]) != 0 ){
+        cont +=1;  
+      }
+      calc += Number(item[categoria])
+      
+
+     }})
+    if (cont == 0){return 0}
+    else{
+      media = calc/cont
+      media = Math.round(media)
+      return (media)
+  }
   }
 
   ionViewDidLoad() {
@@ -55,7 +105,6 @@ export class PrevisãoPage {
 
   addPrevisao(categorias){
     categorias.forEach(element => {element.forEach(a => this.criaObjeto(a.title))})
-      console.log(this.previsao, " prev")
   
   }
 
@@ -77,7 +126,6 @@ export class PrevisãoPage {
     var ano = data.getFullYear();
     var hora = data.getHours();
     var min = data.getMinutes();
-    console.log([[dia, mes, ano].join('/'),[hora,min].join(':')].join(' - '));
     return ([[dia, mes, ano].join('/'),[hora,min].join(':')].join(' - '));
   }
 
@@ -115,7 +163,6 @@ export class PrevisãoPage {
         {
           text: 'Cancelar',
           handler: () => {
-            console.log('Disagree clicked');
           }
         },
         {
@@ -134,11 +181,9 @@ export class PrevisãoPage {
 /////////////////////////// funcoes juntas///////////////////
  
   retornaArray(prevv){
-    console.log(prevv)
     let cat = this.getCategorias(prevv)
     let a = 0 ;
     cat.forEach (element => a += (Number(prevv[element])))
-    console.log(a, " valor de A")
     return a
 
 
@@ -146,7 +191,6 @@ export class PrevisãoPage {
 
   getCategorias(previsao){
     let a = Object.keys(previsao)
-    console.log(previsao,"aqui", a)
     let array = []
     a.forEach(element => { if(element != 'key' && element != 'total' && element != 'mes' && element != 'ano') {array.push(element)} 
     });
@@ -163,6 +207,8 @@ export class PrevisãoPage {
 
     return(Math.round(valorCat))
   }
+
+
 
 
 }

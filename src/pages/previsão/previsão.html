@@ -33,6 +33,9 @@
         <ion-col>
           Gasto
         </ion-col>
+        <ion-col>
+          Média
+        </ion-col>
       </ion-row>
     </ion-grid>
 
@@ -40,8 +43,9 @@
       <div *ngFor = "let keyy of retornaKeys(prev)">
         <ion-item *ngIf="keyy != 'key'">
           <ion-label fixed>{{keyy}}</ion-label>
-          <ion-input type="text" value="" [(ngModel)]="prev[keyy]"></ion-input>
-          <ion-input type="text"  readonly='true' value="{{somaCat(keyy,prev.total)}}" ></ion-input>
+          <ion-input type="text" value="" full no-padding [(ngModel)]="prev[keyy]" class='center'></ion-input>
+          <ion-input type="text"  readonly='true' full no-padding value="{{somaCat(keyy,prev.total)}}" class='center' ></ion-input>
+          <ion-input type="text"  readonly='true' full no-padding value="{{CalculaMedia(keyy,prev['ano'],prev['mes'])}}" class='center' ></ion-input>
         </ion-item>
       </div>
       <ion-item>
