@@ -168,19 +168,16 @@ export class GraficosPage {
 
   getPieChart(){
     const data = {
-      labels: this.categorias,
       datasets: [{
-        label: 'Planejado',
-        data: this.valoresPrevistos,
-        backgroundColor:  this.gradiente,
-        borderWidth: 2
-    },{
-      label: 'Gasto',
-      data: this.valoresGastos,
-      backgroundColor: this.gradiente,
-      borderWidth: 2
-    }],
+          data: [10, 20, 30]
+      }],
   
+      // These labels appear in the legend and in the tooltips when hovering different arcs
+      labels: [
+          'Red',
+          'Yellow',
+          'Blue'
+      ]
   };
 
   const options = {

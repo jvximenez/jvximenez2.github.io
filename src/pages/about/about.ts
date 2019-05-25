@@ -71,7 +71,6 @@ export class AboutPage {
 
       this.countryList = countries;
       this.loadedCountryList = countries;
-      
     });
 
   
