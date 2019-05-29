@@ -7,6 +7,7 @@ import { AnalisePagamentoPage } from '../analise-pagamento/analise-pagamento';
 import { PrevisãoPage } from '../previs\u00E3o/previs\u00E3o';
 import { GraficosPage } from '../graficos/graficos';
 import firebase from 'firebase';
+import { AnaliseDividaPage } from '../analise-divida/analise-divida';
 
 
 
@@ -436,6 +437,10 @@ export class AnalisePage {
     {'data' : data,
     'categoria': categoria,
      'compra': this.compras });
+  }
+  goToAnaliseDiv(div){
+    this.navCtrl.push(AnaliseDividaPage,
+      {'divida':div})
   }
 
   goToAnalisePag(data,pagamento){

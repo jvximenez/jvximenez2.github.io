@@ -1,0 +1,70 @@
+<!--
+  Generated template for the AnaliseDividaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Análise de divida</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  
+      <ion-list>
+        <div >
+        <ion-list-header *ngFor="let a of varredura">{{a}}
+          <div *ngFor="let c of (countryList)"> 
+          <ion-item-sliding *ngIf = "([c.ano,c.mes].join(' - ')) == a">
+            <ion-item class="altura">
+              <ion-icon *ngIf="(c.categoria.includes('Divida'))" item-start name="contacts" color="{{cor(c.payload)}}"></ion-icon>
+              <ion-icon  *ngIf="(c.categoria.includes('Divida')) == false " item-start color="{{cor(c.payload)}}" [name]=(icon(c.categoria))></ion-icon>
+               <ion-grid>
+                <ion-row>
+                  <ion-col col-9>
+                    <h2>{{c.title}}</h2>
+                    <h3>{{c.categoria}} - {{c.pagamento}} </h3>
+                  </ion-col>
+                  <ion-col col-3>
+                    <ion-row justify-content-center>
+                      <p *ngIf="c.total < 20190300" class="dia">€{{c.payload}}</p>
+                      <p *ngIf="c.total > 20190300" class="dia">${{c.payload}}</p>
+                    </ion-row>
+                    <ion-row justify-content-center>
+                      <h2 *ngIf='c.soma >0 ' class='diaB' >{{Arredonda(c.soma,2)}} </h2>
+                      <h2 *ngIf ='c.soma < 0' class='diaR' >{{Arredonda(c.soma,2)}} </h2>
+
+                      <h2 class ="dia2">-- {{dia(c.data)}}/{{c.mes}} </h2>
+                    </ion-row>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              
+            </ion-item>
+            <ion-item-options side="right">
+              <button ion-button color="primary" (click)="goToSingle(c)" >
+                <ion-icon name="create" ></ion-icon>
+                Edit
+              </button>
+              <button ion-button color="green" (click)="copiar(c)" >
+                  <ion-icon name="copy" ></ion-icon>
+                  Copy
+                </button>
+              <button ion-button color="danger"(click)="remover(c)">
+                <ion-icon name="trash"></ion-icon>
+                Del
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </div>
+        </ion-list-header>
+        </div>
+      </ion-list>
+  </ion-content>
+  
